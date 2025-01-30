@@ -1,7 +1,8 @@
 const {Router} = require('express');
-const { reservasUserId } = require('../../controllers/api/admin/adminApiController');
+const {reservasEmailFind, prestamosEmailFind } = require('../../controllers/api/admin/adminApiController');
 const router = new Router();
 
-router.get('/reservarsUserId', reservasUserId);
+router.get('/reservasEmailFind', reservasEmailFind);
+router.get('/prestamosEmailFind', prestamosEmailFind);
 
 module.exports = router;

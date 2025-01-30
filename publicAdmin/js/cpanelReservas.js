@@ -21,7 +21,7 @@ class ReservaSearch {
         let busqueda = this.input.value;
 
         try {
-            const response = await fetch(`/api/admin/reservarsUserId?emailUser=${busqueda}&pagina=${this.currentPage}`);
+            const response = await fetch(`/api/admin/reservasEmailFind?emailUser=${busqueda}&pagina=${this.currentPage}`);
             const { data, error } = await response.json();
 
             if (!error) {
@@ -137,7 +137,7 @@ class ReservaSearch {
         sigBtn.addEventListener('click', () => {
             if (this.currentPage < this.totalPages) {
                 this.currentPage = Number(this.currentPage) + 1;
-                console.log(this.currentPage)
+             
                 this.fetchReservas();
             }
         });

@@ -3,16 +3,12 @@ const Usuario = require('../../../models/db/user');
 const reservasUserId = async (req,res) => {
 
     try {
-    
-        if(!req.query.idUser) throw new Error("Es necesario pasar todos los parametros");
 
-        const user = await Usuario.findById(req.query.idUser);
-
-        if(!user) throw new Error("No se ha encontrado el usuario");
+        let filtro = { emailUser: { $regex: req.query.emailUser || '', $options: 'i' } }
 
         const pagina = req.query.pagina || 1;
 
-        const paginacion_reservasUser = await Reservas.paginacionReservas(pagina, {idUser:req.query.idUser}, 4);
+        const paginacion_reservasUser = await Reservas.paginacionReservas(pagina, filtro, 5);
 
         return res.json({data:paginacion_reservasUser, error:null});
 

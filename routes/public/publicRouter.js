@@ -8,12 +8,8 @@ const {
     noscript,
 } = require("../../controllers/public/publicController");
 router.get("/", paginaInicio);
-router.get("/about", (req, res) => {
-    return res.view("public/about", { title: "Sobre nosotros" });
-});
-router.get("/contact", (req, res) => {
-    return res.view("public/contact", { title: "Contacto" });
-});
+router.get("/about", aboutPage);
+router.get("/contact", contactoPage);
 router.get("/noscript", noscript);
 router.get("/semilla/:id", semillasDetallesPagina);
 module.exports = router;

@@ -6,10 +6,9 @@ const paginaInicio = async(req,res) => {
 }
 
 const noscript = async(req,res) => {
-        res.sendFile(path.resolve(__dirname, "../../views/public/noscript.html"))
+        return res.sendFile(path.resolve(__dirname, "../../views/public/noscript.html"))
     
 }
-
 
 const semillasDetallesPagina = async(req,res) => {
         try {

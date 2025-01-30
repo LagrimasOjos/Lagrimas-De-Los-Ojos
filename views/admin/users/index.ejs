@@ -91,6 +91,8 @@
                                         data-userId="<%= usuario._id %>" data-userEmail="<%= usuario.email %>" data-bs-target="#modalEliminar">
                                         Eliminar usuario
                                     </button>
+                                    
+                                    <a href="/admin/reservas?emailUser=<%= usuario.email %>" class="btn">Ver Reservas</a>
                                 </td>
                             </tr>
                             <% }) %>

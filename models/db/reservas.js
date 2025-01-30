@@ -65,7 +65,6 @@ reservasSchema.statics.paginacionReservas = async function (pagina = 1, filter =
         const documentos = await this.find(filter).skip(saltar).limit(limite);
         const totalDocumentos = await this.find(filter).countDocuments();
         const totalPaginas = Math.ceil(totalDocumentos / limite);
-
         return {
             documentos,
             totalPaginas,

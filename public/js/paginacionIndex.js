@@ -285,12 +285,12 @@ class Buscador {
   btnBeforePage(paginaActual) {
     const prevBtn = document.createElement('li');
     prevBtn.classList.add('page-item');
-    prevBtn.innerHTML = `<a class="page-link" href="#" aria-label="Previous">
+    prevBtn.innerHTML = `<a class="page-link"  aria-label="Previous">
                           <span aria-hidden="true">&laquo;</span>
                         </a>`;
     prevBtn.addEventListener('click', () => {
       if (paginaActual > 1) {
-        this.page = paginaActual - 1;
+        this.page = Number(paginaActual) - 1;
         this.cargarPeticion();
       }
     });
@@ -301,12 +301,12 @@ class Buscador {
   btnAfterPage(paginaActual, totalPaginas) {
     const nextBtn = document.createElement('li');
     nextBtn.classList.add('page-item');
-    nextBtn.innerHTML = `<a class="page-link" href="#" aria-label="Next">
+    nextBtn.innerHTML = `<a class="page-link"  aria-label="Next">
                           <span aria-hidden="true">&raquo;</span>
                         </a>`;
     nextBtn.addEventListener('click', () => {
       if (paginaActual < totalPaginas) {
-        this.page = paginaActual + 1;
+        this.page = Number(paginaActual) + 1;
         this.cargarPeticion();
       }
     });

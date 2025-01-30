@@ -11,7 +11,6 @@ const reservasCpanel = async (req, res) => {
         const limite = 10;
         const filter = {};
 
-        const resultadoPaginacion = await Reserva.paginacionReservas(pagina, filter, limite);
         const preferences = await Preferencias.getData();
         const {dayToCollect, maximumSeedReserves} = preferences;
         const users = await Usuario.allUser();
@@ -19,10 +18,6 @@ const reservasCpanel = async (req, res) => {
         
         // Renderizar la vista con los datos de las reservas
         return res.view('admin/reservas/index', {
-            reservas: resultadoPaginacion.documentos,
-            totalPaginas: resultadoPaginacion.totalPaginas,
-            paginaActual: resultadoPaginacion.paginaActual,
-            tieneMasPaginas: resultadoPaginacion.tieneMasPaginas,
             diasParaRecoger:dayToCollect,
             maximoSemillas:maximumSeedReserves,
             users,

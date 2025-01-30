@@ -1,0 +1,134 @@
+[
+    {
+        "_id": {
+            "$oid": "678cf00e83aa068f574e090f"
+        },
+        "fotoPath": "/imgs/semillas/1737574530306-jxh82pnl.png",
+        "stock": 7476,
+        "nombre": "Espinaca",
+        "nombreCientifico": "Spinacia oleracea",
+        "descripcion": "Semillas de espinaca para clima fresco.",
+        "tipoDeSuelo": "Arcilloso",
+        "exposicionSolar": "Sombra parcial",
+        "frecuenciaRiego": "Dos veces por semana",
+        "cantidadRiego": 400,
+        "temperaturaIdeal": 15,
+        "epocaSiembra": "Otoño",
+        "profundidadSiembra": "1 cm",
+        "espaciadoPlantas": 15,
+        "tiempoGerminacion": 10,
+        "tiempoCosecha": 45,
+        "cuidadosPlantas": "Eliminar malezas y mantener la humedad.",
+        "activo": false
+    },
+    {
+        "_id": {
+            "$oid": "678cf00e83aa068f574e0910"
+        },
+        "fotoPath": "/imgs/semillas/1737574554340-a1wevm0p.png",
+        "stock": 400,
+        "nombre": "Pimiento",
+        "nombreCientifico": "Capsicum annuum",
+        "descripcion": "Semillas de pimiento dulce para huertos caseros.",
+        "tipoDeSuelo": "Franco arenoso",
+        "exposicionSolar": "Pleno sol",
+        "frecuenciaRiego": "Diario",
+        "cantidadRiego": 600,
+        "temperaturaIdeal": 28,
+        "epocaSiembra": "Primavera",
+        "profundidadSiembra": "1.5 cm",
+        "espaciadoPlantas": 40,
+        "tiempoGerminacion": 14,
+        "tiempoCosecha": 120,
+        "cuidadosPlantas": "Proteger del viento y fertilizar regularmente.",
+        "activo": true
+    },
+    {
+        "_id": {
+            "$oid": "678cf00e83aa068f574e0911"
+        },
+        "fotoPath": "/imgs/semillas/example.jpg",
+        "stock": 200,
+        "nombre": "Cilantro",
+        "nombreCientifico": "Coriandrum sativum",
+        "descripcion": "Semillas de cilantro para aromatizar comidas.",
+        "tipoDeSuelo": "Franco",
+        "exposicionSolar": "Sombra parcial",
+        "frecuenciaRiego": "Cada dos días",
+        "cantidadRiego": 200,
+        "temperaturaIdeal": 22,
+        "epocaSiembra": "Primavera",
+        "profundidadSiembra": "1 cm",
+        "espaciadoPlantas": 10,
+        "tiempoGerminacion": 7,
+        "tiempoCosecha": 40,
+        "cuidadosPlantas": "Evitar el exceso de riego y podar regularmente.",
+        "activo": true
+    },
+    {
+        "_id": {
+            "$oid": "678cf00e83aa068f574e0912"
+        },
+        "fotoPath": "/imgs/semillas/example.jpg",
+        "stock": 200030,
+        "nombre": "Calabaza",
+        "nombreCientifico": "Cucurbita pepo",
+        "descripcion": "Semillas de calabaza para cosechas grandes.",
+        "tipoDeSuelo": "Franco arcilloso",
+        "exposicionSolar": "Pleno sol",
+        "frecuenciaRiego": "Semanal",
+        "cantidadRiego": 800,
+        "temperaturaIdeal": 30,
+        "epocaSiembra": "Verano",
+        "profundidadSiembra": "3 cm",
+        "espaciadoPlantas": 100,
+        "tiempoGerminacion": 7,
+        "tiempoCosecha": 120,
+        "cuidadosPlantas": "Evitar acumulación de agua en hojas y frutos.",
+        "activo": true
+    },
+    {
+        "_id": {
+            "$oid": "678cf00e83aa068f574e0913"
+        },
+        "fotoPath": "/imgs/semillas/example.jpg",
+        "stock": 90,
+        "nombre": "Rábano",
+        "nombreCientifico": "Raphanus sativus",
+        "descripcion": "Semillas de rábano de crecimiento rápido.",
+        "tipoDeSuelo": "Franco arenoso",
+        "exposicionSolar": "Pleno sol",
+        "frecuenciaRiego": "Semanal",
+        "cantidadRiego": 300,
+        "temperaturaIdeal": 18,
+        "epocaSiembra": "Primavera",
+        "profundidadSiembra": "1 cm",
+        "espaciadoPlantas": 5,
+        "tiempoGerminacion": 5,
+        "tiempoCosecha": 30,
+        "cuidadosPlantas": "Mantener el suelo húmedo.",
+        "activo": true
+    },
+    {
+        "_id": {
+            "$oid": "678cf00e83aa068f574e0914"
+        },
+        "fotoPath": "/imgs/semillas/example.jpg",
+        "stock": 110,
+        "nombre": "Albahaca",
+        "nombreCientifico": "Ocimum basilicum",
+        "descripcion": "Semillas de albahaca para uso culinario y medicinal.",
+        "tipoDeSuelo": "Franco arenoso",
+        "exposicionSolar": "Pleno sol",
+        "frecuenciaRiego": "Diario",
+        "cantidadRiego": 300,
+        "temperaturaIdeal": 26,
+        "epocaSiembra": "Primavera",
+        "profundidadSiembra": "0.5 cm",
+        "espaciadoPlantas": 25,
+        "tiempoGerminacion": 7,
+        "tiempoCosecha": 60,
+        "cuidadosPlantas": "Podar para fomentar el crecimiento.",
+        "activo": true
+    }
+]

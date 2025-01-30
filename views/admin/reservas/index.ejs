@@ -1,0 +1,228 @@
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Gestionar Reservas</h1>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#crearreserva" aria-expanded="false" aria-controls="flush-collapseOne">
+            <i class="bi bi-bookmark-check-fill"></i> Crear Reserva
+        </button>
+    </div>
+
+    <div class="accordion accordion-flush" id="crearprestamo">
+        <div class="accordion-item my-3">
+            <div id="crearreserva" class="accordion-collapse collapse">
+                <div class="accordion-body">
+
+                    <form action="/admin/reservas/crearReserva" method="post" class="p-4 bg-light rounded border">
+                        <h4 class="mb-4">
+                            <i class="bi bi-bookmark-check-fill"></i> Crear Reserva
+                        </h4>
+        
+                        <div class="mb-3">
+                            <label for="user-select" class="form-label">Seleccionar Usuario </label>
+                            <select id="user-select" name="idUser" class="form-select" required>
+                                <option selected disabled>Selecciona un usuario registrado</option>
+                                <% if (users && users.length> 0) { %>
+                                    <% users.forEach(({ _id, username, email })=> { %>
+                                        <option value="<%= _id %>">
+                                            <%= username %> (<%= email %>)
+                                        </option>
+                                <% }) %>
+                                <% } else { %>
+                                        <option disabled>No hay usuarios disponibles</option>
+                                <% } %>
+                            </select>
+                        </div>
+        
+                        <div class="mb-3">
+                            <label for="seed-select" class="form-label">Seleccionar Semilla </label>
+                            <select id="seed-select" name="idSemilla" class="form-select" required>
+                                <option selected disabled>Elige una semilla disponible</option>
+                                <% if (semillas && semillas.length> 0) { %>
+                                    <% semillas.forEach(({ _id, nombre, stock })=> { %>
+                                        <option value="<%= _id %>">
+                                            <%= nombre %> (Stock: <%= stock %>)
+                                        </option>
+                                        <% }) %>
+                                <% } else { %>
+                                        <option disabled>No hay semillas disponibles</option>
+                                <% } %>
+                            </select>
+                        </div>
+        
+                        <div class="mb-3">
+                            <label for="cantidadSemillas" class="form-label">Cantidad a Reservar <i
+                                    class="bi bi-box-seam text-secondary"></i></label>
+                            <input type="number" id="cantidadSemillas" name="cantidadSemillas" class="form-control"
+                                placeholder="Cantidad de semillas a prestar" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="datecollection" class="form-label">Recoger previo a <i
+                                    class="bi bi-box-seam text-secondary"></i></label>
+                            <input type="date" id="datecollection" name="datecollection" class="form-control"
+                                placeholder="" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100">
+                            <i class="bi bi-check-circle-fill"></i> Crear Reserva
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="row my-2">
+        <!-- Formulario para modificar el máximo de semillas -->
+        <div class="col-6">
+            <form action="/admin/preferences/modificar" method="post" class="card p-3 shadow-sm">
+                <div class="mb-3">
+                    <label for="maximumSeedReserves" class="form-label">
+                        <i class="bi bi-flower3"></i> Máximo de semillas para reservar:
+                    </label>
+                    <input type="number" class="form-control" id="maximumSeedReserves" name="maximumSeedReserves" value="<%= maximoSemillas %>" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="bi bi-save"></i> Actualizar Preferencias
+                </button>
+            </form>
+        </div>
+    
+        <!-- Formulario para modificar los días para recoger -->
+        <div class="col-6">
+            <form action="/admin/preferences/modificar" method="post" class="card p-3 shadow-sm">
+                <div class="mb-3">
+                    <label for="dayToCollect" class="form-label">
+                        <i class="bi bi-calendar-check"></i> Días para recoger:
+                    </label>
+                    <input type="number" class="form-control" id="dayToCollect" name="dayToCollect" value="<%= diasParaRecoger %>" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="bi bi-save"></i> Actualizar Preferencias
+                </button>
+            </form>
+        </div>
+    </div>
+    
+
+    <!-- Tabla para mostrar reservas -->
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Usuario</th>
+                <th>Semilla</th>
+                <th>Cantidad</th>
+                <th>Estado</th>
+                <th>Recoger previo a</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (reservas.length > 0) { %>
+                <% reservas.forEach((reserva, index) => { %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                        <td><%= reserva.username %> (<%= reserva.emailUser %>)</td>
+                        <td><%= reserva.nameSeed %></td>
+                        <td><%= reserva.amountSeeds %></td>
+                        <td>
+                            <i class="bi bi-circle-fill text-<%= reserva.status === 'pendiente' ? 'warning' : reserva.status === 'recogidas' ? 'success' : 'danger' %>"></i>
+                            <%= reserva.status %>
+                        </td>
+                        <td><%= new Date(reserva.collectionDate).toLocaleDateString() %></td>
+                        <td>
+                            <% if (reserva.status === 'pendiente') { %>
+                                <!-- Botón para "Ha venido a recogerlo" -->
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#recogerModal" data-id="<%= reserva._id %>">
+                                    <i class="bi bi-check-circle"></i> Ha venido a recogerlo
+                                </button>
+
+                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#cancelarModal" data-id="<%= reserva._id %>" data-userId="<%= reserva.idUser %>">
+                                    <i class="bi bi-trash"></i> Cancelar Reserva
+                                </button>
+                            <% } %>
+                            
+                        </td>
+                    </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="7" class="text-center">No hay reservas disponibles.</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+
+    <!-- Modal para "Ha venido a recogerlo" -->
+    <div class="modal fade" id="recogerModal" tabindex="-1" aria-labelledby="recogerModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="recogerModalLabel">Confirmación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de que el usuario ha venido a recogerlo? Esta acción registrará el préstamo.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Atras</button>
+                    <form id="confirmForm" method="POST" action="/admin/reservas/atender">
+                        <input type="hidden" name="idReserva" id="idReservaInput">
+                        <button type="submit" class="btn btn-primary">Confirmar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para cancelar reserva -->
+    <div class="modal fade" id="cancelarModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmModalLabel">Cancelar Reserva</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de que deseas cancelar la reserva? Esto devolverá el stock a la semilla asociada.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Atras</button>
+                    <form method="POST" action="/admin/reservas/cancelar">
+                        <input type="hidden" name="reservaId" id="cancelReservaInput">
+                        <input type="hidden" name="userId" id="cancelUserInput">
+                        <button type="submit" class="btn btn-danger">Confirmar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Configuración del modal "Ha venido a recogerlo"
+    const recogerModal = document.getElementById('recogerModal');
+    const idReservaInput = document.getElementById('idReservaInput');
+
+    recogerModal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget; // Botón que activó el modal
+        const reservaId = button.getAttribute('data-id'); // Obtiene el ID de la reserva
+        idReservaInput.value = reservaId; // Asigna el ID al input oculto
+    });
+
+    // Configuración del modal "Cancelar Reserva"
+    const cancelModal = document.getElementById('cancelarModal');
+    const cancelReservaInput = document.getElementById('cancelReservaInput');
+    const cancelUserInput = document.getElementById('cancelUserInput');
+
+    cancelModal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget; // Botón que activó el modal
+        const reservaId = button.getAttribute('data-id');
+        const userId = button.getAttribute('data-userId');
+        cancelUserInput.value = userId;
+        cancelReservaInput.value = reservaId; // Asigna el ID al input oculto
+    });
+
+</script>

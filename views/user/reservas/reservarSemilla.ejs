@@ -1,0 +1,56 @@
+
+    <div class="container mt-5">
+        <!-- Título principal -->
+        <h1 class="text-center">
+            <i class="bi bi-seedling"></i> Reservar Semillas
+        </h1>
+
+        <!-- Tarjeta de información -->
+        <div class="card mx-auto mt-4 shadow-lg border-0" style="max-width: 500px;">
+            <div class="card-header text-center bg-primary text-white">
+                <h5 class="card-title mb-0">
+                    <i class="bi bi-info-circle-fill"></i> Información de la Semilla
+                </h5>
+            </div>
+            <div class="card-body">
+                <!-- Detalles de la semilla -->
+                <h5 class="card-title">
+                    <i class="bi bi-tree-fill"></i> <strong>Semilla:</strong> <%= semilla.nombre %>
+                </h5>
+                <p class="card-text">
+                    <i class="bi bi-boxes"></i> <strong>Stock disponible:</strong> <%= semilla.stock %>
+                </p>
+
+                <!-- Formulario de reserva -->
+                <form action="/me/reservas/<%= semilla._id %>" method="POST">
+                    <div class="mb-3">
+                        <label for="amountSeeds" class="form-label">
+                            <i class="bi bi-pencil-square"></i> Cantidad a reservar:
+                        </label>
+                        <input 
+                            type="number" 
+                            class="form-control" 
+                            id="amountSeeds" 
+                            name="amountSeeds" 
+                            min="1" 
+                            max="<%= semilla.stock %>" 
+                            required
+                            placeholder="Ingrese la cantidad"
+                        />
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-check-circle-fill"></i> Reservar
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-center text-muted">
+                <small>
+                    <i class="bi bi-clock"></i> Asegúrate de recoger las semillas antes de la fecha límite.
+                </small>
+            </div>
+        </div>
+    </div>
+

@@ -1,0 +1,87 @@
+<main>
+  <section class="py-2 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <img src="/imgs/logo.png" height="95" alt="Logo">
+        <h1 class="fw-light">Lágrimas de los Ojos</h1>
+        <p class="lead text-muted">Biblioteca semillas - Explora nuestro catálogo.</p>
+      </div>
+    </div>
+  </section>
+
+ 
+  <div class="album py-5 bg-light">
+    <div class="container">
+  
+      <!-- Título principal -->
+      <div class="text-center mb-4">
+        <h1 class="display-5 fw-bold">Explora Nuestro Catálogo de Semillas</h1>
+        <p class="text-muted">Encuentra rápidamente las semillas que necesitas utilizando el buscador.</p>
+      </div>
+  
+      <!-- Buscador -->
+      <div>
+        <div class="input-group mb-4">
+          <label for="buscador" class="visually-hidden">Buscar semilla</label> <!-- Agregamos label para accesibilidad -->
+          <input 
+            type="text" 
+            id="buscador" 
+            class="form-control shadow-sm fs-5" 
+            style="height: 60px;" 
+            placeholder="Escribe el nombre de una semilla..." 
+            aria-label="Buscador" 
+            aria-describedby="boton-buscar">
+          <button 
+            class="btn btn-primary shadow-sm px-4 fs-5" 
+            id="sendSearch" 
+            type="button">
+            <i class="bi bi-search"></i> Buscar
+          </button>
+        </div>
+      </div>
+  
+      <!-- Contenedor de resultados -->
+      <div id="boxSeeds" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 my-4">
+
+      </div>
+  
+      <!-- Paginación -->
+      <nav aria-label="Paginación" class="my-5">
+        <ul id="paginacion" class="pagination justify-content-center">
+          <!-- Los elementos de paginación se generarán dinámicamente -->
+        </ul>
+      </nav>
+  
+    </div>
+  </div>
+  
+  
+  
+
+  <script src="/js/paginacionIndex.js"></script>
+
+  <!-- <div id="cb-cookie-banner" class="alert alert-dark text-center mb-0" role="alert">
+    <p>Te informamos que usamos coockies 🍪</p>
+    <button id="accept" class="btn btn-primary btn-sm ms-3">Aceptar coockies</button>
+    <button type="button" id="decline" data-bs-toggle="modal" data-bs-target="#modalCookie" class="btn btn-primary btn-sm ms-3">Rechazar coockies</button>
+  </div>
+
+  <div class="modal" id="modalCookie" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Funcionamiento</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Si no aceptas las cookies puede ser que el funcionamiento de la web no sea el esperado</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cerrarModal">Cerrar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="botonModal">Aceptar Cookie</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<script src="/js/coockies.js"></script> -->

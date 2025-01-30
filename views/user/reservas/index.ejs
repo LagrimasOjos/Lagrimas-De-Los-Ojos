@@ -1,0 +1,115 @@
+<div class="container mt-5">
+    <h1 class="text-center mb-4">
+        <i class="bi bi-list-check"></i> Lista de Reservas
+    </h1>
+
+    <!-- Tabla para mostrar reservas -->
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th><i class="bi bi-hash"></i> #</th>
+                <th><i class="bi bi-seedling"></i> Semilla</th>
+                <th><i class="bi bi-box"></i> Cantidad</th>
+                <th><i class="bi bi-flag"></i> Estado</th>
+                <th><i class="bi bi-calendar-event"></i> Recoger previo a</th>
+                <th><i class="bi bi-gear"></i> Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (reservas.length > 0) { %> <!-- Verificar si hay reservas -->
+                <% reservas.forEach((reserva, index) => { %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                        <td><i class="bi bi-tree"></i> <%= reserva.nameSeed %></td>
+                        <td><i class="bi bi-box-fill"></i> <%= reserva.amountSeeds %></td>
+                        <td>
+                            <i class="bi bi-circle-fill text-<%= reserva.status === 'pendiente' ? 'warning' : reserva.status === 'recogidas' ? 'success' : 'danger' %>"></i>
+                            <%= reserva.status %>
+                        </td>
+                        <td>
+                            <% if (reserva.status !== 'recogidas') { %> <!-- Si no está en estado 'recogidas' -->
+                                <i class="bi bi-clock"></i> <%= new Date(reserva.collectionDate).toLocaleDateString() %>
+                            <% } else { %> <!-- Si está en estado 'recogidas' -->
+                                N/A
+                            <% } %>
+                        </td>
+                        <td>
+                            <% if (reserva.status === 'pendiente') { %>
+                                <button 
+                                    type="button" 
+                                    class="btn btn-danger btn-sm" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#cancelModal" 
+                                    data-id="<%= reserva._id %>">
+                                    <i class="bi bi-x-circle"></i> Cancelar Reserva
+                                </button>
+                            <% } %>
+                        </td>
+                    </tr>
+                <% }) %>
+            <% } else { %> <!-- Si no hay reservas -->
+                <tr>
+                    <td colspan="7" class="text-center">No hay reservas disponibles.</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+
+    <!-- Controles de paginación -->
+    <nav aria-label="Paginación">
+        <ul class="pagination justify-content-center">
+            <% if (paginaActual > 1) { %>
+                <li class="page-item">
+                    <a class="page-link" href="?pagina=<%= paginaActual - 1 %>">
+                        <i class="bi bi-arrow-left"></i> Anterior
+                    </a>
+                </li>
+            <% } %>
+            <% for (let i = 1; i <= totalPaginas; i++) { %>
+                <li class="page-item <%= i === paginaActual ? 'active' : '' %>">
+                    <a class="page-link" href="?pagina=<%= i %>"><%= i %></a>
+                </li>
+            <% } %>
+            <% if (tieneMasPaginas) { %>
+                <li class="page-item">
+                    <a class="page-link" href="?pagina=<%= paginaActual + 1 %>">
+                        Siguiente <i class="bi bi-arrow-right"></i>
+                    </a>
+                </li>
+            <% } %>
+        </ul>
+    </nav>
+</div>
+
+<!-- Modal para confirmar cancelación -->
+<div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cancelModalLabel">Confirmar Cancelación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de que deseas cancelar esta reserva? Esta acción no se puede deshacer.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <form id="cancelForm" action="/me/reservas/cancelar" method="POST">
+                    <input type="hidden" name="idReserva" id="modalReservaId">
+                    <button type="submit" class="btn btn-danger">Confirmar Cancelación</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Pasar el ID de la reserva al modal cuando se abre
+    const cancelModal = document.getElementById('cancelModal');
+    cancelModal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget; // Botón que disparó el modal
+        const reservaId = button.getAttribute('data-id'); // Obtener el ID de la reserva
+        const modalInput = document.getElementById('modalReservaId');
+        modalInput.value = reservaId; // Asignar el ID al input del formulario
+    });
+</script>

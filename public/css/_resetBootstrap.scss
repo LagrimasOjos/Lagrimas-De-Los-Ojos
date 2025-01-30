@@ -1,0 +1,40 @@
+//Personalizacion de las clases estandar de boostrap
+.btn{
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #{$colorQuinto};
+    --bs-btn-border-color: #{$colorCuaternario};
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #{$colorSexto};
+    --bs-btn-hover-border-color:transparent;
+    --bs-btn-focus-shadow-rgb: 225, 83, 97;
+    --bs-btn-active-color: #333;
+    --bs-btn-active-bg: #{$colorTerciario};
+    --bs-btn-active-border-color: #{$colorSecundario};
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #{$colorCuaternario};
+    --bs-btn-disabled-border-color: transparent;
+}
+
+.btn-danger {
+    --bs-btn-color: #fff; /* Color de la letra blanca */
+    --bs-btn-bg: #f28c8c; /* Rojo sutil */
+    --bs-btn-border-color: #d43f3a; /* Rojo más oscuro para el borde */
+    --bs-btn-hover-color: #fff; /* Letra blanca al pasar el mouse */
+    --bs-btn-hover-bg: #f05a5a; /* Rojo más intenso al pasar el mouse */
+    --bs-btn-hover-border-color: transparent; /* Borde transparente al pasar el mouse */
+    --bs-btn-focus-shadow-rgb: 225, 83, 97;
+    --bs-btn-active-color: #333; /* Color de la letra cuando el botón está activo */
+    --bs-btn-active-bg: #d43f3a; /* Fondo rojo más oscuro cuando el botón está activo */
+    --bs-btn-active-border-color: #e03c31; /* Borde más oscuro cuando está activo */
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff; /* Color de la letra cuando el botón está deshabilitado */
+    --bs-btn-disabled-bg: #d43f3a; /* Fondo rojo cuando está deshabilitado */
+    --bs-btn-disabled-border-color: transparent;
+}
+
+
+
+.page-link{
+    cursor: pointer;
+}

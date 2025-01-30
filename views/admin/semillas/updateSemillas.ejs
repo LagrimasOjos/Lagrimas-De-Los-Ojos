@@ -1,0 +1,176 @@
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header text-center bg-primary text-white">
+            <h2><i class="bi bi-pencil-square"></i> Actualizar Semilla</h2>
+        </div>
+        <div class="card-body">
+            <form action="/admin/semillas/update/<%= semilla._id %>" method="POST" enctype="multipart/form-data">
+                <!-- Campos principales -->
+                <div class="row g-4">
+                    <!-- Foto -->
+                    <div class="col-md-12 text-center">
+                        <label for="fotoPath" class="form-label">Foto Actual</label>
+                        <div class="mb-3">
+                            <img src="<%= semilla.fotoPath %>" alt="Foto de <%= semilla.nombre %>"
+                                class="img-thumbnail shadow-sm" style="width: 150px; height: 150px" />
+                        </div>
+                        <label for="fotoPath" class="form-label">Actualizar Foto</label>
+                        <input type="file" class="form-control" id="fotoPath" name="fotoPath" />
+                    </div>
+
+                    <!-- Nombre -->
+                    <div class="col-md-6">
+                        <label for="nombre" class="form-label"><i class="bi bi-tag"></i> Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="<%= semilla.nombre %>"
+                            required />
+                    </div>
+
+                    <!-- Descripción -->
+                    <div class="col-md-6">
+                        <label for="descripcion" class="form-label"><i class="bi bi-pencil"></i> Descripción</label>
+                        <textarea class="form-control" id="descripcion" name="descripcion" rows="2" required>
+<%= semilla.descripcion %></textarea>
+                    </div>
+
+                    <!-- Stock -->
+                    <div class="col-md-6">
+                        <label for="stock" class="form-label"><i class="bi bi-boxes"></i> Stock</label>
+                        <input type="number" class="form-control" id="stock" name="stock" value="<%= semilla.stock %>"
+                            required />
+                    </div>
+
+                    <!-- Activo -->
+                    <div class="col-md-6">
+                        <div class="form-check mt-4">
+                            <input class="form-check-input" type="checkbox" id="activo" name="activo" <%=semilla.activo
+                                ? 'checked' : '' %>>
+                            <label class="form-check-label" for="activo"><i class="bi bi-eye"></i> Activo</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Más campos desplegables -->
+                <div class="accordion mt-4" id="moreFieldsAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="moreFieldsHeader">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#moreFields" aria-expanded="false" aria-controls="moreFields">
+                                Más campos
+                            </button>
+                        </h2>
+                        <div id="moreFields" class="accordion-collapse collapse" aria-labelledby="moreFieldsHeader"
+                            data-bs-parent="#moreFieldsAccordion">
+                            <div class="accordion-body">
+                                <div class="row g-4">
+                                    <!-- Campos no requeridos -->
+                                    <div class="col-md-6">
+                                        <label for="nombreCientifico" class="form-label"><i class="bi bi-book"></i>
+                                            Nombre Científico</label>
+                                        <input type="text" class="form-control" id="nombreCientifico"
+                                            name="nombreCientifico" value="<%= semilla.nombreCientifico %>" />
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="tipoDeSuelo" class="form-label"><i class="bi bi-tree"></i> Tipo de
+                                            Suelo</label>
+                                        <input type="text" class="form-control" id="tipoDeSuelo" name="tipoDeSuelo"
+                                            value="<%= semilla.tipoDeSuelo %>" />
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="exposicionSolar" class="form-label"><i class="bi bi-sun"></i>
+                                            Exposición Solar</label>
+                                        <input type="text" class="form-control" id="exposicionSolar"
+                                            name="exposicionSolar" value="<%= semilla.exposicionSolar %>" />
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="frecuenciaRiego" class="form-label"><i class="bi bi-droplet"></i>
+                                            Frecuencia de Riego</label>
+                                        <input type="text" class="form-control" id="frecuenciaRiego"
+                                            name="frecuenciaRiego" value="<%= semilla.frecuenciaRiego %>" />
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="cantidadRiego" class="form-label"><i class="bi bi-cup-straw"></i>
+                                            Cantidad de Riego
+                                            (ml)</label>
+                                        <input type="number" class="form-control" id="cantidadRiego"
+                                            name="cantidadRiego" value="<%= semilla.cantidadRiego %>" />
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="temperaturaIdeal" class="form-label"><i
+                                                class="bi bi-thermometer"></i> Temperatura Ideal
+                                            (°C)</label>
+                                        <input type="number" class="form-control" id="temperaturaIdeal"
+                                            name="temperaturaIdeal" value="<%= semilla.temperaturaIdeal %>" />
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="epocaSiembra" class="form-label"><i
+                                                class="bi bi-calendar-check"></i> Época de
+                                            Siembra</label>
+                                        <input type="text" class="form-control" id="epocaSiembra" name="epocaSiembra"
+                                            value="<%= semilla.epocaSiembra %>" />
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="profundidadSiembra" class="form-label"><i
+                                                class="bi bi-arrow-down"></i> Profundidad de Siembra
+                                            (cm)</label>
+                                        <input type="text" class="form-control" id="profundidadSiembra"
+                                            name="profundidadSiembra" value="<%= semilla.profundidadSiembra %>" />
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="espaciadoPlantas" class="form-label"><i
+                                                class="bi bi-arrows-angle-expand"></i> Espaciado entre
+                                            Plantas (cm)</label>
+                                        <input type="number" class="form-control" id="espaciadoPlantas"
+                                            name="espaciadoPlantas" value="<%= semilla.espaciadoPlantas %>" />
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="tiempoGerminacion" class="form-label"><i
+                                                class="bi bi-hourglass-split"></i> Tiempo de
+                                            Germinación (días)</label>
+                                        <input type="number" class="form-control" id="tiempoGerminacion"
+                                            name="tiempoGerminacion" value="<%= semilla.tiempoGerminacion %>" />
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="tiempoCosecha" class="form-label"><i
+                                                class="bi bi-clock-history"></i> Tiempo de Cosecha
+                                            (días)</label>
+                                        <input type="number" class="form-control" id="tiempoCosecha"
+                                            name="tiempoCosecha" value="<%= semilla.tiempoCosecha %>" />
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label for="cuidadosPlantas" class="form-label"><i
+                                                class="bi bi-shield-check"></i> Cuidados de la
+                                            Planta</label>
+                                        <textarea class="form-control" id="cuidadosPlantas" name="cuidadosPlantas"
+                                            rows="2">
+<%= semilla.cuidadosPlantas %></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botones -->
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-save"></i> Guardar Cambios
+                    </button>
+                    <a href="/admin/semillas/" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left-circle"></i> Cancelar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

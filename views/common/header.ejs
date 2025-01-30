@@ -1,0 +1,143 @@
+<header>
+    <nav class="navbar navbar-expand-lg bg-cuaternario">
+        <div class="container">
+            <a class="navbar-brand" href="/"><img src="/imgs/logoNav.JPG" width="75" alt="Logo" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/">
+                            <i class="bi bi-house-door"></i> Inicio
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">
+                            <i class="bi bi-info-circle"></i> Sobre nosotros
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">
+                            <i class="bi bi-envelope"></i> Contacto
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Menú para usuarios logueados -->
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <% if (user) { %>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-fill"></i>
+                                <%= user.username %>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <!-- Opciones para admin -->
+                                <% if (user.rol==='admin' ) { %>
+                                    <li>
+                                        <a class="dropdown-item" href="/admin/"><i class="bi bi-grid-fill"></i> Panel
+                                            General</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="/admin/usuarios"><i class="bi bi-people-fill"></i> Panel de
+                                            Usuarios</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="/admin/prestamos/"><i
+                                                class="bi bi-box-arrow-in-down"></i> Gestionar
+                                            Préstamos</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="/admin/reservas/"><i
+                                                class="bi bi-calendar2-check-fill"></i> Gestionar
+                                            Reservas</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="/admin/semillas/"><i class="bi bi-flower3"></i>
+                                            Gestionar Semillas</a>
+                                    </li>
+                                    <% } %>
+
+                                        <!-- Opciones para usuario -->
+                                        <% if (user.rol==='user' ) { %>
+                                            <li>
+                                                <a class="dropdown-item" href="/me"><i class="bi bi-journal-text"></i>
+                                                    Panel General</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="/me/prestamos" disabled><i
+                                                        class="bi bi-journal-text"></i> Ver mis Préstamos</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="/me/reservas"><i
+                                                        class="bi bi-calendar-check"></i> Ver mis Reservas</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="#"><i class="bi bi-gear"></i>
+                                                    Configuración perfil
+                                                    (Mantenimiento)</a>
+                                            </li>
+                                            <% } %>
+
+                                                <!-- Cerrar sesión -->
+                                                <li>
+                                                    <a class="dropdown-item text-danger" href="/logout"><i
+                                                            class="bi bi-box-arrow-right"></i> Cerrar sesión</a>
+                                                </li>
+                            </ul>
+                        </li>
+                        <% } %>
+
+                            <!-- Menú para no usuarios (Iniciar sesión / Registrarse) -->
+                            <% if (!user) { %>
+                                <li class="nav-item ms-1 mb-1">
+                                    <a id="btnLogin"class="btn btn-primary" href="/auth/login"><i
+                                            class="bi bi-box-arrow-in-right"></i> Iniciar sesión</a>
+                                </li>
+                                <li class="nav-item ms-1 mb-1">
+                                    <a id="btnRegister"class="btn btn-success" href="/auth/register"><i
+                                            class="bi bi-person-plus-fill"></i> Registrarse</a>
+                                </li>
+                                <% } %>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Alerta para mensaje si existe -->
+<% if (message) { %>
+    <div class="alert alert-info alert-dismissible fade show" role="alert" id="alertBox">
+        <div class="d-flex justify-content-between">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-info-circle-fill me-2"></i>
+                <strong>Información:</strong>
+                <%= message %>
+            </div>
+            <div class="d-flex align-items-center">
+                <i class="bi bi-hourglass-split me-2"></i>
+                <span id="counter" class="counter">10</span> segundos
+            </div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% } %>
+
+        <!-- Alerta para mensaje de redirección -->
+        <% if (info) { %>
+            <div class="alert alert-info alert-effect alert-dismissible fade show" role="alert" id="alertBox">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-info-circle-fill me-2"></i>
+                        <strong>Información:</strong>
+                        <%= info %>
+                    </div>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <% } %>

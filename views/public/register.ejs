@@ -1,0 +1,100 @@
+<div class="container mb-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <!-- Título con icono -->
+      <div class="text-center mt-5">
+        <h1 class="display-4">
+          <i class="bi bi-person-plus"></i> Registro
+        </h1>
+        <p class="text-muted">Crea tu cuenta en pocos pasos</p>
+      </div>
+      <hr>
+
+      <!-- Formulario de registro -->
+      <!--
+        TODO Revisar
+      -->
+      <form action="/auth/register" method="post" id="form-register" class="shadow p-4 rounded bg-light needs-validation" novalidate>
+        <!-- Campo Usuario -->
+        <div class="mb-3">
+          <label for="name" class="form-label">
+            <i class="bi bi-person-fill text-primary"></i> Nombre Completo:
+          </label>
+          <input type="text" class="form-control" 
+            id="name" name="name" placeholder="Introduce tu nombre y tus dos apellidos" 
+            aria-label="Campo para introducir tu nombre de usuario" autocomplete="name" required>
+          <div class="invalid-feedback">Por favor, introduce tu nombre y tus dos apellidos</div>
+        </div>
+
+        <!-- Campo Email -->
+        <div class="mb-3">
+          <label for="email" class="form-label">
+            <i class="bi bi-envelope-fill text-primary"></i> Email:
+          </label>
+          <input class="form-control" 
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Introduce tu email" 
+            aria-label="Campo para introducir tu dirección de correo electrónico"
+            autocomplete="username"
+            pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9](?:[a-zA-Z0-9\-]*[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,6})$"
+            required>
+          <div class="invalid-feedback">Por favor, introduce un email válido.</div>
+        </div>
+
+        <!-- Campo Teléfono -->
+        <div class="mb-3">
+          <label for="phone" class="form-label">
+            <i class="bi bi-telephone-fill text-success"></i> Teléfono:
+          </label>
+          <input type="text" class="form-control" id="phone" name="phone" 
+          placeholder="Introduce tu número de teléfono, sin prefijo" 
+          aria-label="Campo para introducir tu número de teléfono"
+          minlength="9" pattern="^[6-9]\d{8}$" autocomplete="tel" required>
+          <div class="invalid-feedback">Por favor, introduce un número de teléfono válido.</div>
+        </div>
+
+        <!-- Campo Contraseña -->
+        <div class="mb-3">
+          <label for="password" class="form-label">
+            <i class="bi bi-lock-fill text-danger"></i> Contraseña:
+          </label>
+          <input type="password" class="form-control" id="password" name="password" 
+          placeholder="Introduce tu contraseña" 
+          aria-label="Campo para introducir tu contraseña" 
+          minlength="8" autocomplete="new-password" required>
+          <div class="invalid-feedback" id="passwordFeedback">La contraseña debe tener al menos 8 caracteres.</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="repassword" class="form-label">
+            <i class="bi bi-lock-fill text-danger"></i> Confirmar Contraseña:
+          </label>
+          <input type="password" class="form-control" id="repassword" name="repassword" placeholder="Confirma la contraseña" minlength="8"
+          aria-label="Confirma la contraseña" 
+          minlength="8" autocomplete="new-password"
+          required>
+          <div class="invalid-feedback" id="repasswordFeedback">La contraseña debe tener al menos 8 caracteres.</div>
+        </div>
+
+        <!-- Botón Enviar -->
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-dark">
+            <i class="bi bi-check-circle"></i> Registrar
+          </button>
+        </div>
+
+        <!-- Enlace adicional -->
+        <div class="text-center mt-3">
+          <p class="small">
+            ¿Ya tienes cuenta? <a href="/auth/login" class="text-primary"><i class="bi bi-box-arrow-in-right"></i> Inicia sesión aquí</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<script src="/js/registerValidation.js"></script>

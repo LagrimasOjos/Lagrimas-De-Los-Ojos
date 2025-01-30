@@ -1,0 +1,78 @@
+[
+    {
+        "_id": {
+            "$oid": "678e21110b0e0909d28636f8"
+        },
+        "idUser": {
+            "$oid": "678811da6419869d3c942ce3"
+        },
+        "idSemilla": {
+            "$oid": "678cf00e83aa068f574e090f"
+        },
+        "nameSeed": "Espinaca",
+        "username": "Miguel Rodriguez Garcia",
+        "collectionDate": {
+            "$date": "2025-01-25T10:10:25.193Z"
+        },
+        "amountSeeds": 100,
+        "status": "recogidas",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "678e217741f2378772949c0a"
+        },
+        "idUser": {
+            "$oid": "678811da6419869d3c942ce3"
+        },
+        "idSemilla": {
+            "$oid": "678cf00e83aa068f574e090f"
+        },
+        "nameSeed": "Espinaca",
+        "username": "Miguel Rodriguez Garcia",
+        "collectionDate": {
+            "$date": "2025-01-25T10:12:07.67Z"
+        },
+        "amountSeeds": 10,
+        "status": "recogidas",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "678eb902f70a9ebbe422aa02"
+        },
+        "idUser": {
+            "$oid": "678811da6419869d3c942ce3"
+        },
+        "idSemilla": {
+            "$oid": "678cf00e83aa068f574e090f"
+        },
+        "nameSeed": "Espinaca",
+        "username": "Miguel Rodriguez Garcia",
+        "collectionDate": {
+            "$date": "2025-01-25T20:58:42.04Z"
+        },
+        "amountSeeds": 80,
+        "status": "recogidas",
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "678f7d26e850e9c6165a8042"
+        },
+        "idUser": {
+            "$oid": "678811da6419869d3c942ce3"
+        },
+        "idSemilla": {
+            "$oid": "678cf00e83aa068f574e0910"
+        },
+        "nameSeed": "Pimiento",
+        "username": "Miguel Rodriguez Garcia",
+        "collectionDate": {
+            "$date": "2025-01-26T10:55:34.507Z"
+        },
+        "amountSeeds": 50,
+        "status": "recogidas",
+        "__v": 0
+    }
+]

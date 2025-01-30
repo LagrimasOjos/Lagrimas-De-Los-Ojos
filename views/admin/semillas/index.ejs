@@ -1,0 +1,225 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Gestionar Semillas</h1>
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#crearsemilla" aria-expanded="false" aria-controls="flush-collapseOne">
+        <i class="bi bi-bookmark-check-fill"></i> Crear Semilla
+    </button>
+  </div>
+
+<div class="accordion accordion-flush" id="crearprestamo">
+    <div class="accordion-item my-3">
+        <div id="crearsemilla" class="accordion-collapse collapse">
+            <div class="accordion-body">
+
+              <form action="/admin/semillas/addCreate" enctype="multipart/form-data" method="POST" class="p-4 bg-light rounded border">
+                <h4 class="mb-4">
+                  <i class="bi bi-bookmark-check-fill"></i> Crear Semilla
+                </h4>
+                <fieldset>
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label for="fotoPath" class="form-label">
+                        <i class="bi bi-camera-fill"></i> Foto de la Planta:
+                      </label>
+                      <input type="file" class="form-control" id="fotoPath" name="fotoPath" accept="image/*" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="stock" class="form-label">
+                        <i class="bi bi-box-seam"></i> Stock:
+                      </label>
+                      <input type="number" class="form-control" id="stock" name="stock" min="1" required>
+                    </div>
+                  </div>
+            
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label for="nombre" class="form-label">
+                        <i class="bi bi-file-earmark-text-fill"></i> Nombre:
+                      </label>
+                      <input type="text" class="form-control" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="descripcion" class="form-label">
+                        <i class="bi bi-card-text"></i> Descripción:
+                      </label>
+                      <textarea class="form-control" id="descripcion" name="descripcion" required></textarea>
+                    </div>
+                  </div>
+                </fieldset>
+            
+                <!-- Mas campos -->
+                <fieldset class="mt-4">
+                  <legend>
+                    <a href="#masCampos" data-bs-toggle="collapse" class="btn" role="button" aria-expanded="false" aria-controls="masCampos">
+                      <i class="bi bi-sliders"></i> Mas campos
+                    </a>
+                  </legend>
+                  <div class="collapse" id="masCampos">
+                    <div class="row mb-3">
+                      <div class="col-md-6">
+                        <label for="nombreCientifico" class="form-label">
+                          <i class="bi bi-clipboard2-fill"></i> Nombre Científico:
+                        </label>
+                        <input type="text" class="form-control" id="nombreCientifico" name="nombreCientifico">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="tipoDeSuelo" class="form-label">
+                          <i class="bi bi-droplet-fill"></i> Tipo de Suelo:
+                        </label>
+                        <input type="text" class="form-control" id="tipoDeSuelo" name="tipoDeSuelo">
+                      </div>
+                    </div>
+            
+                    <div class="row mb-3">
+                      <div class="col-md-6">
+                        <label for="exposicionSolar" class="form-label">
+                          <i class="bi bi-sun-fill"></i> Exposición Solar:
+                        </label>
+                        <input type="text" class="form-control" id="exposicionSolar" name="exposicionSolar">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="frecuenciaRiego" class="form-label">
+                          <i class="bi bi-droplet-half"></i> Frecuencia de Riego:
+                        </label>
+                        <input type="text" class="form-control" id="frecuenciaRiego" name="frecuenciaRiego" placeholder="Ej: Diaria, Semanal">
+                      </div>
+                    </div>
+            
+                    <div class="row mb-3">
+                      <div class="col-md-6">
+                        <label for="cantidadRiego" class="form-label">
+                          <i class="bi bi-beaker-fill"></i> Cantidad de Riego (L):
+                        </label>
+                        <input type="number" class="form-control" id="cantidadRiego" name="cantidadRiego" min="0" step="0.1">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="temperaturaIdeal" class="form-label">
+                          <i class="bi bi-thermometer-half"></i> Temperatura Ideal (°C):
+                        </label>
+                        <input type="number" class="form-control" id="temperaturaIdeal" name="temperaturaIdeal" min="-30" max="50">
+                      </div>
+                    </div>
+            
+                    <div class="row mb-3">
+                      <div class="col-md-6">
+                        <label for="epocaSiembra" class="form-label">
+                          <i class="bi bi-calendar3"></i> Época de Siembra:
+                        </label>
+                        <input type="text" class="form-control" id="epocaSiembra" name="epocaSiembra">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="profundidadSiembra" class="form-label">
+                          <i class="bi bi-rulers"></i> Profundidad de Siembra (cm):
+                        </label>
+                        <input type="text" class="form-control" id="profundidadSiembra" name="profundidadSiembra">
+                      </div>
+                    </div>
+            
+                    <div class="row mb-3">
+                      <div class="col-md-6">
+                        <label for="espaciadoPlantas" class="form-label">
+                          <i class="bi bi-arrows-expand"></i> Espaciado entre Plantas (cm):
+                        </label>
+                        <input type="number" class="form-control" id="espaciadoPlantas" name="espaciadoPlantas" min="0">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="tiempoGerminacion" class="form-label">
+                          <i class="bi bi-stopwatch"></i> Tiempo de Germinación (días):
+                        </label>
+                        <input type="number" class="form-control" id="tiempoGerminacion" name="tiempoGerminacion" min="0">
+                      </div>
+                    </div>
+            
+                    <div class="mb-3">
+                      <label for="cuidadosPlantas" class="form-label">
+                        <i class="bi bi-heart-fill"></i> Cuidados de la Planta:
+                      </label>
+                      <textarea class="form-control" id="cuidadosPlantas" name="cuidadosPlantas" placeholder="Ej: Necesita riego moderado"></textarea>
+                    </div>
+                  </div>
+                </fieldset>
+            
+                <button type="submit" class="btn btn-success mt-3">
+                  <i class="bi bi-check-circle"></i> Enviar
+                </button>
+              </form>
+              
+            </div>
+        </div>
+    </div>
+</div>
+
+  <% if (semillas && semillas.length > 0) { %>
+    <!-- Tabla para mostrar las semillas -->
+    <table class="table table-striped table-hover shadow-sm">
+      <thead class="table-dark">
+        <tr>
+          <th><i class="bi bi-hash"></i></th>
+          <th><i class="bi bi-camera"></i> Foto</th>
+          <th><i class="bi bi-leaf"></i> Nombre</th>
+          <th><i class="bi bi-box"></i> Stock</th>
+          <th><i class="bi bi-tools"></i> Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% semillas.forEach((semilla, index) => { %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td>
+              <img src="<%= semilla.fotoPath %>" alt="Foto de <%= semilla.nombre %>" 
+                   class="img-thumbnail" style="width: 75px; height: 75px;">
+            </td>
+            <td><%= semilla.nombre %></td>
+            <td><%= semilla.stock %></td>
+            <td>
+              <div class="d-flex gap-2">
+                <a href="/admin/semillas/update/<%= semilla._id %>" class="btn btn-warning btn-sm">
+                  <i class="bi bi-pencil-square"></i> Editar
+                </a>
+                <form action="/admin/semillas/delete/<%= semilla._id %>" method="POST" class="d-inline">
+                  <button type="submit" class="btn btn-danger btn-sm">
+                    <i class="bi bi-trash"></i> Eliminar
+                  </button>
+                </form>
+              </div>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+
+    <!-- Controles de paginación -->
+    <nav aria-label="Paginación">
+      <ul class="pagination justify-content-center">
+        <!-- Página anterior -->
+        <% if (paginaActual > 1) { %>
+          <li class="page-item">
+            <a class="page-link" href="/admin/semillas/?pagina=<%= paginaActual - 1 %>">
+              <i class="bi bi-arrow-left"></i> Anterior
+            </a>
+          </li>
+        <% } %>
+
+        <!-- Páginas numeradas -->
+        <% for (let i = 1; i <= totalPaginas; i++) { %>
+          <li class="page-item <%= i === paginaActual ? 'active' : '' %>">
+            <a class="page-link" href="/admin/semillas/?pagina=<%= i %>">
+              <%= i %>
+            </a>
+          </li>
+        <% } %>
+
+        <!-- Página siguiente -->
+        <% if (paginaActual < totalPaginas) { %>
+          <li class="page-item">
+            <a class="page-link" href="/admin/semillas/?pagina=<%= paginaActual + 1 %>">
+              Siguiente <i class="bi bi-arrow-right"></i>
+            </a>
+          </li>
+        <% } %>
+      </ul>
+    </nav>
+  <% } else { %>
+    <div>No hay semillas registradas. Usa el botón "Crear Nueva Semilla" para agregar una.</div>
+  <% } %>
+</div>

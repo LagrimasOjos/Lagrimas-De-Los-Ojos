@@ -1,0 +1,169 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+.btn {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #74a73b;
+  --bs-btn-border-color: #B2D684;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #5a842c;
+  --bs-btn-hover-border-color:transparent;
+  --bs-btn-focus-shadow-rgb: 225, 83, 97;
+  --bs-btn-active-color: #333;
+  --bs-btn-active-bg: #D8E459;
+  --bs-btn-active-border-color: #FF780F;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #B2D684;
+  --bs-btn-disabled-border-color: transparent;
+}
+
+.btn-danger {
+  --bs-btn-color: #fff; /* Color de la letra blanca */
+  --bs-btn-bg: #f28c8c; /* Rojo sutil */
+  --bs-btn-border-color: #d43f3a; /* Rojo más oscuro para el borde */
+  --bs-btn-hover-color: #fff; /* Letra blanca al pasar el mouse */
+  --bs-btn-hover-bg: #f05a5a; /* Rojo más intenso al pasar el mouse */
+  --bs-btn-hover-border-color: transparent; /* Borde transparente al pasar el mouse */
+  --bs-btn-focus-shadow-rgb: 225, 83, 97;
+  --bs-btn-active-color: #333; /* Color de la letra cuando el botón está activo */
+  --bs-btn-active-bg: #d43f3a; /* Fondo rojo más oscuro cuando el botón está activo */
+  --bs-btn-active-border-color: #e03c31; /* Borde más oscuro cuando está activo */
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff; /* Color de la letra cuando el botón está deshabilitado */
+  --bs-btn-disabled-bg: #d43f3a; /* Fondo rojo cuando está deshabilitado */
+  --bs-btn-disabled-border-color: transparent;
+}
+
+.page-link {
+  cursor: pointer;
+}
+
+.bg-primario {
+  background-color: #243CE6;
+}
+
+.bg-secundario {
+  background-color: #FF780F;
+}
+
+.bg-terciario {
+  background-color: #D8E459;
+}
+
+.bg-cuaternario {
+  background-color: #B2D684;
+}
+
+.color-primario {
+  color: #243CE6;
+}
+
+.color-secundario {
+  color: #FF780F;
+}
+
+.color-terciario {
+  color: #D8E459;
+}
+
+.color-cuaternario {
+  color: #B2D684;
+}
+
+.color-blanco {
+  color: white;
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.alert-effect {
+  animation: slideDown 0.5s ease-out;
+}
+
+.alert-info {
+  box-shadow: 0px 0px 10px rgba(51, 51, 51, 0.2);
+  width: 70%;
+  margin: 0 auto;
+}
+
+.alert-info .fa {
+  font-size: 1.5em;
+}
+
+.alert-info button {
+  border: none;
+  background-color: transparent;
+  color: #17a2b8;
+}
+
+.alert-info button:hover {
+  color: #155d7a;
+}
+
+.containerImgCard img {
+  width: 100%;
+  max-height: 200px;
+}
+
+.drag-image {
+  border: 1px dashed #fff;
+  height: 300px;
+  width: 350px;
+  border-radius: 5px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #D8E459;
+}
+.drag-image.active {
+  border: 2px solid #fff;
+}
+.drag-image .icon {
+  font-size: 30px;
+  color: #fff;
+}
+.drag-image h6 {
+  font-size: 20px;
+  font-weight: 300;
+  color: #fff;
+}
+.drag-image span {
+  font-size: 14px;
+  font-weight: 300;
+  color: #fff;
+  margin: 10px 0 15px 0;
+}
+.drag-image button {
+  padding: 10px 25px;
+  font-size: 14px;
+  font-weight: 300;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.drag-image button:hover {
+  background-color: #fff;
+  color: red;
+}
+.drag-image img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+}/*# sourceMappingURL=styles.css.map */

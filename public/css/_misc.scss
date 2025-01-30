@@ -1,0 +1,75 @@
+.bg-primario {
+    background-color: $colorPrimario;
+}
+
+.bg-secundario {
+    background-color: $colorSecundario;
+}
+
+.bg-terciario {
+    background-color: $colorTerciario;
+}
+
+.bg-cuaternario {
+    background-color: $colorCuaternario;
+}
+
+.color-primario {
+    color: $colorPrimario;
+}
+
+.color-secundario {
+    color: $colorSecundario;
+}
+
+.color-terciario {
+    color: $colorTerciario;
+}
+
+.color-cuaternario {
+    color: $colorCuaternario;
+}
+
+.color-blanco {
+    color: #ffff;
+}
+
+//Alertas informacion servidor
+@keyframes slideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+.alert-effect {
+    animation: slideDown 0.5s ease-out;
+}
+
+.alert-info {
+
+    box-shadow: 0px 0px 10px #3333;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.alert-info .fa {
+    font-size: 1.5em;
+}
+
+.alert-info button {
+    border: none;
+    background-color: transparent;
+    color: #17a2b8;
+}
+
+.alert-info button:hover {
+    color: #155d7a;
+}

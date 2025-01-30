@@ -1,0 +1,156 @@
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Gestionar Usuarios</h1>
+        <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#crearusuario" aria-expanded="false"
+            aria-controls="flush-collapseOne">
+            <i class="bi bi-bookmark-check-fill"></i> Crear Usuario
+        </button>
+    </div>
+
+    <div class="accordion accordion-flush" id="crearprestamo">
+        <div class="accordion-item my-3">
+            <div id="crearusuario" class="accordion-collapse collapse" data-bs-parent="#crearprestamo">
+                <div class="accordion-body">
+                    <form action="/admin/usuarios/crearUsuario" method="post" class="p-4 bg-light rounded border">
+                        <h4 class="mb-4 text-primary">
+                            <i class="bi bi-person-plus-fill"></i> Crear Nuevo Usuario
+                        </h4>
+
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nombre Completo <i
+                                    class="bi bi-person-fill text-secondary"></i></label>
+                            <input type="text" id="name" name="name" class="form-control"
+                                placeholder="Ejemplo: Juan Pérez" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Teléfono <i
+                                    class="bi bi-telephone-fill text-secondary"></i></label>
+                            <input type="tel" id="phone" name="phone" class="form-control"
+                                placeholder="Telefono sin prefijo" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Correo Electrónico <i
+                                    class="bi bi-envelope-fill text-secondary"></i></label>
+                            <input type="email" id="email" name="email" class="form-control"
+                                placeholder="Ejemplo: correo@dominio.com" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="bi bi-check-circle-fill"></i> Crear Usuario
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <% if (usuarios.length> 0) { %>
+            <!-- Tabla para mostrar préstamos -->
+            <div class="table-responsive shadow-lg p-3 bg-body-tertiary rounded">
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark text-center">
+                        <tr>
+                            <th>#</th>
+                            <th><i class="bi bi-person"></i> Nombre Completo</th>
+                            <th> Email</th>
+                            <th> Telefono </th>
+                            <th> Rol</th>
+                            <th> Activo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% usuarios.forEach((usuario, index)=> { %>
+                            <tr class="text-center">
+                                <td>
+                                    <%= index + 1 %>
+                                </td>
+                                <td>
+                                    <i class="bi bi-person-circle"></i>
+                                    <%= usuario.username %>
+                                </td>
+                                <td>
+                                    <%= usuario.email %>
+                                </td>
+                                <td>
+                                    <%= usuario.phone %>
+                                </td>
+
+                                <td>
+                                    <%= usuario.rol %>
+                                </td>
+
+                                <td>
+                                    <%= usuario.activo %>
+                                </td>
+
+                                <td>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-userId="<%= usuario._id %>" data-userEmail="<%= usuario.email %>" data-bs-target="#modalEliminar">
+                                        Eliminar usuario
+                                    </button>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+            </div>
+            <nav aria-label="Paginación" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    <% if (paginaActual> 1) { %>
+                        <li class="page-item">
+                            <a class="page-link" href="?pagina=<%= paginaActual - 1 %>">
+                                <i class="bi bi-arrow-left"></i> Anterior
+                            </a>
+                        </li>
+                        <% } %>
+                            <% for (let i=1; i <=totalPaginas; i++) { %>
+                                <li class="page-item <%= i === paginaActual ? 'active' : '' %>">
+                                    <a class="page-link" href="?pagina=<%= i %>">
+                                        <%= i %>
+                                    </a>
+                                </li>
+                                <% } %>
+                                    <% if (tieneMasPaginas) { %>
+                                        <li class="page-item">
+                                            <a class="page-link" href="?pagina=<%= paginaActual + 1 %>">
+                                                Siguiente <i class="bi bi-arrow-right"></i>
+                                            </a>
+                                        </li>
+                                        <% } %>
+                </ul>
+            </nav>
+
+            <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Eliminar usuario</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Cerrar"></button>
+                        </div>
+                        <div class="modal-body">
+                            <button class="btn btn-danger" id="btn_historico_true">Eliminar usuario junto todas sus actividades</button>
+                            <button class="btn btn-danger" id="btn_historico_false">Eliminar usuario sin borrar sus actividades</button>
+                            <form action="/admin/usuarios/eliminarUsuario" method="POST">
+                                <input type="hidden" name="idUser" id="idUser">
+                                <input type="hidden" name="borrarHistorico" id="borrarHistorico">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <script src="/js/cpanelUser.js"></script>
+
+
+            <% } else { %>
+                <!-- Mensaje si no hay préstamos -->
+                <div class="alert alert-warning text-center mt-4" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill"></i> No se encontraron préstamos registrados.
+                </div>
+            <% } %>
+    </div>

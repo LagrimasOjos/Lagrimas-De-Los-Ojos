@@ -8,17 +8,11 @@ const prestamosCpanel = async(req,res) => {
             const pagina = parseInt(req.query.pagina) || 1;
             const limite = 10;
             const filter = {}; 
-            
-            const resultadoPaginacion = await Prestamo.paginacionPrestamos(pagina, filter, limite);
 
             const users = await Usuario.allUser();
             const semillas = await Semilla.allSemillasActive();
 
             return res.view('admin/prestamos/index.ejs', {
-                prestamos: resultadoPaginacion.documentos,
-                totalPaginas: resultadoPaginacion.totalPaginas,
-                paginaActual: resultadoPaginacion.paginaActual,
-                tieneMasPaginas: resultadoPaginacion.tieneMasPaginas,
                 users, semillas
             });
         } catch (e) {

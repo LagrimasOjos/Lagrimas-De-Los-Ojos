@@ -20,6 +20,25 @@
       </div>
   
       <!-- Buscador -->
+      <div class="row g-2 align-items-center my-3">
+        <h6 class="col-12"><i class="bi bi-filter"></i> Filtro epoca del año:</h6>
+        <div class="col-md-8">
+          <label for="select_epoca_siembra" class="form-label visually-hidden">Época de siembra</label>
+          <select class="form-select shadow-sm" id="select_epoca_siembra">
+            <option value="">TODAS</option>
+            <option value="verano">Verano</option>
+            <option value="primavera">Primavera</option>
+            <option value="otoño">Otoño</option>
+            <option value="invierno">Invierno</option>
+          </select>
+        </div>
+        <div class="col-md-4 text-md-start">
+          <button class="btn btn-outline-primary shadow-sm w-100" id="btn_guardar_filtro_epoca_siembra">
+            <i class="bi bi-bookmark"></i> Guardar filtro
+          </button>
+        </div>
+      </div>
+      
       <div>
         <div class="input-group mb-4">
           <label for="buscador" class="visually-hidden">Buscar semilla</label> <!-- Agregamos label para accesibilidad -->
@@ -38,7 +57,10 @@
             <i class="bi bi-search"></i> Buscar
           </button>
         </div>
+
       </div>
+
+      
   
       <!-- Contenedor de resultados -->
       <div id="boxSeeds" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 my-4">
@@ -58,7 +80,7 @@
   
   
 
-  <script src="/js/paginacionIndex.js"></script>
+  <script src="/js/paginaIndex.js"></script>
 
   <!-- <div id="cb-cookie-banner" class="alert alert-dark text-center mb-0" role="alert">
     <p>Te informamos que usamos coockies 🍪</p>

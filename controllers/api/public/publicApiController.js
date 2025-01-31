@@ -6,6 +6,7 @@ const paginateSeeds = async (req, res) => {
         let filtro = {
             $and: [
                 { nombre: { $regex: req.query.nameseed || '', $options: 'i' } },
+                { epocaSiembra: { $regex: req.query.epocaSiembra || '', $options: 'i' } },
                 { activo: true }
             ]
         };

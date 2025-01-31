@@ -27,13 +27,14 @@ const userLogin = async () => {
 };
 
 class Buscador {
-  constructor(domBuscador, domPaginacion, domCards, domBtnSearch) {
-    this.init(domBuscador, domPaginacion, domCards, domBtnSearch);
+  constructor(domBuscador, domPaginacion, domCards, domBtnSearch, domSelectFiltroEpocaSiembra) {
+    this.init(domBuscador, domPaginacion, domCards, domBtnSearch, domSelectFiltroEpocaSiembra);
   }
 
-  async init(domBuscador, domPaginacion, domCards, domBtnSearch) {
+  async init(domBuscador, domPaginacion, domCards, domBtnSearch, domSelectFiltroEpocaSiembra) {
     this.buscadorInputDOM = domBuscador;
     this.paginacionDivDOM = domPaginacion;
+    this.selectFiltroEpocaSiembraDom = domSelectFiltroEpocaSiembra;
     this.cardsDivDOM = domCards;
     this.domBtnSearch = domBtnSearch;
     this.isLoggedUser = await userLogin();
@@ -44,7 +45,7 @@ class Buscador {
   }
 
   async cargarPeticion() {
-    this.peticion = `/api/public/paginateSeeds?page=${this.page}&nameseed=${this.nameSeed}`;
+    this.peticion = `/api/public/paginateSeeds?page=${this.page}&nameseed=${this.nameSeed}&epocaSiembra=${this.selectFiltroEpocaSiembraDom.value}`;
     const documentos = await this.fetchAndLoadData();
     return documentos;
   }
@@ -316,4 +317,33 @@ class Buscador {
 }
 
 
-new Buscador(document.querySelector('#buscador'), document.querySelector('#paginacion'), document.querySelector('#boxSeeds'), document.querySelector('#sendSearch'));
+const btnSaveFilterEpocaSiembra = document.querySelector('#btn_guardar_filtro_epoca_siembra');
+const filterLocalStore = localStorage.getItem('filtro');
+const domFilterEpocaSiembra = document.querySelector('#select_epoca_siembra');
+const domBtnSearch = document.querySelector('#sendSearch');
+const domCardsSeeds = document.querySelector('#boxSeeds');
+const domPaginationSearch = document.querySelector('#paginacion');
+const domInputSearch = document.querySelector('#buscador');
+
+const buscador = new Buscador(domInputSearch, domPaginationSearch, domCardsSeeds, domBtnSearch, domFilterEpocaSiembra);
+
+//Filtros localStore
+btnSaveFilterEpocaSiembra.addEventListener('click',()=>{
+  localStorage.setItem('filtro', domFilterEpocaSiembra.value);
+});
+
+domFilterEpocaSiembra.addEventListener('input',()=>{
+    buscador.cargarPeticion();
+});
+
+if(filterLocalStore){
+  domFilterEpocaSiembra.querySelectorAll('option').forEach(option => {
+    if(filterLocalStore == option.getAttribute('value')){
+      option.setAttribute('selected', true);
+    }
+  })
+}else{
+  domFilterEpocaSiembra.querySelectorAll('option')[0].setAttribute('selected', true);
+}
+
+

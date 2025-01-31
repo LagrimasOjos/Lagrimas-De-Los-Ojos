@@ -1,4 +1,4 @@
-$URI = "mongodb+srv://usercompass:5PIcO0AfkCYghPCx@libreriasemillasdb.svf5m.mongodb.net/test"
+$URI = "cadena de conexion"
 $DATABASE = "test"
 $DATA_DIR = "./backup"
 $OVERWRITE = ""  # Cambia a "" si no quieres sobrescribir. Cambia a "--drop" para sobreescribir.

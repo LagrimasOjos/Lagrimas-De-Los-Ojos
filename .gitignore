@@ -32,7 +32,8 @@ $RECYCLE.BIN/
 
 #.env
 .env
-
+data_back_and_test/config.env
+#data_back_and_test/config.ps1
 #VS
 .vscode/
 *.code-workspace

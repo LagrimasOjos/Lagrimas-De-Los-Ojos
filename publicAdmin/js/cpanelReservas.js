@@ -23,9 +23,13 @@ class ReservaSearch {
         try {
             const response = await fetch(`/api/admin/reservasEmailFind?emailUser=${busqueda}&pagina=${this.currentPage}`);
             const { data, error } = await response.json();
-
+           
             if (!error) {
                 const { documentos, totalPaginas, paginaActual } = data;
+                if(totalPaginas < this.currentPage){
+                    this.currentPage = 1;
+                    this.fetchReservas();
+                }
                 this.currentPage = paginaActual;
                 this.totalPages = totalPaginas;
 

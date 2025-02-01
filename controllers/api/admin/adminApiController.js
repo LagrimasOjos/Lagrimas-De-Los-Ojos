@@ -1,6 +1,6 @@
 const Reservas = require('../../../models/db/reservas');
 const Prestamos = require('../../../models/db/prestamos');
-
+const Usuarios = require('../../../models/db/user');
 const reservasEmailFind = async (req,res) => {
 
     try {
@@ -41,5 +41,24 @@ const prestamosEmailFind = async (req,res) => {
 }
 
 
+const usuariosEmailFind = async (req,res) => {
+    try {
 
-module.exports = {reservasEmailFind, prestamosEmailFind}
+        let filtro = { email: { $regex: req.query.emailUser || '', $options: 'i' } }
+
+        const pagina = req.query.pagina || 1;
+
+        const paginacion_user = await Usuarios.paginacionUsers(pagina, filtro, 5);
+
+        return res.json({data:paginacion_user, error:null});
+
+    } catch (error) {
+        console.log(error)
+        return res.json({data:null, error:'error'});
+    }
+
+}
+
+
+
+module.exports = {reservasEmailFind, prestamosEmailFind, usuariosEmailFind}

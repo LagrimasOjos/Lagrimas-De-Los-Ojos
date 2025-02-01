@@ -26,6 +26,12 @@ class PrestamosSearch {
 
             if (!error) {
                 const { documentos, totalPaginas, paginaActual } = data;
+
+                if(totalPaginas < this.currentPage){
+                    this.currentPage = 1;
+                    this.fetchPrestamos();
+                }
+
                 this.currentPage = paginaActual;
                 this.totalPages = totalPaginas;
 
@@ -34,7 +40,7 @@ class PrestamosSearch {
             }
 
         } catch (error) {
-            this.content.innerHTML = '<tr><td colspan="7" class="text-center">No hay prestamos disponibles.</td></tr>';
+            this.content.innerHTML = '<tr><td colspan="9" class="text-center">No hay prestamos disponibles.</td></tr>';
         }
     }
 
@@ -69,7 +75,7 @@ class PrestamosSearch {
                 this.content.appendChild(row);
             });
         } else {
-            this.content.innerHTML = `<tr><td colspan="7" class="text-center">No se encontraron prestamos para: ${busqueda}</td></tr>`;
+            this.content.innerHTML = `<tr><td colspan="9" class="text-center">No se encontraron prestamos para: ${busqueda}</td></tr>`;
         }
     }
 

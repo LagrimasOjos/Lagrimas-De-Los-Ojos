@@ -1,1 +1,62 @@
-[{"_id":{"$oid":"6787faf39020bb225a9a4625"},"username":"Miguel Rodriguez Garcia","email":"miguelrodriguezdevv@gmail.com","phone":"664432224","password":"$2a$10$RDMBChfAfJjqavJOnagFZOzFHizWac8Y2znbniNJUJGw6XzZyBQY.","rol":"user","activo":true,"__v":0},{"_id":{"$oid":"678811da6419869d3c942ce3"},"username":"Miguel Rodriguez Garcia","email":"miguelrodriguezdevvvv@gmail.com","phone":"664432224","password":"$2a$10$8DpwXzT9STnkOOA9GSYX4.Ug2avURQu3BzMyOsGGdYHYOsghDn3Ie","rol":"user","activo":true,"__v":0},{"_id":{"$oid":"678eaf64eb77f909f19fb9fd"},"username":"Miguel Rodriguez Garcia","email":"miguelrodriguezdevvvvv@gmail.com","phone":"664432224","password":"$2a$10$iFqwLqGdRE66GjEbWRBbqu.fRWfwe2bSN2Ru0KENmKnnnHN1F25WK","rol":"user","activo":true,"__v":0},{"_id":{"$oid":"6790005fe06aaf519b5d2eb4"},"username":"Miguel Rodriguez Garcia","email":"ejemplo567@yopmail.com","phone":"664432224","password":"$2a$10$5iLtlJpNxsuaqN2oZXUJ8ODwFE6AQrH2rD8FBWFMRRjzMDhj3PRZu","rol":"user","activo":true,"__v":0},{"_id":{"$oid":"6790ed443e8a39cbb26ee8c1"},"username":"Miguel Rodriguez Garcia","email":"miguelrodriguezdevvsfesfrsav@gmail.com","phone":"664432224","password":"$2a$10$GJfIwEC4Z0/JRLeOr5BndOQnmOUmkdn8ixnWC7Bm43pskiiSSGH1K","rol":"user","activo":true,"__v":0},{"_id":{"$oid":"6790f1453e8a39cbb26ee9e0"},"username":"Miguel Rodriguez Garcia","email":"juanjolowfdsgdfg@yopmail.com","phone":"664432224","password":"$2a$10$8DJvCtBDo8FITMSklzKehuE0ussrjedgkOEH38iVn.hEklgyZ.KHu","rol":"user","activo":true,"__v":0},{"_id":{"$oid":"6798c726df434655781a1031"},"username":"Kiko ","email":"fdhgdfshdfjhfjhjhsdfgjhsfdhqa@yopmail.com","phone":"664432224","password":"$2a$10$GPcNrbGA9KKEH1VyhTOd0efFTyduq74KIH.S4O3DhbYUttjHGC2H.","rol":"user","activo":true,"__v":0},{"_id":{"$oid":"6798c8ef4bcabb4b66c265f1"},"username":"kiko","email":"fdhgdfshdfjhfjhjhsdfgjhsfdhqaaa@yopmail.com","phone":"664432224","password":"$2a$10$8zJJqjXGlELFlPWa9P6KWOKcPm5HB10dWyy6f/pjNFTFziK6F6G/u","rol":"user","activo":true,"__v":0},{"_id":{"$oid":"6798fd1819dc78bd4d1b737b"},"username":"Miguel Rodriguez Garcia","email":"miguelrodriguezdevvvvvvvvvvv@gmail.com","phone":"664432224","password":"$2a$10$2Lwjro1fvMH6DzCqnIDtJef0yFTjux0UMQ40W7e/pwksyrZTt7XvS","rol":"user","activo":true,"__v":0},{"_id":{"$oid":"6799faaf13990d1308045db0"},"username":"Miguel Rodriguez Garcia","email":"ainhoamunozbustossssssssssssssssss@yopmail.com","phone":"664432224","password":"$2a$10$GpHF/6IDc5bkcT6dYR581emjDL3du1LoS7F5mDLrB0rxIOrDJRJXq","rol":"user","activo":true,"__v":0},{"_id":{"$oid":"679b47a53d4805cfa9c6fb2b"},"username":"Miguel Rodriguez Garcia","email":"miguelrodriguezdevvv@gmail.com","phone":"664432224","password":"$2a$10$8DpwXzT9STnkOOA9GSYX4.Ug2avURQu3BzMyOsGGdYHYOsghDn3Ie","rol":"admin","activo":true,"__v":0},{"_id":{"$oid":"679fb114a298940fd27302bb"},"username":"Miguel Rodriguez Garcia","email":"miguelrodriguezdevvvvvvvvvv@gmail.com","phone":"664432224","password":"$2a$10$kKDy/D4S..AjINh6/OiXse10ZOE6Tk8JuH/ncLSa.iFkld6Wz28lW","rol":"user","activo":true,"__v":0},{"_id":{"$oid":"679fb3e8c9c55f25c9108b75"},"username":"Miguel Rodriguez Garcia","email":"miguelrodriguezdevbbbfv@gmail.com","phone":"664432224","password":"$2a$10$0o.FkZneZ15mENWD8/IM6eCruERQwiDdqTGE0nHc4a.MR82OjD.hy","rol":"user","activo":true,"__v":0},{"_id":{"$oid":"6790015c0e9991fc608c2a54"},"username":"Ejmplo","email":"ejemplo5676@yopmail.com","phone":"664432224","password":"$2a$10$7vNqX/ls.T90vzB1fahwcu1ktxfaoBLNsn5ZF3O6Syaq40BF4Jf/K","rol":"user","activo":true,"__v":0},{"_id":{"$oid":"6787f1d1b84556971c308ff4"},"username":"Miguel Rodriguez Garcia","email":"kiko@gmail.com","phone":"664432224","password":"$2a$10$wApZiVnT0ha2.kGymgfoO.PvkNBT7a/yIpfPbCnfk5.GGmKMtmj2G","rol":"user","activo":true,"__v":0},{"_id":{"$oid":"6790ee1a3e8a39cbb26ee8e7"},"username":"garcia leon","email":"ejemplo567689@yopmail.com","phone":"664432224","password":"$2a$10$iC4mrNPQfKZl8mBWjzWh.Or1ePHZzWrGcDJFbX6JYoCo8Xikca6GO","rol":"user","activo":true,"__v":0},{"_id":{"$oid":"679a02b613990d1308045dfc"},"username":"PETRA MOLINA SÁNCHEZ","email":"petramolsan@gmail.com","phone":"667009652","password":"$2a$10$t88zIko9sNK1Aoky4zKtuOmBLPFdNcDgtyWHlhYhE4xqzLPktqKL.","rol":"user","activo":true,"__v":0},{"_id":{"$oid":"675bfe60ca6fa160e22904c0"},"username":"pepe","email":"miguelrodriguezdev@gmail.com","phone":"5435634657","password":"$2a$10$mMShp/nP36CbklhpsXfEmOIZseMKDGZnNZu1RR3uj1R3PQA6js8uG","rol":"user","activo":true,"__v":0},{"_id":{"$oid":"6790023cca7d421482a99ad4"},"username":"ejemplo56768@yopmail.com","email":"ejemplo56768@yopmail.com","phone":"664432224","password":"$2a$10$IguqhHdxd4ZX3vmq3AG3I.Y1yHIWHkNsPyEd1fygLc0LdDnY1hX46","rol":"user","activo":true,"__v":0},{"_id":{"$oid":"678fca08d7a448d181c0f13c"},"username":"felipe","email":"felipe@gmail.com","phone":"664432224","password":"$2a$10$2HMypTjtrbfNniF6N0cbu.teAjkw0jCipjjZ5szXZ6gWzPEUAExZO","rol":"user","activo":true,"__v":0},{"_id":{"$oid":"67612d641a6ddf7d168a64fc"},"username":"efsdf3243","email":"miguel@gm.com","phone":"4325325235","password":"$2a$10$An8ujkRSiB5df8v2wJhMxeLGRKTnG1yNKUewefjSdlRp6VEJ6t1R6","rol":"user","activo":true,"__v":0},{"_id":{"$oid":"678782d2d4266d396d4f9fda"},"username":"pepe","email":"pepe@ikok.com","phone":"3534634567457","password":"$2a$10$TlDWiAi3trsln1qF37BBieh2jd9wOVBo9XdLXBZx7ipNM7LhkEevu","rol":"user","activo":true,"__v":0}]
+[
+  {
+    "_id": { "$oid": "67a1fec24038dcda268fcc93" },
+    "username": "Alavro Estacio Ruiz",
+    "email": "alvesuiz@gmail.com",
+    "phone": "684307875",
+    "password": "$2a$10$508LNC2uinkWpCyTJR4Z8./I80CR0rOiTTIVMKu3Y19O6ynuUFCtu",
+    "rol": "user",
+    "activo": true,
+    "createdAt": { "$date": "2025-02-04T11:49:22.953Z" },
+    "updatedAt": { "$date": "2025-02-04T11:49:22.953Z" },
+    "__v": 0
+  },
+  {
+    "_id": { "$oid": "67a1ff054038dcda268fcca7" },
+    "username": "admin",
+    "email": "admin@admin.com",
+    "phone": "674574632",
+    "password": "$2a$10$5XVADRCmLr5zakbhDZfPWueLxfEq5Z9ekO4O/WOs7ApckSVNaLCP.",
+    "rol": "admin",
+    "activo": true,
+    "createdAt": { "$date": "2025-02-04T11:50:29.9Z" },
+    "updatedAt": { "$date": "2025-02-04T11:50:29.9Z" },
+    "__v": 0
+  },
+  {
+    "_id": { "$oid": "67a1ff904038dcda268fccbe" },
+    "username": "Lucia Muñoz Ruiz",
+    "email": "luziozruzpor@gmail.com",
+    "phone": "678497873",
+    "password": "$2a$10$MSwz/6G2lhVt81yKHzB/seJnaI9aKGgEEYFnu8XBsWm84MWI8uq9m",
+    "rol": "user",
+    "activo": true,
+    "createdAt": { "$date": "2025-02-04T11:52:48.936Z" },
+    "updatedAt": { "$date": "2025-02-04T11:52:48.936Z" },
+    "__v": 0
+  },
+  {
+    "_id": { "$oid": "67a1ffea4038dcda268fccd1" },
+    "username": "Ramon Estacio Estacio",
+    "email": "ramoneses@gmail.com",
+    "phone": "635435245",
+    "password": "$2a$10$8WH.6v3xB72bLRtCGA6vleiyDoqGHar42RC/kOnHHGBjko3qI7zqC",
+    "rol": "user",
+    "activo": true,
+    "createdAt": { "$date": "2025-02-04T11:54:18.823Z" },
+    "updatedAt": { "$date": "2025-02-04T11:54:18.823Z" },
+    "__v": 0
+  },
+  {
+    "_id": { "$oid": "67a2000d4038dcda268fcce3" },
+    "username": "Sergio Estacio Ruiz",
+    "email": "sergiesru@gmail.com",
+    "phone": "609896333",
+    "password": "$2a$10$yrWXuYo4228wbtZsx3i.7epU.nkJjfJsd.jSar6Bu0YwyGkrHopSC",
+    "rol": "user",
+    "activo": true,
+    "createdAt": { "$date": "2025-02-04T11:54:53.591Z" },
+    "updatedAt": { "$date": "2025-02-04T11:54:53.591Z" },
+    "__v": 0
+  }
+]

@@ -1,1 +1,27 @@
-[{"_id":"ltDhNfX-3wbXs32kPfUrkUw12L1vclYr","expires":{"$date":"2025-02-04T17:11:54.458Z"},"session":"{\"cookie\":{\"originalMaxAge\":21600000,\"expires\":\"2025-02-04T16:49:03.974Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":\"679b47a53d4805cfa9c6fb2b\",\"user\":{\"rol\":\"admin\",\"username\":\"Miguel Rodriguez Garcia\"}}"},{"_id":"qIUu06C3YyOaj0UqVVmrnrM4X9PohdJb","expires":{"$date":"2025-02-04T16:56:44.147Z"},"session":"{\"cookie\":{\"originalMaxAge\":21600000,\"expires\":\"2025-02-04T16:56:43.587Z\",\"httpOnly\":true,\"path\":\"/\"}}"},{"_id":"VuTyZWphWmZ6rWL9SYvUq73WHyBBw488","expires":{"$date":"2025-01-30T13:42:57.235Z"},"session":"{\"cookie\":{\"originalMaxAge\":21600000,\"expires\":\"2025-01-30T13:42:57.235Z\",\"httpOnly\":true,\"path\":\"/\"}}"},{"_id":"cEv8ydo_1MVxsNubySVFtvySD9PQqafM","expires":{"$date":"2025-01-30T14:36:32.509Z"},"session":"{\"cookie\":{\"originalMaxAge\":21600000,\"expires\":\"2025-01-30T13:38:49.826Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":\"675ab82f79932da5eced22d1\",\"user\":{\"rol\":\"admin\",\"username\":\"mniguel\"}}"},{"_id":"9bsSuaLzsDoKefWXrnIeMj0JA_CAhNlk","expires":{"$date":"2025-01-30T14:37:28.997Z"},"session":"{\"cookie\":{\"originalMaxAge\":21600000,\"expires\":\"2025-01-30T13:58:13.566Z\",\"httpOnly\":true,\"path\":\"/\"}}"},{"_id":"RDAY9vBpO4JXXQvFTiBj7L5yKQhATGqp","expires":{"$date":"2025-01-30T13:43:07.877Z"},"session":"{\"cookie\":{\"originalMaxAge\":21600000,\"expires\":\"2025-01-30T13:43:07.877Z\",\"httpOnly\":true,\"path\":\"/\"}}"}]
+[
+  {
+    "_id": "ltDhNfX-3wbXs32kPfUrkUw12L1vclYr",
+    "expires": { "$date": "2025-02-04T18:04:43.896Z" },
+    "session": "{\"cookie\":{\"originalMaxAge\":21600000,\"expires\":\"2025-02-04T16:49:03.974Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":\"67a1ff054038dcda268fcca7\",\"user\":{\"rol\":\"admin\",\"username\":\"admin\"}}"
+  },
+  {
+    "_id": "qIUu06C3YyOaj0UqVVmrnrM4X9PohdJb",
+    "expires": { "$date": "2025-02-04T18:03:49.367Z" },
+    "session": "{\"cookie\":{\"originalMaxAge\":21600000,\"expires\":\"2025-02-04T16:56:43.587Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":\"67a1fec24038dcda268fcc93\",\"user\":{\"rol\":\"admin\",\"username\":\"Alavro Estacio Ruiz\"}}"
+  },
+  {
+    "_id": "n3kok7FaxYEkNwlK5BYixlwSGrocouAZ",
+    "expires": { "$date": "2025-02-04T17:35:15.391Z" },
+    "session": "{\"cookie\":{\"originalMaxAge\":21600000,\"expires\":\"2025-02-04T17:35:15.391Z\",\"httpOnly\":true,\"path\":\"/\"}}"
+  },
+  {
+    "_id": "VX61YZKRwTUXhzhXyKUCfmmVt74aKBR1",
+    "expires": { "$date": "2025-02-04T17:35:16.614Z" },
+    "session": "{\"cookie\":{\"originalMaxAge\":21600000,\"expires\":\"2025-02-04T17:35:16.614Z\",\"httpOnly\":true,\"path\":\"/\"}}"
+  },
+  {
+    "_id": "boN-K-9vl4hhs3L7G76sZ1msOuA0yvva",
+    "expires": { "$date": "2025-02-04T17:40:49.652Z" },
+    "session": "{\"cookie\":{\"originalMaxAge\":21600000,\"expires\":\"2025-02-04T17:40:49.652Z\",\"httpOnly\":true,\"path\":\"/\"}}"
+  }
+]

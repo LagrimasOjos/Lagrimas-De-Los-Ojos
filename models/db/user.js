@@ -191,7 +191,7 @@ userSchema.statics.deleteUserId = async function (idUser, borrarHistorico) {
 
         if(borrarHistorico != 'true' && borrarHistorico != 'false') throw new Error("Error en borrarHistorico");
 
-        const user = await this.findById(idUser);
+        const user = await this.findById(idUser).select('+rol');
         
         if(!user) throw new Error("El usuario no existe");
 
@@ -219,7 +219,18 @@ userSchema.statics.deleteUserId = async function (idUser, borrarHistorico) {
                 }
             })
 
-            await this.findByIdAndDelete(idUser);
+
+            if(user.rol == 'admin'){
+                const admins = await this.find({rol:'admin'});
+                if(admins.length <= 1){
+                    throw new Error("No se puede eliminar el unico administrador");
+                }else{
+                    await this.findByIdAndDelete(idUser);
+                }
+            }else{
+                await this.findByIdAndDelete(idUser);
+            }
+
 
         
         }else{
@@ -244,7 +255,6 @@ userSchema.statics.deleteUserId = async function (idUser, borrarHistorico) {
                 })
             }
 
-            console.log('-------------------------------');
 
             if(prestamosUser.length > 0){
                 prestamosUser.forEach(async(doc )=> {
@@ -252,7 +262,16 @@ userSchema.statics.deleteUserId = async function (idUser, borrarHistorico) {
                 })
             }
 
-            await this.findByIdAndDelete(idUser);
+            if(user.rol == 'admin'){
+                const admins = await this.find({rol:'admin'});
+                if(admins.length <= 1){
+                    throw new Error("No se puede eliminar el unico administrador");
+                }else{
+                    await this.findByIdAndDelete(idUser);
+                }
+            }else{
+                await this.findByIdAndDelete(idUser);
+            }
 
         }
 

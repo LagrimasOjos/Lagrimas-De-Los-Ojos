@@ -333,6 +333,7 @@ btnSaveFilterEpocaSiembra.addEventListener('click',()=>{
 });
 
 domFilterEpocaSiembra.addEventListener('input',()=>{
+    buscador.page = 1;
     buscador.cargarPeticion();
 });
 

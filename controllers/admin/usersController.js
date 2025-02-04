@@ -96,7 +96,7 @@ const createUserSendPasswordEmail = async (req, res) => {
             `
         });
 
-        return res.redirectMessage('/admin/users/', `Se ha creado el usuario correctamente, los datos de acceso fueron mandados a su email: ${email}`);
+        return res.redirectMessage('/admin/usuarios', `Se ha creado el usuario correctamente, los datos de acceso fueron mandados a su email: ${email}`);
     } catch (e) {
         console.log(e)
         return res.redirectMessage('/', 'Hubo un error al crear el usuario');

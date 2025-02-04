@@ -12,6 +12,7 @@ const preferencesSchema = new mongoose.Schema({
         default: 100
     }
 }, {
+    timestamps: true,
     collection: "preferences"
 });
 

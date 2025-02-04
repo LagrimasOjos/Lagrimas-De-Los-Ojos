@@ -74,7 +74,7 @@ const semillasSchema = new mongoose.Schema({
         type: Boolean,
         required: true
     }
-});
+},{ timestamps: true});
 
 semillasSchema.statics.paginacionSemilla = async function (pagina = 1, filter = {}, limite = 3) {
     try {

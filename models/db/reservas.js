@@ -46,10 +46,11 @@ const reservasSchema = new mongoose.Schema({
 
     status: {
         type: String,
-        enum: ['pendiente', 'recogidas', 'no recogida']
+        enum: ['pendiente', 'recogidas', 'no recogida', 'deshabilitado']
     }
 
 }, {
+    timestamps: true,
     collection: "reservas"
 });
 

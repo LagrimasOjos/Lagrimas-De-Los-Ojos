@@ -56,7 +56,7 @@ class PrestamosSearch {
                     <td><i class="bi bi-box-fill"></i> ${prestamo.amountSeeds}</td>
                     <td>
                     <i class="bi bi-circle-fill text-${prestamo.status === 'sin devolver' ? 'warning' : 'success'}"></i> 
-                    ${prestamo.status === 'sin devolver' ? 'Sin Devolver' : 'Devuelto'}
+                    ${prestamo.status}
                     </td>
                     <td>
                     <i class="bi bi-clock"></i> ${prestamo.fechaDevolucion ? new Date(prestamo.fechaDevolucion).toLocaleDateString() : 'N/A'}

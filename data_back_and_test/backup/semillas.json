@@ -2,7 +2,7 @@
   {
     "_id": { "$oid": "678cf00e83aa068f574e0910" },
     "fotoPath": "/imgs/semillas/pimiento_CC0.jpg",
-    "stock": 624,
+    "stock": 221,
     "nombre": "Pimiento",
     "nombreCientifico": "Capsicum annuum",
     "descripcion": "Semillas de pimiento dulce para huertos caseros.",
@@ -17,7 +17,8 @@
     "tiempoGerminacion": 14,
     "tiempoCosecha": 120,
     "cuidadosPlantas": "Proteger del viento y fertilizar regularmente.",
-    "activo": true
+    "activo": true,
+    "updatedAt": { "$date": "2025-02-04T12:03:40.358Z" }
   },
   {
     "_id": { "$oid": "678cf00e83aa068f574e0911" },
@@ -62,7 +63,7 @@
   {
     "_id": { "$oid": "678cf00e83aa068f574e0914" },
     "fotoPath": "/imgs/semillas/albahaca_BY_SA.jpg",
-    "stock": 110,
+    "stock": 39,
     "nombre": "Albahaca",
     "nombreCientifico": "Ocimum basilicum",
     "descripcion": "Semillas de albahaca para uso culinario y medicinal.",
@@ -77,12 +78,13 @@
     "tiempoGerminacion": 7,
     "tiempoCosecha": 60,
     "cuidadosPlantas": "Podar para fomentar el crecimiento.",
-    "activo": true
+    "activo": true,
+    "updatedAt": { "$date": "2025-02-04T12:03:24.542Z" }
   },
   {
     "_id": { "$oid": "678cf00e83aa068f574e090f" },
     "fotoPath": "/imgs/semillas/espinaca_CC0.jpg",
-    "stock": 7476,
+    "stock": 7461,
     "nombre": "Espinaca",
     "nombreCientifico": "Spinacia oleracea",
     "descripcion": "Semillas de espinaca para clima fresco.",
@@ -97,12 +99,13 @@
     "tiempoGerminacion": 10,
     "tiempoCosecha": 45,
     "cuidadosPlantas": "Eliminar malezas y mantener la humedad.",
-    "activo": false
+    "activo": true,
+    "updatedAt": { "$date": "2025-02-04T11:57:51.581Z" }
   },
   {
     "_id": { "$oid": "678cf00e83aa068f574e0913" },
     "fotoPath": "/imgs/semillas/rabano_CC0.jpg",
-    "stock": 90,
+    "stock": 67,
     "nombre": "Rábano",
     "nombreCientifico": "Raphanus sativus",
     "descripcion": "Semillas de rábano de crecimiento rápido.",
@@ -117,12 +120,13 @@
     "tiempoGerminacion": 5,
     "tiempoCosecha": 30,
     "cuidadosPlantas": "Mantener el suelo húmedo.",
-    "activo": true
+    "activo": true,
+    "updatedAt": { "$date": "2025-02-04T11:58:45.759Z" }
   },
   {
     "_id": { "$oid": "678cf00e83aa068f574e0915" },
     "fotoPath": "/imgs/semillas/zanahoria_CC0.jpg",
-    "stock": 500,
+    "stock": 468,
     "nombre": "Zanahoria",
     "nombreCientifico": "Daucus carota",
     "descripcion": "Semillas de zanahoria ideales para suelos profundos y bien drenados.",
@@ -137,12 +141,13 @@
     "tiempoGerminacion": 14,
     "tiempoCosecha": 90,
     "cuidadosPlantas": "Mantener el suelo húmedo y libre de maleza.",
-    "activo": true
+    "activo": true,
+    "updatedAt": { "$date": "2025-02-04T12:03:08.553Z" }
   },
   {
     "_id": { "$oid": "678cf00e83aa068f574e0916" },
     "fotoPath": "/imgs/semillas/lechuga_CC0.jpg",
-    "stock": 320,
+    "stock": 247,
     "nombre": "Lechuga",
     "nombreCientifico": "Lactuca sativa",
     "descripcion": "Semillas de lechuga para ensaladas frescas y nutritivas.",
@@ -157,12 +162,13 @@
     "tiempoGerminacion": 7,
     "tiempoCosecha": 45,
     "cuidadosPlantas": "Regar frecuentemente y proteger del sol intenso.",
-    "activo": true
+    "activo": true,
+    "updatedAt": { "$date": "2025-02-04T11:58:54.6Z" }
   },
   {
     "_id": { "$oid": "678cf00e83aa068f574e0917" },
     "fotoPath": "/imgs/semillas/tomate_CC0.jpg",
-    "stock": 280,
+    "stock": 215,
     "nombre": "Tomate",
     "nombreCientifico": "Solanum lycopersicum",
     "descripcion": "Semillas de tomate ideales para huertos urbanos y domésticos.",
@@ -177,6 +183,7 @@
     "tiempoGerminacion": 10,
     "tiempoCosecha": 90,
     "cuidadosPlantas": "Tutorizar las plantas y fertilizar regularmente.",
-    "activo": true
+    "activo": true,
+    "updatedAt": { "$date": "2025-02-04T11:58:34.792Z" }
   }
 ]

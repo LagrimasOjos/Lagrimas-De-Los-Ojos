@@ -41,6 +41,7 @@ const userSchema = new mongoose.Schema({
     }
 
 }, {
+    timestamps: true,
     collection: "users"
 });
 
@@ -195,10 +196,31 @@ userSchema.statics.deleteUserId = async function (idUser, borrarHistorico) {
         if(!user) throw new Error("El usuario no existe");
 
 
-
         if(borrarHistorico == 'false'){
         
+            const reservasUser = await Reservas.find({idUser});
+            const prestamosUser = await Prestamos.find({idUser});
+
+            reservasUser.forEach(async(doc) => {
+                try {
+                    doc.status = 'deshabilitado';
+                    await doc.save();
+                } catch (error) {
+                    console.log(error)
+                }
+            })
+
+            prestamosUser.forEach(async(doc) => {
+                try {
+                    doc.status = 'deshabilitado';
+                    await doc.save();
+                } catch (error) {
+                    console.log(error)
+                }
+            })
+
             await this.findByIdAndDelete(idUser);
+
         
         }else{
             

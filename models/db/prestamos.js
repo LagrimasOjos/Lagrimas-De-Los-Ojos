@@ -60,11 +60,12 @@ const prestamosSchema = new mongoose.Schema(
 
         status: {
             type: String,
-            enum: ["devuelto", "sin devolver"],
+            enum: ["devuelto", "sin devolver", 'deshabilitado'],
             default: "sin devolver",
         },
     },
     {
+        timestamps: true,
         collection: "prestamos",
     }
 );

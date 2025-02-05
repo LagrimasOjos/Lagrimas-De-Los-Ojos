@@ -12,10 +12,52 @@
       <hr class="my-3">
 
       <!-- Formulario de inicio de sesión -->
-      <form action="/auth/contact" class="needs-validation shadow p-4 rounded bg-light" method="post" novalidate>
-        <!--
-        NO meter CAPTCHA de momento.
-        -->
+      <form action="/contactPost" class="needs-validation shadow p-4 rounded bg-light" method="post" novalidate>
+                <!-- Campo Email -->
+                <div class="mb-3">
+                  <label for="email" class="form-label">
+                    <i class="bi bi-envelope-fill text-primary"></i> Email:
+                  </label>
+                  <input class="form-control" 
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Introduce tu email" 
+                    aria-label="Campo para introducir tu dirección de correo electrónico"
+                    autocomplete="username"
+                    pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9](?:[a-zA-Z0-9\-]*[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,6})$"
+                    required>
+                  <div class="invalid-feedback">Por favor, introduce un email válido.</div>
+                </div>
+        
+                <!-- Campo Teléfono -->
+                <div class="mb-3">
+                  <label for="phone" class="form-label">
+                    <i class="bi bi-telephone-fill text-success"></i> Teléfono:
+                  </label>
+                  <input type="text" class="form-control" id="phone" name="phone" 
+                  placeholder="Introduce tu número de teléfono, sin prefijo" 
+                  aria-label="Campo para introducir tu número de teléfono"
+                  minlength="9" pattern="^[6-9]\d{8}$" autocomplete="tel" required>
+                  <div class="invalid-feedback">Por favor, introduce un número de teléfono válido.</div>
+                </div>
+
+                        <!-- Campo Mensaje -->
+                <div class="mb-3">
+                  <label for="message" class="form-label">
+                    <i class="bi bi-chat-left-dots-fill text-warning"></i> Mensaje:
+                  </label>
+                  <textarea class="form-control" id="message" name="message" rows="5" 
+                    placeholder="Escribe tu mensaje aquí..." required></textarea>
+                  <div class="invalid-feedback">Por favor, introduce un mensaje.</div>
+                </div>
+
+                        <!-- Botón Enviar -->
+                  <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-dark">
+                      <i class="bi bi-send-fill"></i> Enviar Mensaje
+                    </button>
+                  </div>
       </form>
     </div>
   </div>

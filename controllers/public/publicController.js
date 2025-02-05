@@ -13,7 +13,6 @@ const noscript = async(req,res) => {
 const semillasDetallesPagina = async(req,res) => {
         try {
             if(!req.params.id) throw new Error("Falta especificar el id");
-            console.log(req.params.id)
             const semilla = await Semillas.semillaDetalles(req.params.id)
             return res.view('public/semilladetalles', {title:'Semilla Detalles', semilla});
         } catch (e) {

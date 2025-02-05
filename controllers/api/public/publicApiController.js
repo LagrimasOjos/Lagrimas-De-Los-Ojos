@@ -40,7 +40,6 @@ const userLogin = async (req, res) => {
     try {
         // Verificar si req.session está definido y contiene userId y user
         const isUserActive = req.session && req.session.userId && req.session.user;
-        console.log(isUserActive)
         return res.json({
             data: isUserActive ? true : false,
             error: null

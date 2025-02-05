@@ -47,9 +47,11 @@ const semillasSchema = new mongoose.Schema({
     },
 
     epocaSiembra: {
-        type: String
+        type: String,
+        enum: ['primavera', 'verano', 'otoño', 'invierno'],
+        set: (value) => value.toLowerCase() // Asegura que el valor se guarde en minúsculas
     },
-
+    
     profundidadSiembra: {
         type: String,
     },

@@ -63,4 +63,19 @@ const logout = (req, res) => {
     });
 }
 
-module.exports = { loginPage, registerPage, registerCreate, loginAccess, logout, existEmailRegister }
+const forgotpasswordPage = (req, res) => {
+    return res.view("public/forgotPassword.ejs", { title: "Olvidar contraseña" });
+}
+
+const forgotpassword = (req, res) => {
+    try {
+        if(!req.body.email) throw new Error("Falta el campo email");
+        return res.redirectMessage('/', `Se ha enviado los pasos a seguir al email: ${req.body.email}`);
+    } catch (error) {
+        console.log(error)
+        return res.redirectMessage('/', 'Hubo un error al intentar enviar los pasos para recuperar la contraseña');
+    }
+}
+
+
+module.exports = { loginPage, registerPage, registerCreate, loginAccess, logout, existEmailRegister, forgotpasswordPage, forgotpassword}

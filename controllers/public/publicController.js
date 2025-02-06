@@ -2,6 +2,7 @@ const { buscarErrorMensaje } = require('../../errors/Messages');
 const {sendEmail} = require('../../helper/utils');
 const Semillas = require('../../models/db/semillas');
 const path = require("path");
+
 const paginaInicio = async(req,res) => {
     return res.view('public/index', {title: 'Inicio'});
 }
@@ -28,6 +29,7 @@ const contactoPage = (req, res) => {
 const aboutPage = (req, res) => {
     return res.view("public/about", { title: "Sobre nosotros" });
 }
+
 
 const contactPost = async (req, res) => {
     try {

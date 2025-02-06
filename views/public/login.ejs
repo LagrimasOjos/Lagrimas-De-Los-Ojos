@@ -9,65 +9,59 @@
         </h1>
         <p class="text-muted">Accede a tu cuenta</p>
       </div>
-      <hr>
 
-      <!-- Formulario de inicio de sesión -->
       <form action="/auth/login" class="needs-validation shadow p-4 rounded bg-light" method="post" novalidate>
         <!-- Campo Email -->
         <div class="mb-3">
           <label for="email" class="form-label">
-            <i class="bi bi-envelope-fill text-primary"></i> Email:
+            <i class="bi bi-envelope-fill text-primary"></i> Correo Electrónico
           </label>
-          <input class="form-control" 
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Introduce tu email" 
-            aria-label="Campo para introducir tu dirección de correo electrónico"
-            autocomplete="username"
-            pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9](?:[a-zA-Z0-9\-]*[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,6})$"
-            required>
-          <div class="invalid-feedback">Por favor, introduce un email válido.</div>
-        <!-- 
-          TODO Revisar
-            * Validación adicional con patrones usando la API de HTML5
-            ! En HTML5, el guion - dentro de las clases de caracteres [ ] necesita ser escapado (\-) 
-            ! si está en el medio de la clase, para evitar que se interprete como un operador de rango. 
-          -->
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Introduce tu email"
+              required>
+            <div class="invalid-feedback">Por favor, introduce un email válido.</div>
+          </div>
         </div>
 
         <!-- Campo Contraseña -->
         <div class="mb-3">
           <label for="password" class="form-label">
-            <i class="bi bi-lock-fill text-danger"></i> Contraseña:
+            <i class="bi bi-lock-fill text-danger"></i> Contraseña
           </label>
-          <input class="form-control"
-            type="password"
-            name="password" 
-            id="password" 
-            placeholder="Introduce tu contraseña" 
-            minlength="8" 
-            aria-label="Campo para introducir tu contraseña"
-            autocomplete="current-password"
-            required>
-          
-          <div class="invalid-feedback">Por favor, introduce una contraseña válida.</div>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-lock"></i></span>
+            <input type="password" class="form-control" id="password" name="password"
+              placeholder="Introduce tu contraseña" minlength="8" required>
+            <div class="invalid-feedback">Por favor, introduce una contraseña válida.</div>
+          </div>
         </div>
 
         <!-- Botón Enviar -->
-        <div class="d-grid gap-2">
-          <button type="submit" id="enviar" class="btn btn-dark">
-            <i class="bi bi-box-arrow-in-right"></i> Enviar
+        <div class="d-grid">
+          <button type="submit" id="enviar" class="btn btn-primary">
+            <i class="bi bi-box-arrow-in-right"></i> Iniciar sesión
           </button>
         </div>
 
         <!-- Links adicionales -->
         <div class="text-center mt-3">
-          <p class="small">
-            <a href="/auth/register" class="text-success"><i class="bi bi-person-plus-fill"></i> Crear cuenta</a>
+          <a href="/auth/forgot-password" class="text-decoration-none text-danger">
+            <i class="bi bi-question-circle"></i> ¿Olvidaste tu contraseña?
+          </a>
+        </div>
+
+        <hr>
+
+        <div class="text-center">
+          <p class="mb-0">¿No tienes una cuenta?
+            <a href="/auth/register" class="text-decoration-none text-success fw-bold">
+              <i class="bi bi-person-plus-fill"></i> Regístrate aquí
+            </a>
           </p>
         </div>
       </form>
+      
     </div>
   </div>
 </div>

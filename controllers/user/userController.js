@@ -1,5 +1,6 @@
 const Semilla = require('../../models/db/semillas');
 const Reserva = require('../../models/db/reservas');
+const Usuario = require('../../models/db/user');
 const { buscarErrorMensaje } = require('../../errors/Messages');
 const userCpanel = async (req, res) => {
     try {
@@ -64,5 +65,15 @@ const reservaCancelar = async (req,res) => {
     }
 }
 
+const userDetails = async(req, res) => {
+    try {
+        let userData = await Usuario.detailsID(req.session.userId);
+        console.log(userData);
+        return res.view('user/details/index', {userData, title: "Mi perfil"})
+    } catch (error) {
+        res.send(error)
+    }
+}
 
-module.exports = { reservarIdPage, reservarId, reservasCpanel, userCpanel, reservaCancelar }
+
+module.exports = { reservarIdPage, reservarId, reservasCpanel, userCpanel, reservaCancelar, userDetails }

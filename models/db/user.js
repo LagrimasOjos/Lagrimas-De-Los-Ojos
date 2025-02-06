@@ -283,6 +283,21 @@ userSchema.statics.deleteUserId = async function (idUser, borrarHistorico) {
     }
 }
 
+userSchema.statics.detailsID = async function(id){
+    try {
+        console.log(id)
+        let userDetails = await this.find({_id: id});
+        console.log(userDetails)
+        if(!userDetails){
+            throw new Error("No existe tal usuario");
+        }
+        return userDetails;
+    } catch (error) {
+        console.log(error)
+        throw new Error("Error al mostrar los detalles")
+    }
+}
+
 
 
 module.exports = mongoose.model('', userSchema);

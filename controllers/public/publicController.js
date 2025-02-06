@@ -1,4 +1,5 @@
 const { buscarErrorMensaje } = require('../../errors/Messages');
+const {sendEmail} = require('../../helper/utils');
 const Semillas = require('../../models/db/semillas');
 const path = require("path");
 const paginaInicio = async(req,res) => {
@@ -29,8 +30,18 @@ const aboutPage = (req, res) => {
     return res.view("public/about", { title: "Sobre nosotros" });
 }
 
+const contactPost = async (req, res) => {
+    try {
+        const {email, phone, message} = req.body
+        text = `${email} con tlf ${phone}: ${message}`
+        sendEmail("lagrimasdelosojos@gmail.com","lagrimasdelosojos@gmail.com",text)
+    } catch (error) {
+        return res.redirectMessage('/',buscarErrorMensaje(e.message));
+    }
+}
 
-module.exports = {paginaInicio, semillasDetallesPagina, contactoPage, aboutPage, noscript};
+
+module.exports = {paginaInicio, semillasDetallesPagina, contactoPage, aboutPage, noscript, contactPost};
 
 
 

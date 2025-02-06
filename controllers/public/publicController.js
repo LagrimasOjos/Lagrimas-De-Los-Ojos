@@ -33,9 +33,10 @@ const contactPost = async (req, res) => {
     try {
         const {email, phone, message} = req.body
         text = `${email} con tlf ${phone}: ${message}`
-        sendEmail("lagrimasdelosojos@gmail.com","lagrimasdelosojos@gmail.com",text)
+        await sendEmail({to:"lagrimasdelosojos@gmail.com", subject:"Mesaje de la pagina web", text})
+        return res.redirectMessage('/', "El mensaje se ha enviado correctamente")
     } catch (error) {
-        return res.redirectMessage('/',buscarErrorMensaje(e.message));
+        return res.redirectMessage('/',"El email no se ha podido enviar");
     }
 }
 

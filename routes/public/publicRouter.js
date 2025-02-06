@@ -12,6 +12,6 @@ router.get("/", paginaInicio);
 router.get("/about", aboutPage);
 router.get("/contact", contactoPage);
 router.get("/noscript", noscript);
-router.get("/semilla/:id", semillasDetallesPagina);
+//router.get("/semilla/:id", semillasDetallesPagina);
 router.post("/contactPost", contactPost);
 module.exports = router;

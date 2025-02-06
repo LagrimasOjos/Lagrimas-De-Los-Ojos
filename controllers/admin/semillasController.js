@@ -28,9 +28,12 @@ const updateSemilla = async (req, res) => {
 
         if (!id) throw new Error("No existe el id");
 
+        console.log(req.files);
+
         if (req.files && req.files.fotoPath) {
             updates.fotoPath = req.files.fotoPath;
         }
+
 
         await Semillas.updateSemilla(id, updates);
 
@@ -58,11 +61,11 @@ const addCreate = async (req, res) => {
     try {
 
         if (!req.files || !req.files.fotoPath) {
-            return res.status(400).json({ message: 'Es obligatorio la foto de la semilla.' });
+            throw new Error('Es obligatorio la foto/s de la semilla.');
         }
 
         const fotoPath = req.files.fotoPath;
-
+        
 
         const {
             nombre,
@@ -88,12 +91,13 @@ const addCreate = async (req, res) => {
             descripcion,
             fotoPath,
             stock,
+            epocaSiembra,
             activo: true
         };
 
         for (const [field, value] of Object.entries(requiredFields)) {
             if (!value) {
-                return res.redirectMessage('/admin/semillas/add', `El campo obligatorio '${field}' está ausente.`);
+                throw new Error("Faltan campos obligatorios");
             }
         }
 
@@ -119,10 +123,10 @@ const addCreate = async (req, res) => {
         };
 
         await Semillas.anadirSemilla(dataSemilla);
+        
         return res.redirectMessage('/admin/semillas', 'Semilla creada correctamente');
     } catch (e) {
-        console.error(e);
-        return res.redirectMessage('/admin/semillas', e.message || buscarErrorMensaje(e.message));
+        return res.redirectMessage('/admin/semillas',e.message);
     }
 };
 

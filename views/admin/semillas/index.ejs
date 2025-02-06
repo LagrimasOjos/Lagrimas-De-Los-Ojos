@@ -21,7 +21,7 @@
                       <label for="fotoPath" class="form-label">
                         <i class="bi bi-camera-fill"></i> Foto de la Planta:
                       </label>
-                      <input type="file" class="form-control" id="fotoPath" name="fotoPath" accept="image/*" required>
+                      <input type="file" class="form-control" id="fotoPath" name="fotoPath" accept="image/*" required multiple>
                     </div>
                     <div class="col-md-6">
                       <label for="stock" class="form-label">
@@ -43,6 +43,21 @@
                         <i class="bi bi-card-text"></i> Descripción:
                       </label>
                       <textarea class="form-control" id="descripcion" name="descripcion" required></textarea>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label for="epocaSiembra" class="form-label">
+                        <i class="bi bi-calendar3"></i> Época de Siembra:
+                      </label>
+                      <select class="form-control" id="epocaSiembra" name="epocaSiembra">
+                        <option value="">Seleccione una época</option>
+                        <option value="primavera">Primavera</option>
+                        <option value="verano">Verano</option>
+                        <option value="otoño">Otoño</option>
+                        <option value="invierno">Invierno</option>
+                      </select required>
                     </div>
                   </div>
                 </fieldset>
@@ -101,18 +116,7 @@
                     </div>
             
                     <div class="row mb-3">
-                      <div class="col-md-6">
-                        <label for="epocaSiembra" class="form-label">
-                          <i class="bi bi-calendar3"></i> Época de Siembra:
-                        </label>
-                        <select class="form-control" id="epocaSiembra" name="epocaSiembra">
-                          <option value="">Seleccione una época</option>
-                          <option value="primavera">Primavera</option>
-                          <option value="verano">Verano</option>
-                          <option value="otoño">Otoño</option>
-                          <option value="invierno">Invierno</option>
-                        </select>
-                      </div>
+                      
                       <div class="col-md-6">
                         <label for="profundidadSiembra" class="form-label">
                           <i class="bi bi-rulers"></i> Profundidad de Siembra (cm):

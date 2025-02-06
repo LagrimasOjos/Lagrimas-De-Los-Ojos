@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const subirArchivo = require('../../helper/subirArchivo');
+const {subirArchivo, subirArchivos} = require('../../helper/subirArchivo');
 const {MessagesError} = require('../../errors/Messages');
 const semillasSchema = new mongoose.Schema({
     fotoPath: {
-        type: String,
+        type: [String],
         required: true
     },
 
@@ -168,7 +168,7 @@ semillasSchema.statics.updateSemilla = async function(id, updates) {
 semillasSchema.statics.anadirSemilla = async function (dataSemilla) {
     try {
     
-        const requiredFields = ["fotoPath", "stock", "nombre", "descripcion", "activo"];
+        const requiredFields = ["fotoPath", "stock", "nombre", "descripcion", "activo", "epocaSiembra"];
 
         for (const field of requiredFields) {
             if (!dataSemilla[field]) {
@@ -179,21 +179,24 @@ semillasSchema.statics.anadirSemilla = async function (dataSemilla) {
         const uploadFolder = '/public/imgs/semillas';
         const maxSize = 10 * 1024 * 1024; // 10 MB
         const extensiones = ['.jpg', '.png', '.JPG', '.PNG', '.jpeg', '.JPEG'];
-        let uploadPath = await subirArchivo(dataSemilla.fotoPath, uploadFolder, maxSize, extensiones);
-        uploadPath = uploadPath.publicPath;
+        
+        const rutaImgs = await subirArchivos(dataSemilla.fotoPath, uploadFolder, maxSize, extensiones);
+        console.log(rutaImgs)
 
         const semillaData = {
             ...dataSemilla,
-            fotoPath: uploadPath,
+            fotoPath: rutaImgs,
         };
 
         const newSemilla = new this(semillaData);
+        
         await newSemilla.save();
 
         return newSemilla;
+
     } catch (error) {
-        console.error(error);
-        throw new Error(MessagesError.Semilla.errorSemillaCreacion);
+        console.log(error)
+        throw new Error(MessagesError.Semilla.errorSemillaCreacion || 'Error al crear la semilla');
     }
 };
 

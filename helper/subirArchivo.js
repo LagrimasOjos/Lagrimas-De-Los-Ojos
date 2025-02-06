@@ -115,13 +115,12 @@ async function subirArchivos(files, uploadFolder, maxSize, extensiones) {
             publicPaths.push(publicPath);
         }
 
+       
         return publicPaths;
         
 
     } catch (error) {
-    
         throw new Error(`Error en la subida del archivo: ${error.message}`);
-    
     }
 }
 

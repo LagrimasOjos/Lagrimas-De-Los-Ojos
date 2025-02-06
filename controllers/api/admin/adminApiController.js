@@ -1,6 +1,8 @@
 const Reservas = require('../../../models/db/reservas');
 const Prestamos = require('../../../models/db/prestamos');
 const Usuarios = require('../../../models/db/user');
+const Semillas = require('../../../models/db/semillas');
+
 const reservasEmailFind = async (req,res) => {
 
     try {
@@ -60,5 +62,16 @@ const usuariosEmailFind = async (req,res) => {
 }
 
 
+const deletePhotoIdSeed = async (req, res) => {
+    try {
+        if(!req.body.idseed || !req.body.photo) throw new Error("Hubo un error al borra las fotos");
+        const semilla  = await Semillas.deletePhotoIdSeed(req.body.idseed, req.body.photo) 
+        return res.json({data:'borrado correctamente', err:null});
+    } catch (error) {
+        return res.status(400).json({data:'Error', err:'Hubo un error al borrar las fotos'});
+    }
+    
+}
 
-module.exports = {reservasEmailFind, prestamosEmailFind, usuariosEmailFind}
+
+module.exports = {reservasEmailFind, prestamosEmailFind, usuariosEmailFind, deletePhotoIdSeed }

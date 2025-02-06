@@ -4,18 +4,25 @@
             <h2><i class="bi bi-pencil-square"></i> Actualizar Semilla</h2>
         </div>
         <div class="card-body">
-            <form action="/admin/semillas/update/<%= semilla._id %>" method="POST" enctype="multipart/form-data">
+            <form action="/admin/semillas/update/<%= semilla._id %>" id="formActualizar"  method="POST" enctype="multipart/form-data">
                 <!-- Campos principales -->
                 <div class="row g-4">
                     <!-- Foto -->
-                    <div class="col-md-12 text-center">
-                        <label for="fotoPath" class="form-label">Foto Actual</label>
-                        <div class="mb-3">
-                            <img src="<%= semilla.fotoPath %>" alt="Foto de <%= semilla.nombre %>"
-                                class="img-thumbnail shadow-sm" style="width: 150px; height: 150px" />
+                    <div class="col-md-12">
+                        <label for="fotoPath" class="form-label">Fotos Actual</label>
+                        <div class="mb-3 d-flex">
+                            <% semilla.fotoPath.forEach(function(foto) { %>
+                                <div class="m-2 text-center position-relative">
+                                    <img src="<%= foto %>" alt="Foto de <%= semilla.nombre %>"
+                                        class="d-block img-thumbnail shadow-sm" style="width: 150px; height: 150px" />
+                                    <div class="btn btn-danger btn-sm mt-2 btnDelete" data-semilla-id="<%= semilla._id %>" data-fotopath="<%= foto %>" >
+                                        <i class="bi bi-trash"></i> Eliminar
+                                    </div>
+                                </div>
+                            <% }); %>
                         </div>
-                        <label for="fotoPath" class="form-label">Actualizar Foto</label>
-                        <input type="file" class="form-control" id="fotoPath" name="fotoPath" />
+                        <label for="fotoPath" class="form-label">Agregar Fotos</label>
+                        <input type="file" class="form-control" id="fotoPath" name="fotoPath" multiple/>
                     </div>
 
                     <!-- Nombre -->
@@ -29,7 +36,8 @@
                     <div class="col-md-6">
                         <label for="descripcion" class="form-label"><i class="bi bi-pencil"></i> Descripción</label>
                         <textarea class="form-control" id="descripcion" name="descripcion" rows="2" required>
-<%= semilla.descripcion %></textarea>
+                            <%= semilla.descripcion %>
+                        </textarea>
                     </div>
 
                     <!-- Stock -->
@@ -156,9 +164,9 @@
                                         <label for="cuidadosPlantas" class="form-label"><i
                                                 class="bi bi-shield-check"></i> Cuidados de la
                                             Planta</label>
-                                        <textarea class="form-control" id="cuidadosPlantas" name="cuidadosPlantas"
-                                            rows="2">
-<%= semilla.cuidadosPlantas %></textarea>
+                                        <textarea class="form-control" id="cuidadosPlantas" name="cuidadosPlantas" rows="2">
+                                            <%= semilla.cuidadosPlantas %>
+                                        </textarea>
                                     </div>
                                 </div>
                             </div>
@@ -168,9 +176,9 @@
 
                 <!-- Botones -->
                 <div class="text-center mt-4">
-                    <button type="submit" class="btn btn-success">
+                    <a class="btn btn-success" id="submitChanges">
                         <i class="bi bi-save"></i> Guardar Cambios
-                    </button>
+                    </a>
                     <a href="/admin/semillas/" class="btn btn-secondary">
                         <i class="bi bi-arrow-left-circle"></i> Cancelar
                     </a>
@@ -179,3 +187,5 @@
         </div>
     </div>
 </div>
+
+<script src="/js/updateSeeds.js"></script>

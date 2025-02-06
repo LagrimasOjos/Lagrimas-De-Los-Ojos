@@ -114,6 +114,7 @@ semillasSchema.statics.updateSemilla = async function(id, updates) {
             throw new Error(MessagesError.Semilla.errorSemillaNoEncontrada);
         }
 
+
         // Recorremos las claves de la actualización y verificamos si son válidas
         const fieldsToUpdate = [
             'fotoPath', 'stock', 'nombre', 'nombreCientifico', 'descripcion', 'tipoDeSuelo',
@@ -126,9 +127,12 @@ semillasSchema.statics.updateSemilla = async function(id, updates) {
 
         for (let field of fieldsToUpdate) {
             if (updates[field] !== undefined) {
+                if(field != "fotoPath")
                 validUpdates[field] = updates[field];
             }
         }
+
+        
 
         // Manejo especial para el campo 'activo', asegurándonos de que se convierta a booleano
         if (updates.activo == 'on') {
@@ -136,21 +140,27 @@ semillasSchema.statics.updateSemilla = async function(id, updates) {
         } else {
             validUpdates.activo = false;
         }
-
+        
         // Si 'fotoPath' está presente y es un archivo, procesamos la carga de la imagen
-        if (updates.fotoPath?.mv) {
+        if (updates.fotoPath) {
+            
+            if(!Array.isArray(updates.fotoPath)) updates.fotoPath = [updates.fotoPath]
+            
             const uploadFolder = '/public/imgs/semillas';
             const maxSize = 10 * 1024 * 1024; // 10 MB
             const extensiones = ['.jpg', '.png', '.JPG', '.PNG', '.jpeg', '.JPEG'];
-
-            // Intentamos subir el archivo
+            
             try {
-                const uploadPath = await subirArchivo(updates.fotoPath, uploadFolder, maxSize, extensiones);
-                validUpdates.fotoPath = uploadPath.publicPath; // Asignamos la ruta pública de la imagen
+                const uploadPaths = await subirArchivos(updates.fotoPath, uploadFolder, maxSize, extensiones);
+                semilla.fotoPath.push(...uploadPaths);
+                validUpdates['fotoPath'] = semilla.fotoPath;
             } catch (error) {
                 throw new Error(MessagesError.Semilla.errorFotoCarga + ": " + error.message);
             }
+
         }
+
+        
 
         // Si hay actualizaciones, aplicamos los cambios
         if (Object.keys(validUpdates).length > 0) {
@@ -181,7 +191,7 @@ semillasSchema.statics.anadirSemilla = async function (dataSemilla) {
         const extensiones = ['.jpg', '.png', '.JPG', '.PNG', '.jpeg', '.JPEG'];
         
         const rutaImgs = await subirArchivos(dataSemilla.fotoPath, uploadFolder, maxSize, extensiones);
-        console.log(rutaImgs)
+        
 
         const semillaData = {
             ...dataSemilla,
@@ -223,6 +233,22 @@ semillasSchema.statics.allSemillasActive = async function () {
         return semillas;
     } catch (error) {
         throw new Error(error.message || MessagesError.Semilla.errorUnknown || "Ocurrió un error inesperado");
+    }
+};
+
+semillasSchema.statics.deletePhotoIdSeed = async function (idSemilla, photo) {
+    try {
+        const semilla = await this.findById(idSemilla);
+        if (!semilla) throw new Error("Semilla no encontrada");
+
+        // Filtramos las fotos correctamente
+        semilla.fotoPath = semilla.fotoPath.filter(img => img !== photo);
+
+        await semilla.save();
+        return true;
+    } catch (error) {
+        console.log(error)
+        throw new Error("Error al eliminar la foto de la semilla");
     }
 };
 

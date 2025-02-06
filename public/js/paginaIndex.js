@@ -208,35 +208,52 @@ class Buscador {
           stock,
         }) => {
           this.cardsDivDOM.innerHTML += `
-          <div class="col">
-            <div class="card shadow-sm h-100">
-              <img src="${fotoPath}" height="300" alt="Foto de la semilla" class="card-img-top">
-              <div class="card-body">
-                <h5 class="card-title">${nombre}</h5>
-                <p class="card-text text-muted">${descripcion}</p>
-                <p class="mb-2">
-                  <strong><i class="bi bi-calendar-event"></i> Época de siembra:</strong> ${epocaSiembra}
-                </p>
-                <p class="mb-3">
-                  <strong><i class="bi bi-box-seam"></i> Stock:</strong> ${stock} unidades disponibles
-                </p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary btn-details" data-semilla-id="${_id}">
-                      <i class="bi bi-eye"></i> Ver más detalles
-                    </button>
-
-                    <button type="button" class="btn btn-sm btn-outline-secondary btn-reservar" data-semilla-id="${_id}" ${this.isLoggedUser ? "" : "disabled"}>
-                      <i class="bi bi-eye"></i> Reservar
-                    </button>
-
-                   
+            <div class="col">
+              <div class="card shadow-sm h-100">
+                <div id="carouselSemillas${_id}" class="carousel slide" data-bs-ride="carousel">
+                  <div class="carousel-indicators">
+                    ${fotoPath.map((_, index) => `
+                      <button type="button" data-bs-target="#carouselSemillas${_id}" data-bs-slide-to="${index}" class="${index === 0 ? 'active' : ''}" aria-current="${index === 0 ? 'true' : ''}" aria-label="Slide ${index + 1}"></button>
+                    `).join('')}
+                  </div>
+                  <div class="carousel-inner">
+                    ${fotoPath.map((foto, index) => `
+                      <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                        <img src="${foto}" class="d-block w-100" height="300" alt="Foto de la semilla">
+                      </div>
+                    `).join('')}
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselSemillas${_id}" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselSemillas${_id}" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">${nombre}</h5>
+                  <p class="card-text text-muted">${descripcion}</p>
+                  <p class="mb-2">
+                    <strong><i class="bi bi-calendar-event"></i> Época de siembra:</strong> ${epocaSiembra}
+                  </p>
+                  <p class="mb-3">
+                    <strong><i class="bi bi-box-seam"></i> Stock:</strong> ${stock} unidades disponibles
+                  </p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary btn-details" data-semilla-id="${_id}">
+                        <i class="bi bi-eye"></i> Ver más detalles
+                      </button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary btn-reservar" data-semilla-id="${_id}" ${this.isLoggedUser ? "" : "disabled"}>
+                        <i class="bi bi-eye"></i> Reservar
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        `;
+            </div>`;
         }
       );
 
@@ -349,7 +366,6 @@ class Buscador {
             const { data, err } = responseObject;
 
             if (err) {
-              // Si hay un error en la respuesta, lo mostramos en consola
               console.error("Error recibido desde la API:", data);
             } else {
               const {

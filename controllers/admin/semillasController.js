@@ -28,13 +28,10 @@ const updateSemilla = async (req, res) => {
 
         if (!id) throw new Error("No existe el id");
 
-        console.log(req.files);
-
         if (req.files && req.files.fotoPath) {
             updates.fotoPath = req.files.fotoPath;
         }
-
-
+        
         await Semillas.updateSemilla(id, updates);
 
         return res.redirectMessage('/admin/semillas/', 'Se ha actualizado correctamente');

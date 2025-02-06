@@ -7,7 +7,6 @@ const createUserSendPasswordEmail = async (req, res) => {
         const { name, phone, email } = req.body;
         const password = createPassword();
         const repassword = password;
-        console.log(password);
         await Usuario.registerUser({ name, phone, email, password, repassword });
         await sendEmail({
             to: email,

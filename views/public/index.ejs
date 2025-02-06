@@ -9,16 +9,16 @@
     </div>
   </section>
 
- 
+
   <div class="album py-5 bg-light">
     <div class="container">
-  
+
       <!-- Título principal -->
       <div class="text-center mb-4">
         <h1 class="display-5 fw-bold">Explora Nuestro Catálogo de Semillas</h1>
         <p class="text-muted">Encuentra rápidamente las semillas que necesitas utilizando el buscador.</p>
       </div>
-  
+
       <!-- Buscador -->
       <div class="row g-2 align-items-center my-3">
         <h6 class="col-12"><i class="bi bi-filter"></i> Filtro epoca del año:</h6>
@@ -38,47 +38,45 @@
           </button>
         </div>
       </div>
-      
+
       <div>
         <div class="input-group mb-4">
-          <label for="buscador" class="visually-hidden">Buscar semilla</label> <!-- Agregamos label para accesibilidad -->
-          <input 
-            type="text" 
-            id="buscador" 
-            class="form-control shadow-sm fs-5" 
-            style="height: 60px;" 
-            placeholder="Escribe el nombre de una semilla..." 
-            aria-label="Buscador" 
-            aria-describedby="boton-buscar">
-          <button 
-            class="btn btn-primary shadow-sm px-4 fs-5" 
-            id="sendSearch" 
-            type="button">
+          <label for="buscador" class="visually-hidden">Buscar semilla</label>
+          <!-- Agregamos label para accesibilidad -->
+          <input type="text" id="buscador" class="form-control shadow-sm fs-5" style="height: 60px;"
+            placeholder="Escribe el nombre de una semilla..." aria-label="Buscador" aria-describedby="boton-buscar">
+          <button class="btn btn-primary shadow-sm px-4 fs-5" id="sendSearch" type="button">
             <i class="bi bi-search"></i> Buscar
           </button>
         </div>
 
       </div>
 
-      
-  
+
+
       <!-- Contenedor de resultados -->
       <div id="boxSeeds" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 my-4">
 
       </div>
-  
+
       <!-- Paginación -->
       <nav aria-label="Paginación" class="my-5">
         <ul id="paginacion" class="pagination justify-content-center">
           <!-- Los elementos de paginación se generarán dinámicamente -->
         </ul>
       </nav>
-  
+
     </div>
   </div>
-  
-  
-  
+
+  <div id="reservarBox">
+    <!-- Aqui se carga el modal de las reservas -->
+  </div>
+
+  <div id="detallesBox">
+    <!-- Aqui se carga el modal de los detalles -->
+  </div>
+
 
   <script src="/js/paginaIndex.js"></script>
 

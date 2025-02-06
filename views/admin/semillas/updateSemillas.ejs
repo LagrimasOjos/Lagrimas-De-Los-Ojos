@@ -111,8 +111,13 @@
                                         <label for="epocaSiembra" class="form-label"><i
                                                 class="bi bi-calendar-check"></i> Época de
                                             Siembra</label>
-                                        <input type="text" class="form-control" id="epocaSiembra" name="epocaSiembra"
-                                            value="<%= semilla.epocaSiembra %>" />
+                                            <select class="form-control" id="epocaSiembra" name="epocaSiembra">
+                                                <option value="">Seleccione una época</option>
+                                                <option value="primavera" <%= semilla.epocaSiembra === 'primavera' ? 'selected' : '' %>>Primavera</option>
+                                                <option value="verano" <%= semilla.epocaSiembra === 'verano' ? 'selected' : '' %>>Verano</option>
+                                                <option value="otoño" <%= semilla.epocaSiembra === 'otoño' ? 'selected' : '' %>>Otoño</option>
+                                                <option value="invierno" <%= semilla.epocaSiembra === 'invierno' ? 'selected' : '' %>>Invierno</option>
+                                            </select>
                                     </div>
 
                                     <div class="col-md-6">

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const {MessagesError} = require('../../errors/Messages');
+const { sendEmail, generarJWT } = require('../../helper/utils');
 
 
 const userSchema = new mongoose.Schema({
@@ -297,6 +298,50 @@ userSchema.statics.detailsID = async function(id){
         throw new Error("Error al mostrar los detalles")
     }
 }
+
+userSchema.statics.forgotPasswordJWTEmail = async function (email, req) {
+    try {
+        const user = await this.findOne({ email });
+        
+        if (!user || !user.activo) throw new Error("El usuario no existe");
+        
+        const token = await generarJWT({ uid: user._id });
+        const domain = `${req.protocol}://${req.get('host')}`; // Obtiene el dominio dinámicamente
+        const resetLink = `${domain}/auth/reset-password?jwt=${token}`;
+        
+        const htmlContent = `
+            <h2>Recuperación de contraseña</h2>
+            <p>Hemos recibido una solicitud para restablecer tu contraseña. Si no realizaste esta solicitud, puedes ignorar este correo.</p>
+            <p>Para restablecer tu contraseña, haz clic en el siguiente enlace:</p>
+            <a href="${resetLink}" style="display: inline-block; padding: 10px 15px; color: white; background: blue; text-decoration: none; border-radius: 5px;">Restablecer contraseña</a>
+            <p>Este enlace expirará en 1 hora.</p>
+        `;
+        
+        await sendEmail({ to: email, subject: 'Recuperar contraseña - Lágrimas de los Ojos', text: '', html: htmlContent });
+        
+        return true;
+    } catch (error) {
+        console.log(error);
+        throw new Error("Error al intentar enviar el email");
+    }
+};
+
+
+userSchema.statics.resetearPassword = async function (idUser, newPassword) {
+    try {
+        const user = await this.findById(idUser).select('+password');
+        
+        if (!user || !user.activo || newPassword.length < 8) throw new Error("El usuario no existe");
+        
+        user.password = newPassword;
+
+        await user.save();
+        
+        return true;
+    } catch (error) {
+        throw new Error("Hubo un error al intentar cambiar la contraseña");
+    }
+};
 
 
 

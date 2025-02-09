@@ -397,88 +397,50 @@ class Buscador {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        <div class="row mb-4">
-                          <div class="col-md-4 text-center">
-                              <img src="${fotoPath}" alt="Foto de la semilla" class="img-fluid rounded shadow-sm">
-                          </div>
-                          <div class="col-md-8">
-                              <h4 class="mb-3">
-                                  <i class="bi bi-leaf"></i> ${nombre}
-                                  <small class="text-muted">(${
-                                    nombreCientifico ||
-                                    "Nombre científico no disponible"
-                                  })</small>
-                              </h4>
-                              <p><strong><i class="bi bi-file-text"></i> Descripción:</strong> ${descripcion}</p>
-                              <p><strong><i class="bi bi-box-seam"></i> Stock disponible:</strong>
-                                  <span class="badge bg-primary">${stock}</span>
-                              </p>
-                              
-                          </div>
-                        </div>
+                        
+                        <h4 class="mb-3">
+                          <i class="bi bi-leaf"></i> ${nombre}
+                          <small class="text-muted">(${nombreCientifico || "Nombre científico no disponible"})</small>
+                        </h4>
+                        <p><strong><i class="bi bi-file-text"></i> Descripción:</strong> ${descripcion}</p>
+                        <p><strong><i class="bi bi-box-seam"></i> Stock disponible:</strong>
+                          <span class="badge bg-primary">${stock}</span>
+                        </p>
                         <h5 class="mb-4"><i class="bi bi-info-circle"></i> Información Adicional</h5>
                         <table class="table table-striped">
                           <tbody>
-                            <tr>
-                              <th><i class="bi bi-geo-alt"></i> Tipo de suelo</th>
-                              <td>${tipoDeSuelo || "No especificado"}</td>
-                            </tr>
-                            <tr>
-                              <th><i class="bi bi-brightness-high"></i> Exposición solar</th>
-                              <td>${exposicionSolar || "No especificado"}</td>
-                            </tr>
-                            <tr>
-                              <th><i class="bi bi-droplet"></i> Frecuencia de riego</th>
-                              <td>${frecuenciaRiego || "No especificado"}</td>
-                            </tr>
-                            <tr>
-                              <th><i class="bi bi-droplet-half"></i> Cantidad de riego</th>
-                              <td>${cantidadRiego || "No especificado"} ml</td>
-                            </tr>
-                            <tr>
-                              <th><i class="bi bi-thermometer"></i> Temperatura ideal</th>
-                              <td>${
-                                temperaturaIdeal || "No especificado"
-                              } °C</td>
-                            </tr>
-                            <tr>
-                              <th><i class="bi bi-calendar"></i> Época de siembra</th>
-                              <td>${epocaSiembra || "No especificado"}</td>
-                            </tr>
-                            <tr>
-                              <th><i class="bi bi-box"></i> Profundidad de siembra</th>
-                              <td>${
-                                profundidadSiembra || "No especificado"
-                              }</td>
-                            </tr>
-                            <tr>
-                              <th><i class="bi bi-arrows-expand"></i> Espaciado entre plantas</th>
-                              <td>${
-                                espaciadoPlantas || "No especificado"
-                              } cm</td>
-                            </tr>
-                            <tr>
-                              <th><i class="bi bi-clock"></i> Tiempo de germinación</th>
-                              <td>${
-                                tiempoGerminacion || "No especificado"
-                              } días</td>
-                            </tr>
-                            <tr>
-                              <th><i class="bi bi-clock-history"></i> Tiempo de cosecha</th>
-                              <td>${
-                                tiempoCosecha || "No especificado"
-                              } días</td>
-                            </tr>
-                            <tr>
-                              <th><i class="bi bi-heart"></i> Cuidados de la planta</th>
-                              <td>${cuidadosPlantas || "No especificado"}</td>
-                            </tr>
+                            <tr><th><i class="bi bi-geo-alt"></i> Tipo de suelo</th><td>${tipoDeSuelo || "No especificado"}</td></tr>
+                            <tr><th><i class="bi bi-brightness-high"></i> Exposición solar</th><td>${exposicionSolar || "No especificado"}</td></tr>
+                            <tr><th><i class="bi bi-droplet"></i> Frecuencia de riego</th><td>${frecuenciaRiego || "No especificado"}</td></tr>
+                            <tr><th><i class="bi bi-droplet-half"></i> Cantidad de riego</th><td>${cantidadRiego || "No especificado"} ml</td></tr>
+                            <tr><th><i class="bi bi-thermometer"></i> Temperatura ideal</th><td>${temperaturaIdeal || "No especificado"} °C</td></tr>
+                            <tr><th><i class="bi bi-calendar"></i> Época de siembra</th><td>${epocaSiembra || "No especificado"}</td></tr>
+                            <tr><th><i class="bi bi-box"></i> Profundidad de siembra</th><td>${profundidadSiembra || "No especificado"}</td></tr>
+                            <tr><th><i class="bi bi-arrows-expand"></i> Espaciado entre plantas</th><td>${espaciadoPlantas || "No especificado"} cm</td></tr>
+                            <tr><th><i class="bi bi-clock"></i> Tiempo de germinación</th><td>${tiempoGerminacion || "No especificado"} días</td></tr>
+                            <tr><th><i class="bi bi-clock-history"></i> Tiempo de cosecha</th><td>${tiempoCosecha || "No especificado"} días</td></tr>
+                            <tr><th><i class="bi bi-heart"></i> Cuidados de la planta</th><td>${cuidadosPlantas || "No especificado"}</td></tr>
                           </tbody>
                         </table>
+
+                        <div class="row mb-4">
+                          <h3>Galería:</h3>
+                          <div class="col-md-12">
+                            <div class="row">
+                              ${fotoPath.map(foto => `
+                                <div class="col-md-3 mb-3 text-center">
+                                  <img src="${foto}" alt="Foto de la semilla" class="img-fluid rounded shadow-sm">
+                                </div>
+                              `).join('')}
+                            </div>
+                          </div>
+                        </div>
+
                       </div>
                     </div>
                   </div>
                 </div>
+
                     `;
 
               const modal = new bootstrap.Modal(
@@ -569,5 +531,3 @@ if (filterLocalStore) {
     .querySelectorAll("option")[0]
     .setAttribute("selected", true);
 }
-
-//Creacion modales de reserva y modal de detalles

@@ -42,13 +42,13 @@ const updateSemilla = async (req, res) => {
 
 const deleteSemilla = async (req, res) => {
     try {
-        // Intentamos eliminar la semilla por su ID
-        const semilla = await Semillas.findByIdAndDelete(req.params.id);
 
-        // Si la semilla fue eliminada, redirigimos con un mensaje de éxito
+        if(!req.params.id) throw new Error("Hubo un error al intentar eliminar la semilla");
+        
+        await Semillas.deleteSemilla(req.params.id);
+
         return res.redirectMessage('/admin/semillas/', 'Se ha eliminado correctamente la semilla');
     } catch (e) {
-        // Si ocurre un error, redirigimos con un mensaje de error
         return res.redirectMessage('/admin/semillas/', buscarErrorMensaje(e.message));
     }
 };

@@ -1,17 +1,20 @@
 const mongoose = require('mongoose');
-const {subirArchivo, subirArchivos} = require('../../helper/subirArchivo');
-const {MessagesError} = require('../../errors/Messages');
+const { subirArchivos } = require('../../helper/subirArchivo');
+const { MessagesError } = require('../../errors/Messages');
+const path = require('path');
+const fs = require('fs');
+
 const semillasSchema = new mongoose.Schema({
     fotoPath: {
         type: [String],
         required: true
     },
 
-    stock:{
+    stock: {
         type: Number,
         required: true
     },
-    
+
     nombre: {
         type: String,
         required: true
@@ -41,7 +44,7 @@ const semillasSchema = new mongoose.Schema({
     cantidadRiego: {
         type: Number
     },
-    
+
     temperaturaIdeal: {
         type: Number
     },
@@ -51,23 +54,23 @@ const semillasSchema = new mongoose.Schema({
         enum: ['primavera', 'verano', 'otoño', 'invierno'],
         set: (value) => value.toLowerCase() // Asegura que el valor se guarde en minúsculas
     },
-    
+
     profundidadSiembra: {
         type: String,
     },
-    
+
     espaciadoPlantas: {
         type: Number,
     },
-    
+
     tiempoGerminacion: {
         type: Number,
     },
-    
+
     tiempoCosecha: {
         type: Number,
     },
-    
+
     cuidadosPlantas: {
         type: String,
     },
@@ -76,13 +79,13 @@ const semillasSchema = new mongoose.Schema({
         type: Boolean,
         required: true
     }
-},{ timestamps: true});
+}, { timestamps: true });
 
 semillasSchema.statics.paginacionSemilla = async function (pagina = 1, filter = {}, limite = 3) {
     try {
-        
+
         if (pagina < 1) pagina = 1;
-        
+
         if (limite < 1) throw new Error(MessagesError.Semilla.errorPaginacionLimit);
 
         let saltar = limite * (pagina - 1);
@@ -104,7 +107,7 @@ semillasSchema.statics.paginacionSemilla = async function (pagina = 1, filter = 
     }
 };
 
-semillasSchema.statics.updateSemilla = async function(id, updates) {
+semillasSchema.statics.updateSemilla = async function (id, updates) {
     try {
         // Primero buscamos la semilla por su ID
         const semilla = await this.findById(id);
@@ -127,12 +130,12 @@ semillasSchema.statics.updateSemilla = async function(id, updates) {
 
         for (let field of fieldsToUpdate) {
             if (updates[field] !== undefined) {
-                if(field != "fotoPath")
-                validUpdates[field] = updates[field];
+                if (field != "fotoPath")
+                    validUpdates[field] = updates[field];
             }
         }
 
-        
+
 
         // Manejo especial para el campo 'activo', asegurándonos de que se convierta a booleano
         if (updates.activo == 'on') {
@@ -140,16 +143,16 @@ semillasSchema.statics.updateSemilla = async function(id, updates) {
         } else {
             validUpdates.activo = false;
         }
-        
+
         // Si 'fotoPath' está presente y es un archivo, procesamos la carga de la imagen
         if (updates.fotoPath) {
-            
-            if(!Array.isArray(updates.fotoPath)) updates.fotoPath = [updates.fotoPath]
-            
+
+            if (!Array.isArray(updates.fotoPath)) updates.fotoPath = [updates.fotoPath]
+
             const uploadFolder = '/public/imgs/semillas';
             const maxSize = 10 * 1024 * 1024; // 10 MB
             const extensiones = ['.jpg', '.png', '.JPG', '.PNG', '.jpeg', '.JPEG'];
-            
+
             try {
                 const uploadPaths = await subirArchivos(updates.fotoPath, uploadFolder, maxSize, extensiones);
                 semilla.fotoPath.push(...uploadPaths);
@@ -157,10 +160,9 @@ semillasSchema.statics.updateSemilla = async function(id, updates) {
             } catch (error) {
                 throw new Error(MessagesError.Semilla.errorFotoCarga + ": " + error.message);
             }
-
         }
 
-        
+
 
         // Si hay actualizaciones, aplicamos los cambios
         if (Object.keys(validUpdates).length > 0) {
@@ -177,7 +179,7 @@ semillasSchema.statics.updateSemilla = async function(id, updates) {
 
 semillasSchema.statics.anadirSemilla = async function (dataSemilla) {
     try {
-    
+
         const requiredFields = ["fotoPath", "stock", "nombre", "descripcion", "activo", "epocaSiembra"];
 
         for (const field of requiredFields) {
@@ -186,20 +188,29 @@ semillasSchema.statics.anadirSemilla = async function (dataSemilla) {
             }
         }
 
+        if (!Array.isArray(dataSemilla.fotoPath)) dataSemilla.fotoPath = [dataSemilla.fotoPath]
+
         const uploadFolder = '/public/imgs/semillas';
         const maxSize = 10 * 1024 * 1024; // 10 MB
         const extensiones = ['.jpg', '.png', '.JPG', '.PNG', '.jpeg', '.JPEG'];
-        
-        const rutaImgs = await subirArchivos(dataSemilla.fotoPath, uploadFolder, maxSize, extensiones);
-        
+
+        let pathsPublicImg = null;
+
+        try {
+            pathsPublicImg = await subirArchivos(dataSemilla.fotoPath, uploadFolder, maxSize, extensiones);
+        } catch (error) {
+            throw new Error(MessagesError.Semilla.errorFotoCarga + ": " + error.message);
+        }
+
+
 
         const semillaData = {
             ...dataSemilla,
-            fotoPath: rutaImgs,
+            fotoPath: [...pathsPublicImg],
         };
 
         const newSemilla = new this(semillaData);
-        
+
         await newSemilla.save();
 
         return newSemilla;
@@ -211,7 +222,7 @@ semillasSchema.statics.anadirSemilla = async function (dataSemilla) {
 };
 
 semillasSchema.statics.semillaDetalles = async function (idSemilla) {
-    try {   
+    try {
         const semilla = await this.findById(idSemilla);
         if (!semilla || !semilla.activo) {
             throw new Error(MessagesError.Semilla.errorSemillaNoEncontrada);
@@ -225,8 +236,8 @@ semillasSchema.statics.semillaDetalles = async function (idSemilla) {
 
 
 semillasSchema.statics.allSemillasActive = async function () {
-    try {   
-        const semillas = await this.find({activo:true});
+    try {
+        const semillas = await this.find({ activo: true });
         if (!semillas) {
             throw new Error(MessagesError.Semilla.errorSemillaNoEncontrada);
         }
@@ -241,7 +252,14 @@ semillasSchema.statics.deletePhotoIdSeed = async function (idSemilla, photo) {
         const semilla = await this.findById(idSemilla);
         if (!semilla) throw new Error("Semilla no encontrada");
 
-        // Filtramos las fotos correctamente
+        const rutaFisicaSemilla = path.join(__dirname + `/../../public${photo}`);
+
+        if (fs.existsSync(rutaFisicaSemilla)) {
+            fs.unlinkSync(rutaFisicaSemilla);
+        } else {
+            console.warn("La foto no existe en el sistema de archivos:", rutaFisicaSemilla);
+        }
+
         semilla.fotoPath = semilla.fotoPath.filter(img => img !== photo);
 
         await semilla.save();
@@ -251,6 +269,29 @@ semillasSchema.statics.deletePhotoIdSeed = async function (idSemilla, photo) {
         throw new Error("Error al eliminar la foto de la semilla");
     }
 };
+
+semillasSchema.statics.deleteSemilla = async function (idSemilla) {
+    try {
+
+        if (!idSemilla) throw new Error("Hubo un error al eliminar la semilla");
+
+        const semilla = await this.findById(idSemilla);
+
+        const rutaFisicaSemilla = path.join(__dirname + `/../../public${semilla.fotoPath}`);
+
+        if (fs.existsSync(rutaFisicaSemilla)) {
+            fs.unlinkSync(rutaFisicaSemilla);
+        } else {
+            console.warn("La foto no existe en el sistema de archivos:", rutaFisicaSemilla);
+        }
+
+        await this.findByIdAndDelete(idSemilla);
+
+        return true;
+    } catch (error) {
+        throw new Error("Error al eliminar la semilla");
+    }
+}
 
 
 module.exports = mongoose.model('semilla', semillasSchema)

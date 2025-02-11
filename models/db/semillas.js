@@ -254,14 +254,17 @@ semillasSchema.statics.deletePhotoIdSeed = async function (idSemilla, photo) {
 
         const rutaFisicaSemilla = path.join(__dirname + `/../../public${photo}`);
 
-        if (fs.existsSync(rutaFisicaSemilla)) {
+        if (fs.existsSync(rutaFisicaSemilla) && semilla.fotoPath.length > 1) {
             fs.unlinkSync(rutaFisicaSemilla);
+            semilla.fotoPath = semilla.fotoPath.filter(img => img !== photo);
         } else {
             console.warn("La foto no existe en el sistema de archivos:", rutaFisicaSemilla);
         }
 
-        semilla.fotoPath = semilla.fotoPath.filter(img => img !== photo);
+        
 
+        //if(semilla.fotoPath.length == 0) semilla.fotoPath.push('/imgs/semillas/example.jpg');
+        
         await semilla.save();
         return true;
     } catch (error) {
@@ -279,7 +282,7 @@ semillasSchema.statics.deleteSemilla = async function (idSemilla) {
 
         const rutaFisicaSemilla = path.join(__dirname + `/../../public${semilla.fotoPath}`);
 
-        if (fs.existsSync(rutaFisicaSemilla)) {
+        if (fs.existsSync(rutaFisicaSemilla) && semilla.fotoPath.length > 0) {
             fs.unlinkSync(rutaFisicaSemilla);
         } else {
             console.warn("La foto no existe en el sistema de archivos:", rutaFisicaSemilla);
@@ -289,6 +292,7 @@ semillasSchema.statics.deleteSemilla = async function (idSemilla) {
 
         return true;
     } catch (error) {
+        console.log(error)
         throw new Error("Error al eliminar la semilla");
     }
 }

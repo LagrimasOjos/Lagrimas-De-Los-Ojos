@@ -75,5 +75,20 @@ const userDetails = async(req, res) => {
     }
 }
 
+const changeDetails = async(req, res) => {
+    try {
+        const {phone} = req.body;
+        const user = await Usuario.findById(req.session.userId);
+        if (user.phone === phone) {
+            return res.redirectMessage('/me/details', "Ese telefono ya esta activo")
+        }
+        user.phone = phone;
+        await user.save();
+        return res.redirectMessage('/me/details', "Tu telefono ha sido actualizada correctamente");
+    } catch (e) {
+        return res.redirectMessage('/me/details', buscarErrorMensaje(e.message))
+    }
+}
 
-module.exports = { reservarIdPage, reservarId, reservasCpanel, userCpanel, reservaCancelar, userDetails }
+
+module.exports = { reservarIdPage, reservarId, reservasCpanel, userCpanel, reservaCancelar, userDetails, changeDetails }

@@ -1,1 +1,3 @@
 Todas las contraseñas de los usuarios son: 123456789a
+
+No existen usarios de prueba con perfil de administrador. Se deben crear manualmente en Atlas.

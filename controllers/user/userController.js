@@ -68,10 +68,9 @@ const reservaCancelar = async (req,res) => {
 const userDetails = async(req, res) => {
     try {
         let userData = await Usuario.detailsID(req.session.userId);
-        console.log(userData);
         return res.view('user/details/index', {userData, title: "Mi perfil"})
     } catch (error) {
-        res.send(error)
+        return res.send(error)
     }
 }
 

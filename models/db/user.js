@@ -20,6 +20,7 @@ const userSchema = new mongoose.Schema({
     phone: {
         type: String,
         required: true,
+        unique: true,
         match: /^[6-9]\d{8}$/
     },
 
@@ -286,9 +287,7 @@ userSchema.statics.deleteUserId = async function (idUser, borrarHistorico) {
 
 userSchema.statics.detailsID = async function(id){
     try {
-        console.log(id)
         let userDetails = await this.find({_id: id});
-        console.log(userDetails)
         if(!userDetails){
             throw new Error("No existe tal usuario");
         }

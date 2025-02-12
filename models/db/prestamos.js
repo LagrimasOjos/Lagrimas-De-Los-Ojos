@@ -71,6 +71,18 @@ const prestamosSchema = new mongoose.Schema(
 );
 
 
+prestamosSchema.statics.prestamosUserId = async function (idUser) {
+    try {
+        if(!idUser) throw new Error("No se especifico el usuario");
+        
+        const prestamosUser = await this.find({idUser});
+        if(!prestamosUser) throw new Error("Hubo un error al recoger los prestamos");
+        return prestamosUser;
+    } catch (error) {
+        throw new Error("Hubo un error al recoger los prestamos");
+    }
+}
+
 prestamosSchema.statics.crearPrestamoReserva = async function (idReserva) {
 
     const Reserva = require('./reservas');

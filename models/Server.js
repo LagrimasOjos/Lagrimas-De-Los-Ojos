@@ -16,6 +16,7 @@ const rateLimit = require('express-rate-limit');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const helmet = require('helmet');
+const cors = require('cors');
 
 class Server {
     constructor() {
@@ -36,6 +37,8 @@ class Server {
     middleware() {
 
         this.app.use(helmet({ contentSecurityPolicy: false }));
+        
+        this.app.use(cors({origin: process.env.DOMAIN}));
 
         const limiter = rateLimit({
             windowMs: 5 * 60 * 1000,

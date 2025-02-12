@@ -6,25 +6,31 @@
 
 <div class="container mt-4">
     <div class="row justify-content-center"> <!-- Centrado de la fila -->
-        <div class="col-md-4">
+        <div class="col-md-8">
             <h3 class="text-center">Mi Perfil</h3> <!-- Centrado del título -->
             <hr class="my-3">
             <!-- Formulario de contacto -->
-            <form action="/me/changeDeatils" class="needs-validation shadow p-4 rounded bg-light" method="POST" novalidate>
+            <form action="/me/changeDeatils" class="needs-validation shadow p-4 rounded bg-light fom-inline" method="POST" novalidate id="profile-form">
 
-                <!-- campo del Username -->
-                <div class="mb-3">
+                <!-- Campo del Username -->
+                <div class="mb-3" style="position: relative;">
                     <label for="username" class="form-label">
                         <i class="bi bi-person"></i> Nombre de Usuario:
                     </label>
-                    <input class="form-control" 
-                        type="username"
+                    <div class="input-group">
+                        <input class="form-control" 
+                        type="text"
                         name="username"
                         id="username"
                         placeholder="<%= userData[0].username %>"
                         aria-label="Campo para introducir tu nombre de usuario"
                         autocomplete="username"
+                        style="width: 85%;"
                         disabled>
+                        <div class="input-group-append">
+                            <button style="height: 2.5em;" class="btn btn-outline-secondary disabled" type="button"><i class="bi bi-pencil-square"></i></button>
+                        </div>
+                    </div>
                     <div class="invalid-feedback">Por favor, introduce un nombre de usuario valido.</div>
                 </div>
 
@@ -50,15 +56,21 @@
                     <label for="phone" class="form-label">
                         <i class="bi bi-telephone-fill text-success"></i> Teléfono:
                     </label>
-                    <input type="text" class="form-control" id="phone" name="phone" 
-                    value="<%= userData[0].phone %>" 
-                    aria-label="Campo para introducir tu número de teléfono"
-                    minlength="9" pattern="^[6-9]\d{8}$" autocomplete="tel">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="phone" name="phone" 
+                        value="<%= userData[0].phone %>" 
+                        aria-label="Campo para introducir tu número de teléfono"
+                        minlength="9" pattern="^[6-9]\d{8}$" autocomplete="tel" style="width: 70%;" disabled>
+                        <div class="input-group-append">
+                            <button id="editar" name="editar" style="height: 2.5em;" class="btn btn-outline-secondary" type="button"><i class="bi bi-pencil-square"></i></button>
+                        </div>
+                    </div>
                     <div class="invalid-feedback">Por favor, introduce un número de teléfono válido.</div>
                 </div>
+
                 <!-- Botón Enviar -->
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-dark">
+                    <button type="submit" class="btn btn-dark disabled" id="enviar">
                         <i class="bi bi-send-fill"></i> Cambiar telefono
                     </button>
                 </div>
@@ -66,4 +78,6 @@
         </div>
     </div>
 </div>
+<script src="/js/cambiarDetalles.js"></script>
 <script src="/js/minValidate.js"></script>
+

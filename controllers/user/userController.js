@@ -78,8 +78,9 @@ const changeDetails = async(req, res) => {
     try {
         const {phone} = req.body;
         const user = await Usuario.findById(req.session.userId);
-        if (user.phone === phone) {
-            return res.redirectMessage('/me/details', "Ese telefono ya esta activo")
+        const phoneExist = await Usuario.findOne({phone: phone});
+        if (phoneExist) {
+            return phoneExist;
         }
         user.phone = phone;
         await user.save();

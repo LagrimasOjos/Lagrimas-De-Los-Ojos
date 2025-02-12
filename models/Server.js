@@ -12,6 +12,9 @@ const { redirectWidthMsg } = require('../middleware/redirectWidthMessage');
 const expressLayouts = require('express-ejs-layouts');
 const { logout } = require('../controllers/auth/authController');
 const nocache = require("nocache");
+const rateLimit = require('express-rate-limit');
+const mongoSanitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
 
 class Server {
     constructor() {
@@ -19,7 +22,7 @@ class Server {
             auth: '/auth',
             public: '/',
             admin: '/admin',
-            user:'/me',
+            user: '/me',
             api: '/api',
             logout: '/logout',
         };
@@ -31,18 +34,30 @@ class Server {
 
     middleware() {
 
+        const limiter = rateLimit({
+            windowMs: 5 * 60 * 1000,
+            max: 250,
+            message: "Demasiadas solicitudes, por favor intente de nuevo más tarde.",
+            standardHeaders: true,
+            legacyHeaders: false,
+        });
+
+        this.app.use(limiter);
+
         // Configuración de vistas
         this.app.set('views', path.join(__dirname, '../views'));
         this.app.set('view engine', 'ejs');
         this.app.use(cookieParser());
-        
+
 
         this.app.use(expressLayouts);
         this.app.set('layout', 'layout');
 
         // Middlewares básicos
         this.app.use(express.json());
-        this.app.use(express.urlencoded({ extended: false }));        
+        this.app.use(express.urlencoded({ extended: false }));
+        this.app.use(mongoSanitize());
+        this.app.use(xss());
 
         // Sesiones
         this.app.use(
@@ -78,7 +93,7 @@ class Server {
 
         // Middleware para subir archivos
         this.app.use(fileUpload());
-    
+
 
     }
 

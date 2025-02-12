@@ -41,6 +41,7 @@ const registerCreate = async (req, res) => {
         req.session.user = { rol: newUser.rol, username: newUser.username };
         return res.redirectMessage('/', 'Te has registrado correctamente');
     } catch (e) {
+        console.log(e.message)
         return res.redirectMessage('/auth/register', buscarErrorMensaje(e.message));
     }
 }

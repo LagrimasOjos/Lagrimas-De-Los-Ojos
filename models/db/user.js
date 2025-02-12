@@ -82,6 +82,11 @@ userSchema.statics.registerUser = async function ({ name, phone, email, password
         if (!phoneRegex.test(phone)) {
             throw new Error(MessagesError.Register.errorInvalidPhone || "El telefono no tiene un formato válido.");
         }
+
+        const existPhone = await this.findOne({phone});
+
+        if(existPhone) throw new Error(MessagesError.Register.telefonoDuplicado || "El usuario ya existe.");
+
         // Verificar si el usuario ya existe
         const existingUser = await this.findOne({ email });
         if (existingUser) {

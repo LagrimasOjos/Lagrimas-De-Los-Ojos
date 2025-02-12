@@ -7,7 +7,8 @@ const RegistrationError = {
     errorUnderage: 'Debes ser mayor de edad para registrarte.',
     errorInvalidInput: 'Algunos datos proporcionados no son válidos. Verifica la información ingresada.',
     errorServerIssue: 'Hubo un problema al procesar tu solicitud. Intenta nuevamente más tarde.',
-    errorUnknown: 'Ocurrió un error inesperado. Intenta nuevamente más tarde.'
+    errorUnknown: 'Ocurrió un error inesperado. Intenta nuevamente más tarde.',
+    telefonoDuplicado: 'Este telefono ya esta en uso'
 };
 
 module.exports = RegistrationError;

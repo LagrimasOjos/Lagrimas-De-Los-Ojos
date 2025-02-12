@@ -80,7 +80,7 @@ const changeDetails = async(req, res) => {
         const user = await Usuario.findById(req.session.userId);
         const phoneExist = await Usuario.findOne({phone: phone});
         if (phoneExist) {
-            return res.redirectMessage('/me/details', "Ese telefono ya esta registrado en nuestra base de datos")
+            return phoneExist;
         }
         user.phone = phone;
         await user.save();

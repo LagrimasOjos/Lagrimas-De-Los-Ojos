@@ -7,7 +7,7 @@ const validarCaptchat = async (req, res, next) => {
     if (esValido) {
         return next();
     } else {
-        return res.status(400).json({ error: 'Captcha no válido o no resuelto correctamente' });
+        return res.redirectMessage('/','Debes completar el captchat correctamente');
     }
 };
 

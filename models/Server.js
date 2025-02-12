@@ -15,6 +15,7 @@ const nocache = require("nocache");
 const rateLimit = require('express-rate-limit');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
+const helmet = require('helmet');
 
 class Server {
     constructor() {
@@ -33,6 +34,8 @@ class Server {
     }
 
     middleware() {
+
+        this.app.use(helmet({ contentSecurityPolicy: false }));
 
         const limiter = rateLimit({
             windowMs: 5 * 60 * 1000,
@@ -71,7 +74,9 @@ class Server {
                 }),
                 cookie: {
                     maxAge: 6000 * 60 * 60, // 1 hora
-                },
+                    httpOnly: true,  // Impide el acceso desde JavaScript
+                    sameSite: 'strict',  // Previene el envío de cookies en solicitudes de otros sitios
+                }
             })
         );
 
@@ -93,7 +98,6 @@ class Server {
 
         // Middleware para subir archivos
         this.app.use(fileUpload());
-
 
     }
 

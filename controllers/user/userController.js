@@ -47,9 +47,9 @@ const reservarId = async (req, res) => {
     try {
         if (!req.body.amountSeeds || !req.params.id) throw new Error("Es necesario expecificar la cantidad o la semilla id");
         const reservar = await Reserva.crearReservas(req.params.id, req.session.userId, req.body.amountSeeds);
-        return res.redirectMessage('/', 'Se registro correctamente la reserva');
+        return res.status(200).redirectMessage('/', 'Se registro correctamente la reserva');
     } catch (e) {
-        return res.redirectMessage('/', buscarErrorMensaje(e.message));
+        return res.status(404).redirectMessage('/', buscarErrorMensaje(e.message));
     }
 }
 
@@ -80,7 +80,7 @@ const changeDetails = async(req, res) => {
         const user = await Usuario.findById(req.session.userId);
         const phoneExist = await Usuario.findOne({phone: phone});
         if (phoneExist) {
-            return phoneExist;
+            return res.redirectMessage('/me/details', "El telefono ya existe");
         }
         user.phone = phone;
         await user.save();

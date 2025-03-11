@@ -7,8 +7,10 @@ const {
     contactoPage,
     noscript,
     contactPost,
+    paginaInicioDragAndDrop,
 } = require("../../controllers/public/publicController");
 router.get("/", paginaInicio);
+router.get("/drag", paginaInicioDragAndDrop);
 router.get("/about", aboutPage);
 router.get("/contact", contactoPage);
 router.get("/noscript", noscript);

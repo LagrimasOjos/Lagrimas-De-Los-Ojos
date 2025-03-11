@@ -1,0 +1,89 @@
+<main>
+    <section class="py-2 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <img src="/imgs/logo.png" height="95" alt="Logo">
+                <h1 class="fw-light">Lágrimas de los Ojos</h1>
+                <p class="lead text-muted">Biblioteca semillas - Explora nuestro catálogo.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+
+            <!-- Título principal -->
+            <div class="text-center mb-4">
+                <h1 class="display-5 fw-bold">Explora Nuestro Catálogo de Semillas</h1>
+                <p class="text-muted">Encuentra rápidamente las semillas que necesitas utilizando el buscador.</p>
+            </div>
+
+            <!-- Buscador -->
+            <div class="row g-2 align-items-center my-3">
+                <h6 class="col-12"><i class="bi bi-filter"></i> Filtro epoca del año:</h6>
+                <div class="col-md-8">
+                    <label for="select_epoca_siembra" class="form-label visually-hidden">Época de siembra</label>
+                    <select class="form-select shadow-sm" id="select_epoca_siembra">
+                        <option value="">TODAS</option>
+                        <option value="verano">Verano</option>
+                        <option value="primavera">Primavera</option>
+                        <option value="otoño">Otoño</option>
+                        <option value="invierno">Invierno</option>
+                    </select>
+                </div>
+                <div class="col-md-4 text-md-start">
+                    <button class="btn btn-outline-primary shadow-sm w-100" id="btn_guardar_filtro_epoca_siembra">
+                        <i class="bi bi-bookmark"></i> Guardar filtro
+                    </button>
+                </div>
+            </div>
+
+            <div>
+                <div class="input-group mb-4">
+                    <label for="buscador" class="visually-hidden">Buscar semilla</label>
+                    <!-- Agregamos label para accesibilidad -->
+                    <input type="text" id="buscador" class="form-control shadow-sm fs-5" style="height: 60px;"
+                        placeholder="Escribe el nombre de una semilla..." aria-label="Buscador"
+                        aria-describedby="boton-buscar">
+                    <button class="btn shadow-sm px-4 fs-17" id="sendSearch" type="button">
+                        <i class="bi bi-search"></i> Buscar
+                    </button>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-7">
+                    <!-- Contenedor de resultados -->
+                    <div id="boxSeeds" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 my-4">
+
+                    </div>
+
+                    <!-- Paginación -->
+                    <nav aria-label="Paginación" class="my-5">
+                        <ul id="paginacion" class="pagination justify-content-center">
+                            <!-- Los elementos de paginación se generarán dinámicamente -->
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-5 bg-primary-subtle" id="dropZone">
+                    
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+
+    <div id="reservarBox">
+        <!-- Aqui se carga el modal de las reservas -->
+    </div>
+
+    <div id="detallesBox">
+        <!-- Aqui se carga el modal de los detalles -->
+    </div>
+
+    <script src="/js/paginaIndexDrag.js"></script>

@@ -7,6 +7,11 @@ const paginaInicio = async(req,res) => {
     return res.view('public/index', {title: 'Inicio'});
 }
 
+const paginaInicioDragAndDrop = async(req,res) => {
+    return res.view('public/indexDragAndDrop.ejs', {title: 'Inicio'});
+}
+
+
 const noscript = async(req,res) => {
         return res.sendFile(path.resolve(__dirname, "../../views/public/noscript.html"))
     
@@ -43,7 +48,7 @@ const contactPost = async (req, res) => {
 }
 
 
-module.exports = {paginaInicio, semillasDetallesPagina, contactoPage, aboutPage, noscript, contactPost};
+module.exports = {paginaInicio, semillasDetallesPagina, contactoPage, aboutPage, noscript, contactPost, paginaInicioDragAndDrop};
 
 
 

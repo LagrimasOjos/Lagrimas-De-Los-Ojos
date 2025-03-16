@@ -1,10 +1,9 @@
 <main>
-    <section class="py-2 text-center container">
+    <section class="seccionIndex text-center d-flex align-items-center justify-content-center">
         <div class="row py-lg-5">
-            <div class="col-lg-6 col-md-8 mx-auto">
-                <img src="/imgs/logo.png" height="95" alt="Logo">
+            <div class="text-white">
                 <h1 class="fw-light">Lágrimas de los Ojos</h1>
-                <p class="lead text-muted">Biblioteca semillas - Explora nuestro catálogo.</p>
+                <p class="lead">Biblioteca semillas - Explora nuestro catálogo.</p>
             </div>
         </div>
     </section>
@@ -15,13 +14,13 @@
 
             <!-- Título principal -->
             <div class="text-center mb-4">
-                <h1 class="display-5 fw-bold">Explora Nuestro Catálogo de Semillas</h1>
+                <h2 class="display-5 fw-bold">Explora Nuestro Catálogo de Semillas</h2>
                 <p class="text-muted">Encuentra rápidamente las semillas que necesitas utilizando el buscador.</p>
             </div>
 
             <!-- Buscador -->
             <div class="row g-2 align-items-center my-3">
-                <h6 class="col-12"><i class="bi bi-filter"></i> Filtro epoca del año:</h6>
+                <p class="col-12"><i class="bi bi-filter"></i> Filtro epoca del año:</p>
                 <div class="col-md-8">
                     <label for="select_epoca_siembra" class="form-label visually-hidden">Época de siembra</label>
                     <select class="form-select shadow-sm" id="select_epoca_siembra">
@@ -53,30 +52,42 @@
 
             </div>
 
-
             <div class="row">
-                <div class="col-7">
-                    <!-- Contenedor de resultados -->
-                    <div id="boxSeeds" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 my-4">
-
-                    </div>
-
-                    <!-- Paginación -->
-                    <nav aria-label="Paginación" class="my-5">
-                        <ul id="paginacion" class="pagination justify-content-center">
-                            <!-- Los elementos de paginación se generarán dinámicamente -->
-                        </ul>
-                    </nav>
-                </div>
-
-                <div class="col-5 bg-primary-subtle" id="dropZone">
-                    
+                <div class="col-12">
+                    <h3>Listado de semillas <a href="/" class="btn d-none d-lg-inline-block">Reservar boton</a></h3>
                 </div>
             </div>
-            
+
+            <div class="row my-4">
+                <div class="col-12 col-lg-7">
+                    <!-- Contenedor de resultados -->
+                    <div id="boxSeeds" class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-4 ">
+                        <!-- Aquí van las semillas o elementos -->
+                    </div>
+                </div>
+
+                <div class="d-none d-lg-inline-block col-sm-5">
+                    <div class="bg-cuaternario-subtle border border-3 border-dashed  h-100" id="dropZone">
+                        <div class="d-flex justify-content-center align-items-center h-100">
+                            <p class="text-center">Arrastra la imagen de la semilla para reservar, <a
+                                    href="/me/reservas">ver todas mis reservas</a></p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
 
         </div>
+        <nav aria-label="Paginación" class="my-5">
+            <ul id="paginacion" class="pagination justify-content-center">
+            </ul>
+        </nav>
     </div>
+
+
 
     <div id="reservarBox">
         <!-- Aqui se carga el modal de las reservas -->
@@ -85,5 +96,29 @@
     <div id="detallesBox">
         <!-- Aqui se carga el modal de los detalles -->
     </div>
+
+
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="errorModalLabel">Error al reservar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    Ha ocurrido un error al procesar tu reserva.
+                    Por favor, ten en cuenta lo siguiente:
+                    <ul>
+                        <li>Debe tener stock la semilla</li>
+                        <li>Debes estar registrado para poder realizar una reserva.</li>
+                        <li>Existe un límite de reservas simultáneas por usuario.</li>
+                        <li>Solo podrás reservar una cantidad determinada de semillas hasta que hayas recogido tus
+                            reservas anteriores.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script src="/js/paginaIndexDrag.js"></script>

@@ -50,15 +50,13 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="cantidadSemillas" class="form-label">Cantidad a Reservar <i
-                                    class="bi bi-box-seam text-secondary"></i></label>
+                            <label for="cantidadSemillas" class="form-label">Cantidad a Reservar </label>
                             <input type="number" id="cantidadSemillas" name="cantidadSemillas" class="form-control"
                                 placeholder="Cantidad de semillas a prestar" required>
                         </div>
 
                         <div class="mb-3">
-                            <label for="datecollection" class="form-label">Recoger previo a <i
-                                    class="bi bi-box-seam text-secondary"></i></label>
+                            <label for="datecollection" class="form-label">Recoger previo a </label>
                             <input type="date" id="datecollection" name="datecollection" class="form-control"
                                 placeholder="" required>
                         </div>
@@ -119,25 +117,10 @@
         </div>
     </div>
 
-    <!-- Tabla para mostrar reservas -->
-    <table class="table table-striped">
-        <thead class="table-dark">
-            <tr>
-                <th>#</th>
-                <th>Usuario</th>
-                <th>Semilla</th>
-                <th>Cantidad</th>
-                <th>Estado</th>
-                <th>Recoger previo a</th>
-                <th>Acción</th>
-            </tr>
-        </thead>
-        <tbody class="content">
+    <div class="row content">
 
-        </tbody>
-    </table>
+    </div>
 
-    <!-- Modal para "Ha venido a recogerlo" -->
     <div class="modal fade" id="recogerModal" tabindex="-1" aria-labelledby="recogerModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -149,10 +132,10 @@
                     ¿Estás seguro de que el usuario ha venido a recogerlo? Esta acción registrará el préstamo.
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Atras</button>
+                    <button type="button" class="btn bg-dark" data-bs-dismiss="modal">Atras</button>
                     <form id="confirmForm" method="POST" action="/admin/reservas/atender">
                         <input type="hidden" name="idReserva" id="idReservaInput">
-                        <button type="submit" class="btn btn-primary">Confirmar</button>
+                        <button type="submit" class="btn btn-primary">Confirmar reserva</button>
                     </form>
                 </div>
             </div>
@@ -171,11 +154,11 @@
                     ¿Estás seguro de que deseas cancelar la reserva? Esto devolverá el stock a la semilla asociada.
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Atras</button>
+                    <button type="button" class="btn bg-dark" data-bs-dismiss="modal">Atras</button>
                     <form method="POST" action="/admin/reservas/cancelar">
                         <input type="hidden" name="reservaId" id="cancelReservaInput">
                         <input type="hidden" name="userId" id="cancelUserInput">
-                        <button type="submit" class="btn btn-danger">Confirmar</button>
+                        <button type="submit" class="btn btn-danger">Confirmar cancelacion reserva</button>
                     </form>
                 </div>
             </div>

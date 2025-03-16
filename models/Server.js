@@ -42,7 +42,7 @@ class Server {
 
         const limiter = rateLimit({
             windowMs: 5 * 60 * 1000,
-            max: 250,
+            max: 550,
             message: "Demasiadas solicitudes, por favor intente de nuevo más tarde.",
             standardHeaders: true,
             legacyHeaders: false,
@@ -64,7 +64,6 @@ class Server {
         this.app.use(express.urlencoded({ extended: false }));
         this.app.use(mongoSanitize());
         this.app.use(xss());
-
         // Sesiones
         this.app.use(
             session({
@@ -85,16 +84,15 @@ class Server {
 
         this.app.use(getPublicPath);
 
+        this.app.use(flashMessage);
+
+        this.app.use(redirectWidthMsg);
+
         this.app.use(this.path.api, require('../routes/api/indexApiRouter'));
 
         //No guarde la
         this.app.use(nocache());
 
-        //mander mensajes al usuario
-        this.app.use(flashMessage);
-
-        //Redireccionar con messages se combina con renderView middleawae
-        this.app.use(redirectWidthMsg);
 
         // Middleware para gestionar vistas
         this.app.use(renderView);

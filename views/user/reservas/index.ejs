@@ -3,80 +3,80 @@
         <i class="bi bi-list-check"></i> Lista de Reservas
     </h1>
 
-    <!-- Tabla para mostrar reservas -->
-    <table class="table table-striped">
-        <thead class="table-dark">
-            <tr>
-                <th><i class="bi bi-hash"></i> #</th>
-                <th><i class="bi bi-seedling"></i> Semilla</th>
-                <th><i class="bi bi-box"></i> Cantidad</th>
-                <th><i class="bi bi-flag"></i> Estado</th>
-                <th><i class="bi bi-calendar-event"></i> Recoger previo a</th>
-                <th><i class="bi bi-gear"></i> Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% if (reservas.length > 0) { %> <!-- Verificar si hay reservas -->
-                <% reservas.forEach((reserva, index) => { %>
-                    <tr>
-                        <td><%= index + 1 %></td>
-                        <td><i class="bi bi-tree"></i> <%= reserva.nameSeed %></td>
-                        <td><i class="bi bi-box-fill"></i> <%= reserva.amountSeeds %></td>
-                        <td>
-                            <i class="bi bi-circle-fill text-<%= reserva.status === 'pendiente' ? 'warning' : reserva.status === 'recogidas' ? 'success' : 'danger' %>"></i>
-                            <%= reserva.status %>
-                        </td>
-                        <td>
-                            <% if (reserva.status !== 'recogidas') { %> <!-- Si no está en estado 'recogidas' -->
-                                <i class="bi bi-clock"></i> <%= new Date(reserva.collectionDate).toLocaleDateString() %>
-                            <% } else { %> <!-- Si está en estado 'recogidas' -->
-                                N/A
-                            <% } %>
-                        </td>
-                        <td>
-                            <% if (reserva.status === 'pendiente') { %>
-                                <button 
-                                    type="button" 
-                                    class="btn btn-danger btn-sm" 
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="#cancelModal" 
-                                    data-id="<%= reserva._id %>">
-                                    <i class="bi bi-x-circle"></i> Cancelar Reserva
-                                </button>
-                            <% } %>
-                        </td>
-                    </tr>
+
+    <div class="row">
+        <% if (reservas.length> 0) { %>
+            <% reservas.forEach((reserva, index)=> { %>
+                <div class="col-12 mb-4">
+                    <div class="card shadow-lg p-3 bg-body-tertiary rounded my-3">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+
+                                <div class="col-lg-8 col-md-12">
+                                    <h5 class="card-title">Semilla: <%= reserva.nameSeed %>
+                                    </h5>
+                                    <p class="card-text">Cantidad Reservada: <%= reserva.amountSeeds %>
+                                    </p>
+                                    <p class="card-text">
+                                        <i class="bi bi-circle-fill text-<%= reserva.status === 'recogidas' ? 'success' : 
+                                                reserva.status === 'pendiente' ? 'warning' : 
+                                                reserva.status === 'no recogidas' ? 'danger' : '' %>"></i>
+                                        Estado: <%= reserva.status %>
+                                    </p>
+                                    <p class="card-text">Fecha de Recogida: <%= new
+                                            Date(reserva.collectionDate).toLocaleDateString() %>
+                                    </p>
+                                </div>
+
+
+                                <div class="col-lg-4 col-md-12 mt-3 mt-lg-0 d-grid gap-2">
+                                    <% if (reserva.status==='pendiente' ) { %>
+                                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#cancelModal" data-id="<%= reserva._id %>">
+                                            <i class="bi bi-x-circle"></i> Cancelar Reserva
+                                        </button>
+                                        <% } else { %>
+                                            <span class="text-muted text-center">No hay acciones disponibles</span>
+                                            <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <% }) %>
-            <% } else { %> <!-- Si no hay reservas -->
-                <tr>
-                    <td colspan="7" class="text-center">No hay reservas disponibles.</td>
-                </tr>
-            <% } %>
-        </tbody>
-    </table>
+                    <% } else { %>
+                        <div class="col-12">
+                            <div class="alert alert-info text-center">No hay reservas disponibles.</div>
+                        </div>
+                        <% } %>
+    </div>
+
+
 
     <!-- Controles de paginación -->
     <nav aria-label="Paginación">
         <ul class="pagination justify-content-center">
-            <% if (paginaActual > 1) { %>
+            <% if (paginaActual> 1) { %>
                 <li class="page-item">
                     <a class="page-link" href="?pagina=<%= paginaActual - 1 %>">
                         <i class="bi bi-arrow-left"></i> Anterior
                     </a>
                 </li>
-            <% } %>
-            <% for (let i = 1; i <= totalPaginas; i++) { %>
-                <li class="page-item <%= i === paginaActual ? 'active' : '' %>">
-                    <a class="page-link" href="?pagina=<%= i %>"><%= i %></a>
-                </li>
-            <% } %>
-            <% if (tieneMasPaginas) { %>
-                <li class="page-item">
-                    <a class="page-link" href="?pagina=<%= paginaActual + 1 %>">
-                        Siguiente <i class="bi bi-arrow-right"></i>
-                    </a>
-                </li>
-            <% } %>
+                <% } %>
+                    <% for (let i=1; i <=totalPaginas; i++) { %>
+                        <li class="page-item <%= i === paginaActual ? 'active' : '' %>">
+                            <a class="page-link" href="?pagina=<%= i %>">
+                                <%= i %>
+                            </a>
+                        </li>
+                        <% } %>
+                            <% if (tieneMasPaginas) { %>
+                                <li class="page-item">
+                                    <a class="page-link" href="?pagina=<%= paginaActual + 1 %>">
+                                        Siguiente <i class="bi bi-arrow-right"></i>
+                                    </a>
+                                </li>
+                                <% } %>
         </ul>
     </nav>
 </div>
@@ -93,7 +93,7 @@
                 ¿Estás seguro de que deseas cancelar esta reserva? Esta acción no se puede deshacer.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn bg-dark" data-bs-dismiss="modal">Atrás</button>
                 <form id="cancelForm" action="/me/reservas/cancelar" method="POST">
                     <input type="hidden" name="idReserva" id="modalReservaId">
                     <button type="submit" class="btn btn-danger">Confirmar Cancelación</button>

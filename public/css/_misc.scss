@@ -34,27 +34,33 @@
     color: #ffff;
 }
 
-//Alertas informacion servidor
-@keyframes slideDown {
+
+@keyframes slideFromTop {
     0% {
         opacity: 0;
-        transform: translateY(-100%);
+        top: -50px;
     }
-
     100% {
         opacity: 1;
-        transform: translateY(0);
     }
 }
 
+.alert-effect{
+    animation: slideFromTop 0.5s ease-out ;
+}
 
-
-.alert-effect {
-    animation: slideDown 0.5s ease-out;
+#alertBox {
+    z-index: 2;
+    box-shadow: 0px 0px 10px rgba(51, 51, 51, 0.2);
+    width: 80%;
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    top: 14.5%;
+    transform: translate(-50%, -50%);
 }
 
 .alert-info {
-
     box-shadow: 0px 0px 10px #3333;
     width: 70%;
     margin: 0 auto;
@@ -73,3 +79,4 @@
 .alert-info button:hover {
     color: #155d7a;
 }
+

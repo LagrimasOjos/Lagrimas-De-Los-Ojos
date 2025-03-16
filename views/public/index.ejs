@@ -1,13 +1,13 @@
 <main>
-  <section class="py-2 text-center container">
+  <section class="seccionIndex text-center d-flex align-items-center justify-content-center">
     <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <img src="/imgs/logo.png" height="95" alt="Logo">
+      <div class="text-white">
         <h1 class="fw-light">Lágrimas de los Ojos</h1>
-        <p class="lead text-muted">Biblioteca semillas - Explora nuestro catálogo.</p>
+        <p class="lead">Biblioteca semillas - Explora nuestro catálogo.</p>
       </div>
     </div>
   </section>
+  
 
 
   <div class="album py-5 bg-light">
@@ -15,13 +15,13 @@
 
       <!-- Título principal -->
       <div class="text-center mb-4">
-        <h1 class="display-5 fw-bold">Explora Nuestro Catálogo de Semillas</h1>
+        <h2 class="display-5 fw-bold">Explora Nuestro Catálogo de Semillas</h2>
         <p class="text-muted">Encuentra rápidamente las semillas que necesitas utilizando el buscador.</p>
       </div>
 
       <!-- Buscador -->
       <div class="row g-2 align-items-center my-3">
-        <h6 class="col-12"><i class="bi bi-filter"></i> Filtro epoca del año:</h6>
+        <p class="col-12"><i class="bi bi-filter"></i> Filtro epoca del año:</p>
         <div class="col-md-8">
           <label for="select_epoca_siembra" class="form-label visually-hidden">Época de siembra</label>
           <select class="form-select shadow-sm" id="select_epoca_siembra">
@@ -51,18 +51,20 @@
         </div>
 
       </div>
+      
+      <div class="row">
+        <div class="col-12">
+          <h3>Listado de semillas <a href="/drag" class="btn d-none d-lg-inline-block">Reservar arrastrando</a></h3>
+        </div>
+      </div>
 
-
-
-      <!-- Contenedor de resultados -->
       <div id="boxSeeds" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 my-4">
 
       </div>
 
-      <!-- Paginación -->
       <nav aria-label="Paginación" class="my-5">
         <ul id="paginacion" class="pagination justify-content-center">
-          <!-- Los elementos de paginación se generarán dinámicamente -->
+      
         </ul>
       </nav>
 
@@ -78,30 +80,4 @@
   </div>
 
 
-  <script src="/js/paginaIndex.js"></script>
-
-  <!-- <div id="cb-cookie-banner" class="alert alert-dark text-center mb-0" role="alert">
-    <p>Te informamos que usamos coockies 🍪</p>
-    <button id="accept" class="btn btn-primary btn-sm ms-3">Aceptar coockies</button>
-    <button type="button" id="decline" data-bs-toggle="modal" data-bs-target="#modalCookie" class="btn btn-primary btn-sm ms-3">Rechazar coockies</button>
-  </div>
-
-  <div class="modal" id="modalCookie" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Funcionamiento</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p>Si no aceptas las cookies puede ser que el funcionamiento de la web no sea el esperado</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cerrarModal">Cerrar</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="botonModal">Aceptar Cookie</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</main>
-<script src="/js/coockies.js"></script> -->
+  <script src="/js/paginaIndex.min.js"></script>

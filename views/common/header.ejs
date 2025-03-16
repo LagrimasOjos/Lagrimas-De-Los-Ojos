@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-lg bg-cuaternario">
         <div class="container">
-            <a class="navbar-brand" href="/"><img src="/imgs/logoNav.JPG" width="75" alt="Logo" /></a>
+            <a class="navbar-brand" href="/"><img src="/imgs/logoNav.webp" width="75" alt="Logo" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -9,7 +9,7 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-bold">
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="/">
                             <i class="bi bi-house-door"></i> Inicio
@@ -116,7 +116,7 @@
         <div class="d-flex justify-content-between">
             <div class="d-flex align-items-center">
                 <i class="bi bi-info-circle-fill me-2"></i>
-                <strong>Información:</strong>
+                <span class="fw-bold">Información:</span>
                 <%= message %>
             </div>
         </div>
@@ -124,18 +124,17 @@
     </div>
     <% } %>
 
-        <!-- Alerta para mensaje de redirección -->
         <% if (info) { %>
-            <div class="alert alert-info alert-effect alert-dismissible fade show" role="alert" id="alertBox">
-                <div class="d-flex justify-content-between">
+            <div class="alert alert-info alert-effect alert-dismissible fade show" id="alertBox">
+                <div >
                     <div class="align-items-center">
                         <div>
                             <i class="bi bi-info-circle-fill me-2"></i>
-                            <strong>Información</strong>
+                            <span class="fw-bold">Información</span>
                         </div>
                         <%= info %>
                     </div>
                 </div>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-            <% } %>
+        <% } %>

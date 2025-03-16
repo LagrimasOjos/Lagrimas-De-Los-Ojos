@@ -5,7 +5,7 @@ const router = new Router();
 router.get('/', reservasCpanel);
 router.post('/cancelar', reservaCancelar);
 router.get('/:id', reservarIdPage);
-router.post('/:id', reservarId); //Crear reserva
+router.post('/:id', reservarId);
 
 
 module.exports = router;

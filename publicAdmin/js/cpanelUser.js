@@ -47,34 +47,50 @@ class UsuariosSearch {
     }
 
     renderUsuarios(usuarios, busqueda) {
-        this.content.innerHTML = ''; 
-        if(usuarios.length > 0){
+        this.content.innerHTML = '';
+
+        if (usuarios.length > 0) {
             usuarios.forEach((usuario, index) => {
-                const row = document.createElement('tr');
-                row.className = 'text-center';
-                row.innerHTML = `
-                    <td>${index + 1}</td>
-                    <td>
-                        <i class="bi bi-person-circle"></i> ${usuario.username}
-                    </td>
-                    <td>${usuario.email}</td>
-                    <td>${usuario.phone}</td>
-                    <td>${usuario.rol}</td>
-                    <td>${usuario.activo}</td>
-                    <td>
-                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                            data-userId="${usuario._id}" data-userEmail="${usuario.email}" data-bs-target="#modalEliminar">
-                            Eliminar usuario
-                        </button>
-                        <a href="/admin/reservas?emailUser=${usuario.email}" class="btn">Ver Reservas</a>
-                        <a href="/admin/prestamos?emailUser=${usuario.email}" class="btn">Ver Prestamos</a>
-                    </td>
+                const card = document.createElement('div');
+                card.className = 'col-12';
+
+                card.innerHTML = `
+                     <div class="card shadow-lg p-3 bg-body-tertiary rounded my-3">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                
+                                <div class="col-lg-8 col-md-12">
+                                    <h5 class="card-title"><i class="bi bi-person-circle"></i> ${usuario.username}</h5>
+                                    <p class="card-text"><span class="fw-bold">Email:</span> ${usuario.email}</p>
+                                    <p class="card-text"><span class="fw-bold">Teléfono:</span> ${usuario.phone}</p>
+                                    <p class="card-text"><span class="fw-bold">Rol:</span> ${usuario.rol}</p>
+                                    <p class="card-text"><span class="fw-bold">Activo:</span> ${usuario.activo}</p>
+                                </div>
+
+                
+                                <div class="col-lg-4 col-md-12 mt-3 mt-lg-0 d-grid gap-2">
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-userId="${usuario._id}" data-userEmail="${usuario.email}" data-bs-target="#modalEliminar">
+                                        Eliminar usuario
+                                    </button>
+                                    <a href="/admin/reservas?emailUser=${usuario.email}" class="btn btn-primary">Ver Reservas</a>
+                                    <a href="/admin/prestamos?emailUser=${usuario.email}" class="btn btn-secondary">Ver Préstamos</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 `;
-                this.content.appendChild(row);
+
+                this.content.appendChild(card);
             });
-        }else{
-            this.content.innerHTML = `<tr><td colspan="7" class="text-center">No se encontraron reservas para: ${busqueda}</td></tr>`;
+        } else {
+            this.content.innerHTML = `
+                <div class="col-12 text-center">
+                    <p class="text-muted ">No se encontraron reservas para: ${busqueda}</p>
+                </div>
+            `;
         }
+    
     }
 
     updatePagination() {

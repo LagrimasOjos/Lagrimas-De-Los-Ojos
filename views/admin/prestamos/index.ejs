@@ -18,8 +18,7 @@
                         </h4>
 
                         <div class="mb-3">
-                            <label for="user-select" class="form-label">Seleccionar Usuario <i
-                                    class="bi bi-people-fill text-secondary"></i></label>
+                            <label for="user-select" class="form-label">Seleccionar Usuario</label>
                             <select id="user-select" name="idUser" class="form-select" required>
                                 <option selected disabled>Selecciona un usuario registrado</option>
                                 <% if (users && users.length> 0) { %>
@@ -35,8 +34,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="seed-select" class="form-label">Seleccionar Semilla <i
-                                    class="bi bi-seedling text-secondary"></i></label>
+                            <label for="seed-select" class="form-label">Seleccionar Semilla</label>
                             <select id="seed-select" name="idSemilla" class="form-select" required>
                                 <option selected disabled>Elige una semilla disponible</option>
                                 <% if (semillas && semillas.length> 0) { %>
@@ -52,8 +50,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="stock" class="form-label">Cantidad a Prestar <i
-                                    class="bi bi-box-seam text-secondary"></i></label>
+                            <label for="stock" class="form-label">Cantidad a Prestar </label>
                             <input type="number" id="stock" name="cantidadSemillas" class="form-control"
                                 placeholder="Cantidad de semillas a prestar" required>
                         </div>
@@ -77,26 +74,8 @@
             </div>
         </div>
 
-        <!-- Tabla para mostrar préstamos -->
-        <div class="table-responsive shadow-lg p-3 bg-body-tertiary rounded">
-            <table class="table table-striped table-hover">
-                <thead class="table-dark text-center">
-                    <tr>
-                        <th>#</th>
-                        <th><i class="bi bi-person"></i> Usuario</th>
-                        <th><i class="bi bi-flower3"></i> Semilla</th>
-                        <th><i class="bi bi-box"></i> Cantidad Prestada</th>
-                        <th><i class="bi bi-flag"></i> Estado</th>
-                        <th><i class="bi bi-calendar-event"></i> Fecha Devolución</th>
-                        <th><i class="bi bi-flower3"></i> Semillas Devueltas</th>
-                        <th><i class="bi bi-calendar-event"></i> Fecha Entrega</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody class="content">
+        <div class="row content">
 
-                </tbody>
-            </table>
         </div>
 
         <!-- Modal de Confirmación -->
@@ -105,7 +84,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content shadow">
                     <!-- Encabezado del modal -->
-                    <div class="modal-header bg-primary text-white">
+                    <div class="modal-header bg-cuaternario text-white">
                         <h5 class="modal-title" id="devueltoModalLabel">
                             <i class="bi bi-check-circle-fill"></i> Confirmar Devolución
                         </h5>
@@ -115,7 +94,7 @@
                     <!-- Cuerpo del modal -->
                     <div class="modal-body">
                         <p class="text-center fs-5">
-                            ¿Estás seguro de que deseas marcar este préstamo como <strong>devuelto</strong>?<br>
+                            ¿Estás seguro de que deseas marcar este préstamo como <span class="fw-bold">devuelto</span>?<br>
                             <span class="text-muted">Esta acción no se puede deshacer.</span>
                         </p>
                         <form id="devueltoForm" action="/admin/prestamos/devuelto" method="POST">
@@ -130,8 +109,8 @@
                             </div>
                             <!-- Botones de acción -->
                             <div class="d-flex justify-content-end">
-                                <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">
-                                    <i class="bi bi-x-circle"></i> Cerrar
+                                <button type="button" class="btn bg-dark me-2" data-bs-dismiss="modal">
+                                    Atras
                                 </button>
                                 <button type="submit" class="btn btn-success">
                                     <i class="bi bi-check-circle"></i> Confirmar Devolución

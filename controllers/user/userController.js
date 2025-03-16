@@ -46,12 +46,14 @@ const reservarIdPage = async (req, res) => {
 const reservarId = async (req, res) => {
     try {
         if (!req.body.amountSeeds || !req.params.id) throw new Error("Es necesario expecificar la cantidad o la semilla id");
-        const reservar = await Reserva.crearReservas(req.params.id, req.session.userId, req.body.amountSeeds);
-        return res.status(200).redirectMessage('/', 'Se registro correctamente la reserva');
+        await Reserva.crearReservas(req.params.id, req.session.userId, req.body.amountSeeds);
+        return res.redirectMessage('/', 'Se registro correctamente la reserva');
     } catch (e) {
-        return res.status(404).redirectMessage('/', buscarErrorMensaje(e.message));
+        res.status(500);
+        return res.redirectMessage('/', buscarErrorMensaje(e.message));
     }
 }
+
 
 const reservaCancelar = async (req,res) => {
     try {

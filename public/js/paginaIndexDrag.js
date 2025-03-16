@@ -25,8 +25,10 @@ const userLogin = async () => {
     }
 };
 
+let totalDrags = 0;
 
 const dropZone = document.querySelector('#dropZone');
+
 const cargarDragables = () => {
     const draggables = document.querySelectorAll(".draggable");
     draggables.forEach(draggable => {
@@ -97,7 +99,7 @@ class Buscador {
         // Mostrar el spinner mientras se cargan los datos
         this.cardsDivDOM.innerHTML = `
         <div id="spinner-container" class="d-flex justify-content-center align-items-center w-100" style="height: 525px;">
-          <div class="spinner-border text-primary" role="status">
+          <div class="spinner-border text-dark" role="status">
             <span class="visually-hidden">Cargando...</span>
           </div>
         </div>
@@ -262,18 +264,18 @@ class Buscador {
                                 <h5 class="card-title">${nombre}</h5>
                                 <p class="card-text text-muted">${descripcion}</p>
                                 <p class="mb-2">
-                                <strong><i class="bi bi-calendar-event"></i> Época de siembra:</strong> ${epocaSiembra}
+                                <span class="fw-bold"><i class="bi bi-calendar-event"></i> Época de siembra:</span> ${epocaSiembra}
                                 </p>
                                 <p class="mb-3">
-                                <strong><i class="bi bi-box-seam"></i> Stock:</strong> ${stock} unidades disponibles
+                                <span class="fw-bold"><i class="bi bi-box-seam"></i> Stock:</span> ${stock} unidades disponibles
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-secondary btn-details" data-semilla-id="${_id}">
-                                    <i class="bi bi-eye"></i> Ver más detalles
+                                        <i class="bi bi-eye"></i> Ver más detalles
                                     </button>
                                     <button type="button" class="btn btn-sm btn-outline-secondary btn-reservar" data-semilla-id="${_id}" ${this.isLoggedUser ? "" : "disabled"}>
-                                    <i class="bi bi-eye"></i> Reservar
+                                        <i class="bi-calendar"></i> Reservar
                                     </button>
                                 </div>
                                 </div>
@@ -359,114 +361,137 @@ const buscador = new Buscador(
 
 async function crearReserva(_id, amountSeeds) {
     try {
-        const response = await fetch(`/me/reservas/${_id}`, {
+        const response = await fetch(`/api/user/reservarId/${_id}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({ amountSeeds })
         });
+        const data = await response.json();
 
-        if (response.ok) {
+        if(data.status === true){
             return true;
-        } else {
+        }else{
             return false;
         }
+
     } catch (error) {
+        return false;
     }
 }
 
 
 const lanzarModalReservas = async (idSeeds) => {
     try {
-        const response = await fetch(
-            `/api/public/seedId?seedId=${idSeeds}`
-        );
+        const login = await userLogin();
 
-        if (!response.ok) {
-            throw new Error(
-                "Error en la respuesta de la API: " + response.status
+        if(login != true){
+            let errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+            errorModal.show();
+        }else{
+            const response = await fetch(
+                `/api/public/seedId?seedId=${idSeeds}`
             );
-        }
-
-        const responseObject = await response.json();
-        const { data, err } = responseObject;
-
-        if (err) {
-            console.error("Error recibido desde la API:", data);
-        } else {
-            const { _id, nombre, stock } = data;
-
-            document.querySelector("#reservarBox").innerHTML = `
-                <div class="modal  fade" id="reservaModal" aria-hidden="true">
-                    <div class="modal-dialog">
-                    <div class="modal-content">
-                        <!-- Encabezado atractivo -->
-                        <div class="modal-header bg-primary text-white">
-                        <h1 class="modal-title fs-4">
-                            <i class="bi bi-calendar-check"></i> Reservar semilla: ${nombre}
-                        </h1>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                        </div>
-
-                        <div class="modal-body p-4">
-                        <div class="row">
-                            <div id="reservationForm">
-                                    <div class="mb-4">
-                                        <label for="amountSeeds" class="form-label fw-bold">
-                                        <i class="bi bi-pencil-square"></i> Cantidad a reservar (Máx: ${stock}):
-                                        </label>
-                                        <input 
-                                            type="number" 
-                                            class="form-control form-control-lg" 
-                                            id="amountSeeds" 
-                                            name="amountSeeds" 
-                                            min="1" 
-                                            max="${stock}" 
-                                            required
-                                            placeholder="Ingrese la cantidad"
-
-                                        />
-                                    </div>
-
-                                    <div class="d-grid">
-                                        <button id='crearReservaBtnDom' class="btn btn-lg btn-success shadow-sm">
-                                            <i class="bi bi-check-circle-fill"></i> Confirmar Reserva
-                                        </button>
-                                    </div>
+    
+            if (!response.ok) {
+                throw new Error(
+                    "Error en la respuesta de la API: " + response.status
+                );
+            }
+    
+            const responseObject = await response.json();
+            const { data, err } = responseObject;
+    
+            if (err) {
+                console.error("Error recibido desde la API:", data);
+            } else {
+                const { _id, nombre, stock, fotoPath } = data;
+    
+                document.querySelector("#reservarBox").innerHTML = `
+                    <div class="modal  fade" id="reservaModal" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- Encabezado atractivo -->
+                            <div class="modal-header bg-cuaternario text-white">
+                            <h1 class="modal-title fs-4">
+                                <i class="bi bi-calendar-check"></i> Reservar semilla: ${nombre}
+                            </h1>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                            </div>
+    
+                            <div class="modal-body p-4">
+                            <div class="row">
+                                <div id="reservationForm">
+                                        <div class="mb-4">
+                                            <label for="amountSeeds" class="form-label fw-bold">
+                                            <i class="bi bi-pencil-square"></i> Cantidad a reservar (Máx: ${stock}):
+                                            </label>
+                                            <input 
+                                                type="number" 
+                                                class="form-control form-control-lg" 
+                                                id="amountSeeds" 
+                                                name="amountSeeds" 
+                                                min="1" 
+                                                max="${stock}" 
+                                                required
+                                                placeholder="Ingrese la cantidad"
+    
+                                            />
+                                        </div>
+    
+                                        <div class="d-grid">
+                                            <button id='crearReservaBtnDom' class="btn btn-lg btn-success shadow-sm">
+                                                <i class="bi bi-check-circle-fill"></i> Confirmar Reserva
+                                            </button>
+                                        </div>
+                                </div>
+                            </div>
                             </div>
                         </div>
                         </div>
                     </div>
-                    </div>
-                </div>
-                `;
-
-            const modal = new bootstrap.Modal(
-                document.getElementById("reservaModal")
-            );
-
-            modal.show();
-
-            document.querySelector('#crearReservaBtnDom').addEventListener('click', () => {
-                const cantidadSemilla = document.querySelector('#amountSeeds').value
-                if(crearReserva(idSeeds, cantidadSemilla)){
-                    dropZone.innerHTML += `
-                   <div class="container mt-4">
-                        <div class="card shadow-sm border-0">
-                            <div class="card-body text-center">
-                                <h5 class="card-title fw-bold text-primary">${data.nombre}</h5>
-                                <p class="card-text text-muted">Cantidad: ${cantidadSemilla}</p>
+                    `;
+    
+                const modal = new bootstrap.Modal(
+                    document.getElementById("reservaModal")
+                );
+    
+                modal.show();
+    
+                document.querySelector('#crearReservaBtnDom').addEventListener('click', async () => {
+                    const cantidadSemilla = document.querySelector('#amountSeeds').value;
+                    const crear = await crearReserva(idSeeds, cantidadSemilla)
+                    if(crear){
+                        if(totalDrags == 0){
+                            dropZone.innerHTML = `<p class="text-center">Arrastra la imagen de la semilla para reservar, <a href="/me/reservas">ver todas mis reservas</a></p>`;
+                        }
+                        totalDrags++;
+                        dropZone.innerHTML += `
+                            <div class="container mt-4">
+                                <div class="card shadow-sm border-0">
+                                    <div class="card-body d-flex ">
+                                        <img src='${fotoPath}' width='50%' class="me-3">
+                                        <div>
+                                            <p class="card-title fw-bold text-dark">${data.nombre}</p>
+                                            <p class="card-text text-muted">Cantidad Reservada: ${cantidadSemilla}</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    `
-                    modal.hide();
-                }else{
-                
-                }
-            })
+    
+                        `
+                        modal.hide();
+                    }else{
+                        modal.hide();
+                        let errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                        errorModal.show();
+                    }
+                })
+            }
         }
+
+       
     } catch (error) {
         console.error("Error durante la solicitud fetch:", error.message);
     }

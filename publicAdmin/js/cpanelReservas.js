@@ -43,40 +43,59 @@ class ReservaSearch {
     }
 
     renderReservas(reservas, busqueda) {
-        this.content.innerHTML = ''; 
-        if(reservas.length > 0){
+        this.content.innerHTML = '';
+    
+        if (reservas.length > 0) {
             reservas.forEach((reserva, index) => {
-            const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${index + 1}</td>
-                    <td>${reserva.username} (${reserva.emailUser})</td>
-                    <td>${reserva.nameSeed}</td>
-                    <td>${reserva.amountSeeds}</td>
-                    <td>
-                       <i class="
-                            ${reserva.status === 'recogidas' ? 'text-success bi bi-circle-fill' : 
-                            reserva.status === 'pendiente' ? 'text-warning bi bi-circle-fill' : 
-                            reserva.status === 'no recogidas' ? 'text-danger bi bi-circle-fill' : ''}">
-                        </i> ${reserva.status}
-                    </td>
-                    <td>${new Date(reserva.collectionDate).toLocaleDateString()}</td>
-                    <td>
-                        ${reserva.status === 'pendiente' ? `
-                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#recogerModal" data-id="${reserva._id}">
-                                <i class="bi bi-check-circle"></i> Ha venido a recogerlo
-                            </button>
-                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#cancelarModal" data-id="${reserva._id}" data-userId="${reserva.idUser}">
-                                <i class="bi bi-trash"></i> Cancelar Reserva
-                            </button>
-                        ` : 'N/A'}
-                    </td>
+                const card = document.createElement('div');
+                card.className = 'col-12'; // Tarjeta en una fila completa
+    
+                card.innerHTML = `
+                    <div class="card shadow-lg p-3 bg-body-tertiary rounded my-3">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                              
+                                <div class="col-lg-8 col-md-12">
+                                    <h5 class="card-title"><i class="bi bi-person-circle"></i> ${reserva.username} (${reserva.emailUser})</h5>
+                                    <p class="card-text"><i class="bi bi-tree"></i> <span class="fw-bold">Semilla:</span> ${reserva.nameSeed}</p>
+                                    <p class="card-text"><i class="bi bi-box-fill"></i> <span class="fw-bold">Cantidad Reservada:</span> ${reserva.amountSeeds}</p>
+                                    <p class="card-text">
+                                        <i class="
+                                            ${reserva.status === 'recogidas' ? 'text-success bi bi-circle-fill' : 
+                                            reserva.status === 'pendiente' ? 'text-warning bi bi-circle-fill' : 
+                                            reserva.status === 'no recogidas' ? 'text-danger bi bi-circle-fill' : ''}">
+                                        </i> <span class="fw-bold">Estado:</span> ${reserva.status}
+                                    </p>
+                                    <p class="card-text"><i class="bi bi-calendar-event"></i> <span class="fw-bold">Fecha de Recogida:</span> ${new Date(reserva.collectionDate).toLocaleDateString()}</p>
+                                </div>
+    
+                       
+                                <div class="col-lg-4 col-md-12 mt-3 mt-lg-0 d-grid gap-2">
+                                    ${reserva.status === 'pendiente' ? `
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#recogerModal" data-id="${reserva._id}">
+                                            <i class="bi bi-check-circle"></i> Ha venido a recogerlo
+                                        </button>
+                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancelarModal" data-id="${reserva._id}" data-userId="${reserva.idUser}">
+                                            <i class="bi bi-trash"></i> Cancelar Reserva
+                                        </button>
+                                    ` : '<span class="text-muted text-center">No hay acciones disponibles</span>'}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 `;
-                this.content.appendChild(row);
+    
+                this.content.appendChild(card);
             });
-        }else{
-            this.content.innerHTML = `<tr><td colspan="7" class="text-center">No se encontraron reservas para: ${busqueda}</td></tr>`;
+        } else {
+            this.content.innerHTML = `
+                <div class="col-12 text-center">
+                    <p class="text-muted">No se encontraron reservas para: ${busqueda}</p>
+                </div>
+            `;
         }
     }
+    
 
     updatePagination() {
         this.paginacion.innerHTML = '';

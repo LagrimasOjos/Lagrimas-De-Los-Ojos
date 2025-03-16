@@ -45,62 +45,49 @@ const obtenerPrestamosIndexDB = async () => {
   });
 };
 
+
+
+
 // Función para renderizar la tabla de préstamos en el DOM
 const renderizarTablaPrestamos = (prestamos) => {
   const contenedor = document.getElementById('contenedor-prestamos');
   contenedor.innerHTML = ''; // Limpia el contenido previo
 
   if (prestamos.length > 0) {
-    // Construcción de la tabla
-    let html = `
-      <div class="table-responsive">
-        <table class="table table-striped table-hover">
-          <thead class="table-primary text-center">
-            <tr>
-              <th>#</th>
-              <th><i class="bi bi-flower3"></i> Semilla</th>
-              <th><i class="bi bi-box"></i> Cantidad Prestada</th>
-              <th><i class="bi bi-flag"></i> Estado</th>
-              <th><i class="bi bi-calendar-event"></i> Fecha Devolución</th>
-              <th><i class="bi bi-flower3"></i> Semillas Devueltas</th>
-              <th><i class="bi bi-calendar-event"></i> Fecha Entrega</th>
-            </tr>
-          </thead>
-          <tbody>
-    `;
-
-    // Recorre los préstamos y construye filas de la tabla
-    prestamos.forEach((prestamo, index) => {
-      html += `
-        <tr class="text-center">
-          <td>${index + 1}</td>
-          <td><i class="bi bi-tree"></i> ${prestamo.nameSeed}</td>
-          <td><i class="bi bi-box-fill"></i> ${prestamo.amountSeeds}</td>
-          <td>
-            <i class="bi bi-circle-fill text-${prestamo.status === 'sin devolver' ? 'warning' : 'success'}"></i>
-            ${prestamo.status === 'sin devolver' ? 'Sin Devolver' : 'Devuelto'}
-          </td>
-          <td>
-            <i class="bi bi-clock"></i> 
-            ${prestamo.fechaDevolucion ? new Date(prestamo.fechaDevolucion).toLocaleDateString() : 'Debes intentar devolver las semillas lo antes posible'}
-          </td>
-          <td>${prestamo.seedsReturned}</td>
-          <td>${new Date(prestamo.fechaEntregaSemilla).toLocaleDateString()}</td>
-        </tr>
-      `;
-    });
-
-    // Cierra la tabla y la inserta en el contenedor
-    html += `</tbody></table></div>`;
-    contenedor.innerHTML = html;
+      prestamos.forEach((prestamo, index) => {
+          const card = document.createElement('div');
+          card.className = "card shadow-lg p-3 bg-body-tertiary rounded my-3";
+          card.style.marginTop = "10px";
+          card.style.marginBottom = "10px";
+          card.innerHTML = `
+              <div class="card-body">
+                  <div class="row align-items-center">
+                      <div class="col-lg-8 col-md-12">
+                          <h5 class="card-title"><i class="bi bi-tree"></i> ${prestamo.nameSeed}</h5>
+                          <p class="card-text"><span class="fw-bold">Cantidad Prestada:</span> <i class="bi bi-box-fill"></i> ${prestamo.amountSeeds}</p>
+                          <p class="card-text"><span class="fw-bold">Estado:</span> 
+                              <i class="bi bi-circle-fill text-${prestamo.status === 'sin devolver' ? 'warning' : 'success'}"></i>
+                              ${prestamo.status === 'sin devolver' ? 'Sin Devolver' : 'Devuelto'}
+                          </p>
+                          <p class="card-text"><span class="fw-bold">Fecha Devolución:</span> 
+                              ${prestamo.fechaDevolucion ? new Date(prestamo.fechaDevolucion).toLocaleDateString() : 'Debes intentar devolver las semillas lo antes posible'}
+                          </p>
+                          <p class="card-text"><span class="fw-bold">Semillas Devueltas:</span> ${prestamo.seedsReturned}</p>
+                          <p class="card-text"><span class="fw-bold">Fecha Entrega:</span> ${new Date(prestamo.fechaEntregaSemilla).toLocaleDateString()}</p>
+                      </div>
+                  </div>
+              </div>
+          `;
+          contenedor.appendChild(card);
+      });
   } else {
-    // Si no hay préstamos, muestra un mensaje de alerta
-    contenedor.innerHTML = `
-      <div class="alert alert-warning text-center" role="alert">
-        <i class="bi bi-exclamation-triangle-fill"></i> No se encontraron préstamos registrados.
-      </div>`;
+      contenedor.innerHTML = `
+          <div class="alert alert-warning text-center" role="alert">
+              <i class="bi bi-exclamation-triangle-fill"></i> No se encontraron préstamos registrados.
+          </div>`;
   }
 };
+
 
 // Función para guardar o actualizar registros en IndexedDB
 const guardarPrestamosIndexDB = async (prestamos) => {

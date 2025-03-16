@@ -46,38 +46,59 @@ class PrestamosSearch {
 
     renderPrestamos(prestamos, busqueda) {
         this.content.innerHTML = '';
+    
         if (prestamos.length > 0) {
             prestamos.forEach((prestamo, index) => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${index + 1}</td>
-                    <td><i class="bi bi-person-circle"></i> ${prestamo.username} (${prestamo.emailUser})</td>
-                    <td><i class="bi bi-tree"></i> ${prestamo.nameSeed}</td>
-                    <td><i class="bi bi-box-fill"></i> ${prestamo.amountSeeds}</td>
-                    <td>
-                    <i class="bi bi-circle-fill text-${prestamo.status === 'sin devolver' ? 'warning' : 'success'}"></i> 
-                    ${prestamo.status}
-                    </td>
-                    <td>
-                    <i class="bi bi-clock"></i> ${prestamo.fechaDevolucion ? new Date(prestamo.fechaDevolucion).toLocaleDateString() : 'N/A'}
-                    </td>
-                    <td>${prestamo.seedsReturned}</td>
-                    <td>${new Date(prestamo.fechaEntregaSemilla).toLocaleDateString()}</td>
-                    <td>
-                    ${prestamo.status === 'sin devolver' ? 
-                        `<button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#devueltoModal" data-id="${prestamo._id}" data-seeds="${prestamo.amountSeeds}">
-                        <i class="bi bi-check-circle"></i> Marcar como devuelto
-                        </button>` : 'N/A'}
-                    </td>
-                `;
+                const card = document.createElement('div');
+                card.className = 'col-12';
+    
+                card.innerHTML = `
+                    <div class="card shadow-lg p-3 bg-body-tertiary rounded my-3">
+                        <div class="card-body">
+                            <div class="row align-items-center">
 
-                this.content.appendChild(row);
+                                <div class="col-lg-8 col-md-12">
+                                    
+                                    <h5 class="card-title"><i class="bi bi-person-circle"></i> ${prestamo.username} (${prestamo.emailUser})</h5>
+                                    <p class="card-text"><i class="bi bi-tree"></i> <span class="fw-bold">Semilla:</span> ${prestamo.nameSeed}</p>
+                                    <p class="card-text"><i class="bi bi-box-fill"></i> <span class="fw-bold">Cantidad Prestada:</span> ${prestamo.amountSeeds}</p>
+                                    <p class="card-text">
+                                        <i class="bi bi-circle-fill text-${prestamo.status === 'sin devolver' ? 'warning' : 'success'}"></i> 
+                                        <span class="fw-bold">Estado:</span> ${prestamo.status}
+                                    </p>
+                                    <p class="card-text">
+                                        <i class="bi bi-clock"></i> <span class="fw-bold">Fecha Devolución:</span> 
+                                        ${prestamo.fechaDevolucion ? new Date(prestamo.fechaDevolucion).toLocaleDateString() : 'N/A'}
+                                    </p>
+                                    <p class="card-text"><i class="bi bi-flower3"></i> <span class="fw-bold">Semillas Devueltas:</span> ${prestamo.seedsReturned}</p>
+                                    <p class="card-text"><i class="bi bi-calendar-event"></i> <span class="fw-bold">Fecha Entrega:</span> ${new Date(prestamo.fechaEntregaSemilla).toLocaleDateString()}</p>
+                                </div>
+    
+                             
+                                <div class="col-lg-4 col-md-12 mt-3 mt-lg-0 d-grid gap-2">
+                                    ${prestamo.status === 'sin devolver' ? 
+                                        `<button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                        data-bs-target="#devueltoModal" data-id="${prestamo._id}" data-seeds="${prestamo.amountSeeds}">
+                                        <i class="bi bi-check-circle"></i> Marcar como devuelto
+                                        </button>` 
+                                        : '<span class="text-muted text-center">No hay acciones disponibles</span>'}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+    
+                this.content.appendChild(card);
             });
         } else {
-            this.content.innerHTML = `<tr><td colspan="9" class="text-center">No se encontraron prestamos para: ${busqueda}</td></tr>`;
+            this.content.innerHTML = `
+                <div class="col-12 text-center">
+                    <p class="text-muted">No se encontraron préstamos para: ${busqueda}</p>
+                </div>
+            `;
         }
     }
+    
 
     updatePagination() {
         this.paginacion.innerHTML = '';

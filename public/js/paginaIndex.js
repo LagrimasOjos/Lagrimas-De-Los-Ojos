@@ -71,7 +71,7 @@ class Buscador {
     // Mostrar el spinner mientras se cargan los datos
     this.cardsDivDOM.innerHTML = `
       <div id="spinner-container" class="d-flex justify-content-center align-items-center w-100" style="height: 525px;">
-        <div class="spinner-border text-primary" role="status">
+        <div class="spinner-border text-dark" role="status">
           <span class="visually-hidden">Cargando...</span>
         </div>
       </div>
@@ -213,7 +213,7 @@ class Buscador {
                 <div id="carouselSemillas${_id}" class="carousel slide" data-bs-ride="carousel">
                   <div class="carousel-indicators">
                     ${fotoPath.map((_, index) => `
-                      <button type="button" data-bs-target="#carouselSemillas${_id}" data-bs-slide-to="${index}" class="${index === 0 ? 'active' : ''}" aria-current="${index === 0 ? 'true' : ''}" aria-label="Slide ${index + 1}"></button>
+                      <button type="button" aria-label="Slider" data-bs-target="#carouselSemillas${_id}" data-bs-slide-to="${index}" class="${index === 0 ? 'active' : ''}" aria-current="${index === 0 ? 'true' : ''}"></button>
                     `).join('')}
                   </div>
                   <div class="carousel-inner">
@@ -233,13 +233,13 @@ class Buscador {
                   </button>
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">${nombre}</h5>
+                  <p class="card-title">${nombre}</p>
                   <p class="card-text text-muted">${descripcion}</p>
                   <p class="mb-2">
-                    <strong><i class="bi bi-calendar-event"></i> Época de siembra:</strong> ${epocaSiembra}
+                    <span class="fw-bold"><i class="bi bi-calendar-event"></i> Época de siembra:</span> ${epocaSiembra}
                   </p>
                   <p class="mb-3">
-                    <strong><i class="bi bi-box-seam"></i> Stock:</strong> ${stock} unidades disponibles
+                    <span class="fw-bold"><i class="bi bi-box-seam"></i> Stock:</span> ${stock} unidades disponibles
                   </p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
@@ -247,7 +247,7 @@ class Buscador {
                         <i class="bi bi-eye"></i> Ver más detalles
                       </button>
                       <button type="button" class="btn btn-sm btn-outline-secondary btn-reservar" data-semilla-id="${_id}" ${this.isLoggedUser ? "" : "disabled"}>
-                        <i class="bi bi-eye"></i> Reservar
+                        <i class="bi-calendar"></i> Reservar
                       </button>
                     </div>
                   </div>
@@ -289,11 +289,11 @@ class Buscador {
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <!-- Encabezado atractivo -->
-                          <div class="modal-header bg-primary text-white">
+                          <div class="modal-header bg-cuaternario text-white">
                             <h1 class="modal-title fs-4">
                               <i class="bi bi-calendar-check"></i> Reservar semilla: ${nombre}
                             </h1>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                            <button type="button" aria-label="modal" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                           </div>
 
                           <div class="modal-body p-4">
@@ -389,12 +389,12 @@ class Buscador {
               } = data;
 
               document.querySelector("#detallesBox").innerHTML = `
-                <div class="modal modal-xl fade" id="details" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal modal-xl fade" id="details" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header bg-cuaternario">
                         <h1 class="modal-title fs-5 text-light" id="exampleModalLabel">Detalles Semilla: ${nombre}</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button"  aria-label="close" class="btn-close" data-bs-dismiss="modal"></button>
                       </div>
                       <div class="modal-body">
                         
@@ -402,9 +402,9 @@ class Buscador {
                           <i class="bi bi-leaf"></i> ${nombre}
                           <small class="text-muted">(${nombreCientifico || "Nombre científico no disponible"})</small>
                         </h4>
-                        <p><strong><i class="bi bi-file-text"></i> Descripción:</strong> ${descripcion}</p>
-                        <p><strong><i class="bi bi-box-seam"></i> Stock disponible:</strong>
-                          <span class="badge bg-primary">${stock}</span>
+                        <p><span class="fw-bold"><i class="bi bi-file-text"></i> Descripción:</span> ${descripcion}</p>
+                        <p><span class="fw-bold"><i class="bi bi-box-seam"></i> Stock disponible:</span>
+                          <span class="badge bg-cuaternario">${stock}</span>
                         </p>
                         <h5 class="mb-4"><i class="bi bi-info-circle"></i> Información Adicional</h5>
                         <table class="table table-striped">
@@ -462,7 +462,7 @@ class Buscador {
   btnBeforePage(paginaActual) {
     const prevBtn = document.createElement("li");
     prevBtn.classList.add("page-item");
-    prevBtn.innerHTML = `<a class="page-link"  aria-label="Previous">
+    prevBtn.innerHTML = `<a class="page-link">
                           <span aria-hidden="true">&laquo;</span>
                         </a>`;
     prevBtn.addEventListener("click", () => {
@@ -478,7 +478,7 @@ class Buscador {
   btnAfterPage(paginaActual, totalPaginas) {
     const nextBtn = document.createElement("li");
     nextBtn.classList.add("page-item");
-    nextBtn.innerHTML = `<a class="page-link"  aria-label="Next">
+    nextBtn.innerHTML = `<a class="page-link">
                           <span aria-hidden="true">&raquo;</span>
                         </a>`;
     nextBtn.addEventListener("click", () => {

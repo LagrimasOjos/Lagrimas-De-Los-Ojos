@@ -80,8 +80,8 @@ const createUserSendPasswordEmail = async (req, res) => {
                     <h2>Bienvenido a Lágrimas de los Ojos</h2>
                     <p>¡Hola!</p>
                     <p>Tu cuenta ha sido creada correctamente. Aquí tienes tus datos de acceso:</p>
-                    <h3 style="color: #0056b3;">Tu email: <strong>${email}</strong></h3>
-                    <h3 style="color: #FF7F00;">Tu Contraseña: <strong>${password}</strong></h3>
+                    <h3 style="color: #0056b3;">Tu email: <span class="fw-bold">${email}</span></h3>
+                    <h3 style="color: #FF7F00;">Tu Contraseña: <span class="fw-bold">${password}</span></h3>
                     <p>Por favor, guarda esta información de manera segura.</p>
                     <p>Si tienes algún problema, no dudes en contactarnos.</p>
                   </div>
